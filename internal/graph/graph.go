@@ -16,7 +16,9 @@ type Graph struct {
 	Edges map[string]map[string]Node //map[FirstNode.id]map[SecondNode.id]SecondNode <-> {from: FirstNode, to: SecondNode}
 }
 
-func NewGraph(Type string, Nodes []Node, Edges [][2]Node) *Graph {
+type Edge [2]Node
+
+func NewGraph(Type string, Nodes []Node, Edges []Edge) *Graph {
 	if strings.ToLower(Type) == "undirected" || strings.ToLower(Type) == "directed" {
 		g := &Graph{Type: Type, Nodes: make(map[string]Node), Edges: make(map[string]map[string]Node)} // need to init Edges map
 		for _, n := range Nodes {
@@ -41,8 +43,8 @@ func (g *Graph) AddNode(n Node) {
 func (g *Graph) DeleteNode(n Node) {
 	// deleting a node and all edges incident to it
 	delete(g.Nodes, n.Id) // deleting node
-	for dst_node_id, _ := range g.Edges {
-		delete(g.Edges[dst_node_id], n.Id) // deleting all inbound edges
+	for dstNodeId, _ := range g.Edges {
+		delete(g.Edges[dstNodeId], n.Id) // deleting all inbound edges
 	}
 	delete(g.Edges, n.Id) // deleting all outbound edges
 }

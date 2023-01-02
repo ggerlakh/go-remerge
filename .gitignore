@@ -1,2 +1,4 @@
 /.idea/
+/neo4j/
 go_build_go_remerge_linux*
+token
