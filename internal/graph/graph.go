@@ -1,7 +1,10 @@
 package graph
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"log"
 	"strings"
 )
 
@@ -10,22 +13,37 @@ type Node struct {
 	Labels map[string]any
 }
 
-type Graph struct {
-	Type  string
-	Nodes map[string]Node            // map[Node.id]Node
-	Edges map[string]map[string]Node //map[FirstNode.id]map[SecondNode.id]SecondNode <-> {from: FirstNode, to: SecondNode}
+type Edge struct {
+	From Node
+	To   Node
+	Key  string
 }
 
-type Edge [2]Node
+type Graph struct {
+	Type  string
+	Nodes map[string]Node // map[Node.Id]Node
+	Edges map[string]Edge // map[Edge.Key]Edge
+}
+
+// func for HTML chars escaping in JSON marshaling
+func jsonMarshal(t interface{}, prefix, indent string) ([]byte, error) {
+	buffer := &bytes.Buffer{}
+	encoder := json.NewEncoder(buffer)
+	encoder.SetEscapeHTML(false)
+	encoder.SetIndent(prefix, indent)
+	err := encoder.Encode(t)
+	return buffer.Bytes(), err
+}
 
 func NewGraph(Type string, Nodes []Node, Edges []Edge) *Graph {
 	if strings.ToLower(Type) == "undirected" || strings.ToLower(Type) == "directed" {
-		g := &Graph{Type: Type, Nodes: make(map[string]Node), Edges: make(map[string]map[string]Node)} // need to init Edges map
+		g := &Graph{Type: Type, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
 		for _, n := range Nodes {
 			g.Nodes[n.Id] = n
 		}
 		for _, e := range Edges {
-			g.Edges[e[0].Id] = map[string]Node{e[1].Id: e[1]}
+			e.Key = e.From.Id + "->" + e.To.Id
+			g.Edges[e.Key] = e
 		}
 		return g
 	} else {
@@ -43,42 +61,69 @@ func (g *Graph) AddNode(n Node) {
 func (g *Graph) DeleteNode(n Node) {
 	// deleting a node and all edges incident to it
 	delete(g.Nodes, n.Id) // deleting node
-	for dstNodeId, _ := range g.Edges {
-		delete(g.Edges[dstNodeId], n.Id) // deleting all inbound edges
+	for key, _ := range g.Edges {
+		if strings.Contains(key, n.Id) {
+			delete(g.Edges, key) // deleting incident edge
+		}
 	}
-	delete(g.Edges, n.Id) // deleting all outbound edges
 }
 
-func (g *Graph) AddEdge(from, to Node) {
-	_, fromInMap := g.Nodes[from.Id]
-	_, toInMap := g.Nodes[to.Id]
+func (g *Graph) AddEdge(e Edge) {
+	_, fromInMap := g.Nodes[e.From.Id]
+	_, toInMap := g.Nodes[e.To.Id]
 	if !fromInMap {
-		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graph.", from))
+		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graph.", e.From))
 	} else if !toInMap {
-		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graph.", to))
+		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graph.", e.To))
 	}
 	if strings.ToLower(g.Type) == "undirected" {
-		g.Edges[from.Id] = map[string]Node{to.Id: to}
-		g.Edges[to.Id] = map[string]Node{from.Id: from}
+		e.Key = e.From.Id + "->" + e.To.Id
+		g.Edges[e.Key] = e
+		revEdge := Edge{From: e.To, To: e.From}
+		revEdge.Key = revEdge.From.Id + "->" + revEdge.To.Id
+		g.Edges[revEdge.Key] = revEdge
 	} else if strings.ToLower(g.Type) == "directed" {
-		g.Edges[from.Id] = map[string]Node{to.Id: to}
+		e.Key = e.From.Id + "->" + e.To.Id
+		g.Edges[e.Key] = e
 	}
 }
 
-func (g *Graph) DeleteEdge(from, to Node) {
+func (g *Graph) DeleteEdge(e Edge) {
 	if strings.ToLower(g.Type) == "undirected" {
-		delete(g.Edges[from.Id], to.Id)
-		delete(g.Edges[to.Id], from.Id)
+		delete(g.Edges, e.From.Id+"->"+e.To.Id)
+		delete(g.Edges, e.To.Id+"->"+e.From.Id)
 	} else if strings.ToLower(g.Type) == "directed" {
-		delete(g.Edges[from.Id], to.Id)
+		delete(g.Edges, e.From.Id+"->"+e.To.Id)
 	}
 }
 
-/*TODO
+func (g *Graph) GetNodes() []Node {
+	var nodes []Node
+	for _, value := range g.Nodes {
+		nodes = append(nodes, value)
+	}
+	return nodes
+}
+
+func (g *Graph) GetEdges() []Edge {
+	var edges []Edge
+	for _, value := range g.Edges {
+		edges = append(edges, value)
+	}
+	return edges
+}
+
+func (g *Graph) PrettyJson() string {
+	nodes := g.GetNodes()
+	edges := g.GetEdges()
+	prettyGraph := map[string]any{"type": g.Type, "nodes": nodes, "edges": edges}
+	b, err := jsonMarshal(prettyGraph, "", "\t")
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(b)
+}
 
 func (g *Graph) String() string {
+	return g.PrettyJson()
 }
-
-func (g *Graph) ConvertToJSON() []bytes {
-}
-*/
