@@ -1,9 +1,8 @@
 package graph
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
+	"go-remerge/tools/jsontool"
 	"log"
 	"strings"
 )
@@ -23,16 +22,6 @@ type Graph struct {
 	Type  string
 	Nodes map[string]Node // map[Node.Id]Node
 	Edges map[string]Edge // map[Edge.Key]Edge
-}
-
-// func for HTML chars escaping in JSON marshaling
-func jsonMarshal(t interface{}, prefix, indent string) ([]byte, error) {
-	buffer := &bytes.Buffer{}
-	encoder := json.NewEncoder(buffer)
-	encoder.SetEscapeHTML(false)
-	encoder.SetIndent(prefix, indent)
-	err := encoder.Encode(t)
-	return buffer.Bytes(), err
 }
 
 func NewGraph(Type string, Nodes []Node, Edges []Edge) *Graph {
@@ -117,7 +106,7 @@ func (g *Graph) PrettyJson() string {
 	nodes := g.GetNodes()
 	edges := g.GetEdges()
 	prettyGraph := map[string]any{"type": g.Type, "nodes": nodes, "edges": edges}
-	b, err := jsonMarshal(prettyGraph, "", "\t")
+	b, err := jsontool.ExtenedMarshal(prettyGraph, "", "\t", false)
 	if err != nil {
 		log.Fatal(err)
 	}
