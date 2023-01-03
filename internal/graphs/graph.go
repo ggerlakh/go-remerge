@@ -1,4 +1,4 @@
-package graph
+package graphs
 
 import (
 	"fmt"
@@ -27,16 +27,11 @@ type Graph struct {
 func NewGraph(Type string, Nodes []Node, Edges []Edge) *Graph {
 	if strings.ToLower(Type) == "undirected" || strings.ToLower(Type) == "directed" {
 		g := &Graph{Type: Type, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
-		for _, n := range Nodes {
-			g.Nodes[n.Id] = n
-		}
-		for _, e := range Edges {
-			e.Key = e.From.Id + "->" + e.To.Id
-			g.Edges[e.Key] = e
-		}
+		g.SetNodes(Nodes)
+		g.SetEdges(Edges)
 		return g
 	} else {
-		panic(fmt.Sprintf("\"%v\" wrong graph type value, graph can be only directed or undirected", Type))
+		panic(fmt.Sprintf("\"%v\" wrong graphs type value, graphs can be only directed or undirected", Type))
 	}
 }
 
@@ -61,9 +56,9 @@ func (g *Graph) AddEdge(e Edge) {
 	_, fromInMap := g.Nodes[e.From.Id]
 	_, toInMap := g.Nodes[e.To.Id]
 	if !fromInMap {
-		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graph.", e.From))
+		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.", e.From))
 	} else if !toInMap {
-		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graph.", e.To))
+		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.", e.To))
 	}
 	if strings.ToLower(g.Type) == "undirected" {
 		e.Key = e.From.Id + "->" + e.To.Id
@@ -94,6 +89,12 @@ func (g *Graph) GetNodes() []Node {
 	return nodes
 }
 
+func (g *Graph) SetNodes(Nodes []Node) {
+	for _, n := range Nodes {
+		g.Nodes[n.Id] = n
+	}
+}
+
 func (g *Graph) GetEdges() []Edge {
 	var edges []Edge
 	for _, value := range g.Edges {
@@ -102,11 +103,22 @@ func (g *Graph) GetEdges() []Edge {
 	return edges
 }
 
-func (g *Graph) PrettyJson() string {
+func (g *Graph) SetEdges(Edges []Edge) {
+	for _, e := range Edges {
+		e.Key = e.From.Id + "->" + e.To.Id
+		g.Edges[e.Key] = e
+	}
+}
+
+func (g *Graph) GetPrettyGraph() map[string]any {
 	nodes := g.GetNodes()
 	edges := g.GetEdges()
-	prettyGraph := map[string]any{"type": g.Type, "nodes": nodes, "edges": edges}
-	b, err := jsontool.ExtenedMarshal(prettyGraph, "", "\t", false)
+	return map[string]any{"type": g.Type, "nodes": nodes, "edges": edges}
+}
+
+func (g *Graph) GetPrettyJson() string {
+	prettyGraph := g.GetPrettyGraph()
+	b, err := jsontool.ExtendedMarshal(prettyGraph, "", "\t", false)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -114,5 +126,5 @@ func (g *Graph) PrettyJson() string {
 }
 
 func (g *Graph) String() string {
-	return g.PrettyJson()
+	return g.GetPrettyJson()
 }
