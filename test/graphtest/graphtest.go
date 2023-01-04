@@ -1,8 +1,11 @@
 package graphtest
 
 import (
+	"context"
 	"fmt"
 	"go-remerge/internal/graphs"
+	"go-remerge/internal/neo4j"
+	"log"
 	"strconv"
 )
 
@@ -44,4 +47,25 @@ func FileSystemGraphCreationTest() {
 	skipFiles := []string{".gitignore", "go_build_go_remerge_linux"}
 	fsG := graphs.NewFileSystemGraph("directed", []graphs.Node{}, []graphs.Edge{}, ".", skipDirs, skipFiles)
 	fmt.Println(fsG)
+}
+
+func Neo4jHelloWorldTest() {
+	ctx := context.Background()
+	res, err := neo4j.HelloWorld(ctx, "neo4j://localhost:7687", "neo4j", "neo4jdevops")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(res)
+}
+
+func Neo4jGraphLoadingTest() {
+	ctx := context.Background()
+	skipDirs := []string{".git", ".idea", "neo4jdb"}
+	skipFiles := []string{".gitignore", "go_build_go_remerge_linux", "token", "log.json"}
+	fsG := graphs.NewFileSystemGraph("directed", []graphs.Node{}, []graphs.Edge{}, ".", skipDirs, skipFiles)
+	cypherQueries := fsG.GetCypher()
+	err := neo4j.ExecCypher(ctx, "neo4j://localhost:7687", "neo4j", "neo4jdevops", cypherQueries)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

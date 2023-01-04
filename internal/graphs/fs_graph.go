@@ -71,38 +71,36 @@ func (fsG *FileSystemGraph) WalkTree() {
 		} else {
 			var fromPath, toPath string
 			if path == "." {
-				/*
-					abs, err := filepath.Abs(path)
-					if err != nil {
-						log.Fatal(err)
-					}
-					path = filepath.Base(abs)*/
 				fsG.AddNode(Node{Id: hashtool.Sha256(fsG.GetRootDir(fsG.Root)), Labels: map[string]any{
 					"path":        fsG.GetRootDir(fsG.Root),
 					"isDirectory": info.IsDir()}})
-			}
-			if filepath.Dir(path) == "." {
-				fromPath = fsG.GetRootDir(fsG.Root)
-				toPath = filepath.Join(fsG.GetRootDir(fsG.Root), path)
 			} else {
-				fromPath = filepath.Dir(path)
+				// normalize path: all must start with Root dir
+				if !strings.HasPrefix(path, fsG.Root) {
+					path = filepath.Join(fsG.GetRootDir(fsG.Root), path)
+				}
+				if filepath.Dir(path) == "." {
+					fromPath = fsG.GetRootDir(fsG.Root)
+				} else {
+					fromPath = filepath.Dir(path)
+				}
 				toPath = path
-			}
-			// adding "from" Node if not exists
-			if _, nodeExists := fsG.Nodes[hashtool.Sha256(fromPath)]; !nodeExists {
-				fsG.AddNode(Node{Id: hashtool.Sha256(fromPath), Labels: map[string]any{
-					"path":        fromPath,
-					"isDirectory": info.IsDir()}})
-			}
-			// adding "to" Node if not exists
-			if _, nodeExists := fsG.Nodes[hashtool.Sha256(toPath)]; !nodeExists {
-				fsG.AddNode(Node{Id: hashtool.Sha256(toPath), Labels: map[string]any{
-					"path":        toPath,
-					"isDirectory": info.IsDir()}})
-			}
-			if fromPath != toPath {
-				fsG.AddEdge(Edge{From: fsG.Nodes[hashtool.Sha256(fromPath)], To: fsG.Nodes[hashtool.Sha256(toPath)]})
-				fmt.Println(fromPath + "->" + toPath)
+				// adding "from" Node if not exists
+				if _, nodeExists := fsG.Nodes[hashtool.Sha256(fromPath)]; !nodeExists {
+					fsG.AddNode(Node{Id: hashtool.Sha256(fromPath), Labels: map[string]any{
+						"path":        fromPath,
+						"isDirectory": info.IsDir()}})
+				}
+				// adding "to" Node if not exists
+				if _, nodeExists := fsG.Nodes[hashtool.Sha256(toPath)]; !nodeExists {
+					fsG.AddNode(Node{Id: hashtool.Sha256(toPath), Labels: map[string]any{
+						"path":        toPath,
+						"isDirectory": info.IsDir()}})
+				}
+				if fromPath != toPath {
+					fsG.AddEdge(Edge{From: fsG.Nodes[hashtool.Sha256(fromPath)], To: fsG.Nodes[hashtool.Sha256(toPath)]})
+					fmt.Println(fromPath + "->" + toPath)
+				}
 			}
 		}
 		return nil

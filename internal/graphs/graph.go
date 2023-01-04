@@ -12,6 +12,18 @@ type Node struct {
 	Labels map[string]any
 }
 
+func (n *Node) ToCypher() string {
+	var props []string
+	props = append(props, fmt.Sprintf("Id: '%v'", n.Id))
+	for k, v := range n.Labels {
+		if strings.Contains(fmt.Sprintf("%v", v), `\t`) {
+			v = strings.Replace(fmt.Sprintf("%v", v), `\t`, `\\t`, -1)
+		}
+		props = append(props, fmt.Sprintf("%s: '%v'", k, v))
+	}
+	return "{" + strings.Join(props, ", ") + "}"
+}
+
 type Edge struct {
 	From Node
 	To   Node
@@ -123,6 +135,21 @@ func (g *Graph) GetPrettyJson() string {
 		log.Fatal(err)
 	}
 	return string(b)
+}
+
+func (g *Graph) GetCypher() []string {
+	var cypherArr []string
+	// node creation in cypher
+	for _, node := range g.Nodes {
+		cypherArr = append(cypherArr, fmt.Sprintf("CREATE (n: Node %s);", node.ToCypher()))
+	}
+	//edge creation in cypher
+	for _, edge := range g.Edges {
+		cypherArr = append(cypherArr,
+			fmt.Sprintf("MATCH (from: Node {Id: '%s'}),  (to: Node {Id: '%s'}) MERGE (from)-[r: CONNECTED_WITH]->(to);",
+				edge.From.Id, edge.To.Id))
+	}
+	return cypherArr
 }
 
 func (g *Graph) String() string {
