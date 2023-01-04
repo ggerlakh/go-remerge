@@ -7,5 +7,7 @@ func main() {
 	//graphtest.DirectedGraphCreationTest()
 	//graphtest.FileSystemGraphCreationTest()
 	//graphtest.Neo4jHelloWorldTest()
-	graphtest.Neo4jGraphLoadingTest()
+	//graphtest.Neo4jLoadingGraphTest()
+	//graphtest.GetArangoGraphTest()
+	graphtest.ArangoLoadingGraphTest()
 }

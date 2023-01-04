@@ -1,7 +1,10 @@
 package graphs
 
 import (
+	"context"
 	"fmt"
+	"go-remerge/internal/arango"
+	"go-remerge/internal/neo4j"
 	"go-remerge/tools/jsontool"
 	"log"
 	"strings"
@@ -32,13 +35,14 @@ type Edge struct {
 
 type Graph struct {
 	Type  string
+	Name  string
 	Nodes map[string]Node // map[Node.Id]Node
 	Edges map[string]Edge // map[Edge.Key]Edge
 }
 
-func NewGraph(Type string, Nodes []Node, Edges []Edge) *Graph {
+func NewGraph(Type, Name string, Nodes []Node, Edges []Edge) *Graph {
 	if strings.ToLower(Type) == "undirected" || strings.ToLower(Type) == "directed" {
-		g := &Graph{Type: Type, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
+		g := &Graph{Type: strings.ToLower(Type), Name: Name, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
 		g.SetNodes(Nodes)
 		g.SetEdges(Edges)
 		return g
@@ -72,23 +76,23 @@ func (g *Graph) AddEdge(e Edge) {
 	} else if !toInMap {
 		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.", e.To))
 	}
-	if strings.ToLower(g.Type) == "undirected" {
+	if g.Type == "undirected" {
 		e.Key = e.From.Id + "->" + e.To.Id
 		g.Edges[e.Key] = e
 		revEdge := Edge{From: e.To, To: e.From}
 		revEdge.Key = revEdge.From.Id + "->" + revEdge.To.Id
 		g.Edges[revEdge.Key] = revEdge
-	} else if strings.ToLower(g.Type) == "directed" {
+	} else if g.Type == "directed" {
 		e.Key = e.From.Id + "->" + e.To.Id
 		g.Edges[e.Key] = e
 	}
 }
 
 func (g *Graph) DeleteEdge(e Edge) {
-	if strings.ToLower(g.Type) == "undirected" {
+	if g.Type == "undirected" {
 		delete(g.Edges, e.From.Id+"->"+e.To.Id)
 		delete(g.Edges, e.To.Id+"->"+e.From.Id)
-	} else if strings.ToLower(g.Type) == "directed" {
+	} else if g.Type == "directed" {
 		delete(g.Edges, e.From.Id+"->"+e.To.Id)
 	}
 }
@@ -137,6 +141,46 @@ func (g *Graph) GetPrettyJson() string {
 	return string(b)
 }
 
+func (g *Graph) String() string {
+	return g.GetPrettyJson()
+}
+
+func (g *Graph) GetArangoNodes() []map[string]any {
+	var arangoNodes []map[string]any
+	for _, node := range g.Nodes {
+		arangoNode := node.Labels
+		arangoNode["_key"] = node.Id
+		arangoNode["_id"] = fmt.Sprintf("%s_nodes/%s", g.Name, node.Id)
+		arangoNodes = append(arangoNodes, arangoNode)
+	}
+	return arangoNodes
+}
+
+func (g *Graph) GetArangoEdges() []map[string]any {
+	var arangoEdges []map[string]any
+	for _, edge := range g.Edges {
+		arangoEdge := make(map[string]any)
+		//arangoEdge["_key"] = edge.Key
+		arangoEdge["_id"] = fmt.Sprintf("%s_edges/%s", g.Name, edge.Key)
+		arangoEdge["_from"] = fmt.Sprintf("%s_nodes/%s", g.Name, edge.From.Id)
+		arangoEdge["_to"] = fmt.Sprintf("%s_nodes/%s", g.Name, edge.To.Id)
+		arangoEdges = append(arangoEdges, arangoEdge)
+	}
+	return arangoEdges
+}
+
+func (g *Graph) ToArango() string {
+	jsonArangoNodes, err := jsontool.ExtendedMarshal(g.GetArangoNodes(), "", "\t", false)
+	if err != nil {
+		log.Fatal(err)
+	}
+	jsonArangoEdges, err := jsontool.ExtendedMarshal(g.GetArangoEdges(), "", "\t", false)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(jsonArangoNodes) + "\n" + string(jsonArangoEdges)
+}
+
 func (g *Graph) GetCypher() []string {
 	var cypherArr []string
 	// node creation in cypher
@@ -152,6 +196,14 @@ func (g *Graph) GetCypher() []string {
 	return cypherArr
 }
 
-func (g *Graph) String() string {
-	return g.GetPrettyJson()
+func (g *Graph) LoadNeo4jGraph(ctx context.Context, uri, username, password string) error {
+	cypherQueries := g.GetCypher()
+	err := neo4j.ExecCypher(ctx, uri, username, password, cypherQueries)
+	return err
+}
+
+func (g *Graph) LoadArangoGraph(ctx context.Context, endpoints []string, username, password, dbName string) {
+	nodes := g.GetArangoNodes()
+	edges := g.GetArangoEdges()
+	arango.LoadGraph(ctx, endpoints, username, password, dbName, g.Name, nodes, edges)
 }

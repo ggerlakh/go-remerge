@@ -16,10 +16,11 @@ type FileSystemGraph struct {
 	SkipFiles map[string]struct{}
 }
 
-func NewFileSystemGraph(Type string, Nodes []Node, Edges []Edge, Root string, SkipDirs []string, SkipFiles []string) *FileSystemGraph {
+func NewFileSystemGraph(Type, Name string, Nodes []Node, Edges []Edge, Root string, SkipDirs []string, SkipFiles []string) *FileSystemGraph {
 	if strings.ToLower(Type) == "undirected" || strings.ToLower(Type) == "directed" {
 		fsG := &FileSystemGraph{Graph: Graph{
 			Type:  Type,
+			Name:  Name,
 			Nodes: make(map[string]Node),
 			Edges: make(map[string]Edge)},
 			Root:      Root,
