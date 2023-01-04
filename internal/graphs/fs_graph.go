@@ -72,6 +72,7 @@ func (fsG *FileSystemGraph) WalkTree() {
 			var fromPath, toPath string
 			if path == "." {
 				fsG.AddNode(Node{Id: hashtool.Sha256(fsG.GetRootDir(fsG.Root)), Labels: map[string]any{
+					"name":        filepath.Base(fsG.GetRootDir(fsG.Root)),
 					"path":        fsG.GetRootDir(fsG.Root),
 					"isDirectory": info.IsDir()}})
 			} else {
@@ -88,12 +89,14 @@ func (fsG *FileSystemGraph) WalkTree() {
 				// adding "from" Node if not exists
 				if _, nodeExists := fsG.Nodes[hashtool.Sha256(fromPath)]; !nodeExists {
 					fsG.AddNode(Node{Id: hashtool.Sha256(fromPath), Labels: map[string]any{
+						"name":        filepath.Base(fromPath),
 						"path":        fromPath,
 						"isDirectory": info.IsDir()}})
 				}
 				// adding "to" Node if not exists
 				if _, nodeExists := fsG.Nodes[hashtool.Sha256(toPath)]; !nodeExists {
 					fsG.AddNode(Node{Id: hashtool.Sha256(toPath), Labels: map[string]any{
+						"name":        filepath.Base(toPath),
 						"path":        toPath,
 						"isDirectory": info.IsDir()}})
 				}
