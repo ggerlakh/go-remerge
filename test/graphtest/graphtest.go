@@ -74,3 +74,11 @@ func ArangoLoadingGraphTest() {
 	endpoints := []string{"http://localhost:8529"}
 	fsG.LoadArangoGraph(ctx, endpoints, "root", "password", "test")
 }
+
+func FileDependencyCreationTest() {}
+
+func EntityDependencyCreationTest() {}
+
+func EntityInheritanceCreationTest() {}
+
+func EntityCompleteCreationTest() {}
