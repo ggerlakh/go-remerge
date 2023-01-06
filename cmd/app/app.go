@@ -1,13 +1,7 @@
 package main
 
-import "go-remerge/test/graphtest"
+import "go-remerge/cmd/args"
 
 func main() {
-	//graphtest.UndirectedGraphCreationTest()
-	//graphtest.DirectedGraphCreationTest()
-	//graphtest.FileSystemGraphCreationTest()
-	//graphtest.Neo4jHelloWorldTest()
-	//graphtest.Neo4jLoadingGraphTest()
-	//graphtest.GetArangoGraphTest()
-	graphtest.ArangoLoadingGraphTest()
+	args.ParseArgs()
 }

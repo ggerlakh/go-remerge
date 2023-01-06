@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/arangodb/go-driver v1.4.1
 	github.com/neo4j/neo4j-go-driver/v5 v5.3.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (

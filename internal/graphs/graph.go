@@ -207,3 +207,10 @@ func (g *Graph) LoadArangoGraph(ctx context.Context, endpoints []string, usernam
 	edges := g.GetArangoEdges()
 	arango.LoadGraph(ctx, endpoints, username, password, dbName, g.Name, nodes, edges)
 }
+
+type Exporter interface {
+	GetPrettyJson() string
+	ToArango() string
+	LoadNeo4jGraph(ctx context.Context, uri, username, password string) error
+	LoadArangoGraph(ctx context.Context, endpoints []string, username, password, dbName string)
+}

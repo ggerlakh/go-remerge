@@ -1,0 +1,37 @@
+---
+project_name: go-remerge
+analysis_name: self-check
+source_directory: /home/gleb/go-remerge
+languages:
+  - golang
+extensions:
+  - .go
+ignore_directories:
+  - .git
+  - .idea
+  - neo4jdb
+ignore_files:
+  - .gitignore
+  - go_build_go_remerge_linux
+  - token
+  - log.json
+graphs:
+  - name: filesystem
+    type: directed
+  - name: file_dependency
+    type: directed
+export:
+  as_file:
+    - json
+    - arango_format
+  arango:
+    username: root
+    password: password
+    url: http://localhost:8529
+    database: test
+  neo4j:
+    username: neo4j
+    password: neo4jdevops
+    uri: neo4j://localhost:7687
+
+

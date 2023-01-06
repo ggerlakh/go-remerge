@@ -3,7 +3,9 @@ package graphtest
 import (
 	"context"
 	"fmt"
+	"go-remerge/internal/config"
 	"go-remerge/internal/graphs"
+	"go-remerge/internal/parsers"
 	"log"
 	"strconv"
 )
@@ -40,15 +42,20 @@ func DirectedGraphCreationTest() {
 	fmt.Println(g)
 }
 
-func FileSystemGraphCreationTest() {
-	fmt.Println("Creating filesystem graphs:")
-	skipDirs := []string{".git", ".idea", "neo4j"}
-	skipFiles := []string{".gitignore", "go_build_go_remerge_linux"}
-	fsG := graphs.NewFileSystemGraph("directed", "filesystem", []graphs.Node{}, []graphs.Edge{}, ".", skipDirs, skipFiles)
-	fmt.Println(fsG)
+func FileSystemGraphCreationTest(conf config.Config) {
+	fmt.Println("Creating filesystem graph:")
+	//skipDirs := []string{".git", ".idea", "neo4jdb"}
+	//skipFiles := []string{".gitignore", "go_build_go_remerge_linux"}
+	for _, gConf := range conf.Graphs {
+		if gConf.Name == "filesystem" {
+			fsG := graphs.NewFileSystemGraph(gConf.Type, gConf.Name, []graphs.Node{}, []graphs.Edge{}, conf.SourceDirectory,
+				conf.IgnoreDirectories, conf.IgnoreFiles)
+			fmt.Println(fsG)
+		}
+	}
 }
 
-func Neo4jLoadingGraphTest() {
+func Neo4jLoadingGraphTest(conf config.Config) {
 	ctx := context.Background()
 	skipDirs := []string{".git", ".idea", "neo4jdb"}
 	skipFiles := []string{".gitignore", "go_build_go_remerge_linux", "token", "log.json"}
@@ -59,14 +66,14 @@ func Neo4jLoadingGraphTest() {
 	}
 }
 
-func GetArangoGraphTest() {
+func GetArangoGraphTest(conf config.Config) {
 	skipDirs := []string{".git", ".idea", "neo4jdb"}
 	skipFiles := []string{".gitignore", "go_build_go_remerge_linux", "token", "log.json"}
 	fsG := graphs.NewFileSystemGraph("directed", "filesystem_arango", []graphs.Node{}, []graphs.Edge{}, ".", skipDirs, skipFiles)
 	fmt.Println(fsG.ToArango())
 }
 
-func ArangoLoadingGraphTest() {
+func ArangoLoadingGraphTest(conf config.Config) {
 	ctx := context.Background()
 	skipDirs := []string{".git", ".idea", "neo4jdb"}
 	skipFiles := []string{".gitignore", "go_build_go_remerge_linux", "token", "log.json"}
@@ -75,10 +82,34 @@ func ArangoLoadingGraphTest() {
 	fsG.LoadArangoGraph(ctx, endpoints, "root", "password", "test")
 }
 
-func FileDependencyCreationTest() {}
+func FileDependencyCreationTest(conf config.Config) {
+	for _, lang := range conf.Languages {
+		var parser parsers.DependencyExtractor
+		for _, gConf := range conf.Graphs {
+			if gConf.Name == "filesystem" {
+				fsG := graphs.NewFileSystemGraph(gConf.Type, gConf.Name, []graphs.Node{}, []graphs.Edge{}, conf.SourceDirectory,
+					conf.IgnoreDirectories, conf.IgnoreFiles)
+				fmt.Println(fsG)
+			}
+		}
+		switch lang {
+		case "python":
+			parser = &parsers.PythonParser{}
+		case "golang", "go":
+		case "kotlin":
+		case "swift":
+		}
+		depGraph := graphs.NewDependencyGraph()
+		fmt.Println(depGraph) // TODO: graph export
+	}
+}
 
-func EntityDependencyCreationTest() {}
+func EntityDependencyCreationTest(conf config.Config) {}
 
-func EntityInheritanceCreationTest() {}
+func EntityInheritanceCreationTest(conf config.Config) {}
 
-func EntityCompleteCreationTest() {}
+func EntityCompleteCreationTest(conf config.Config) {}
+
+func ParseConfigTest(conf config.Config) {
+	fmt.Println(conf)
+}
