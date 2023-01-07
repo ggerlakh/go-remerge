@@ -1,7 +1,7 @@
 ---
 project_name: go-remerge
 analysis_name: self-check
-source_directory: /home/gleb/go-remerge
+source_directory: C:\Users\Gleb\Desktop\Учеба\Диплом\go-remerge
 languages:
   - golang
 extensions:
@@ -16,14 +16,16 @@ ignore_files:
   - token
   - log.json
 graphs:
-  - name: filesystem
+  - graph: filesystem
     type: directed
-  - name: file_dependency
+  - graph: file_dependency
     type: directed
 export:
   as_file:
-    - json
-    - arango_format
+    output_dir: /home/gleb/go-remerge/export
+    formats:
+      - json
+      - arango_format
   arango:
     username: root
     password: password

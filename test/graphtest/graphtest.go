@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"go-remerge/internal/config"
 	"go-remerge/internal/graphs"
-	"go-remerge/internal/parsers"
 	"log"
 	"strconv"
 )
@@ -47,8 +46,8 @@ func FileSystemGraphCreationTest(conf config.Config) {
 	//skipDirs := []string{".git", ".idea", "neo4jdb"}
 	//skipFiles := []string{".gitignore", "go_build_go_remerge_linux"}
 	for _, gConf := range conf.Graphs {
-		if gConf.Name == "filesystem" {
-			fsG := graphs.NewFileSystemGraph(gConf.Type, gConf.Name, []graphs.Node{}, []graphs.Edge{}, conf.SourceDirectory,
+		if gConf.Graph == "filesystem" {
+			fsG := graphs.NewFileSystemGraph(gConf.Type, gConf.Graph, []graphs.Node{}, []graphs.Edge{}, conf.SourceDirectory,
 				conf.IgnoreDirectories, conf.IgnoreFiles)
 			fmt.Println(fsG)
 		}
@@ -83,25 +82,6 @@ func ArangoLoadingGraphTest(conf config.Config) {
 }
 
 func FileDependencyCreationTest(conf config.Config) {
-	for _, lang := range conf.Languages {
-		var parser parsers.DependencyExtractor
-		for _, gConf := range conf.Graphs {
-			if gConf.Name == "filesystem" {
-				fsG := graphs.NewFileSystemGraph(gConf.Type, gConf.Name, []graphs.Node{}, []graphs.Edge{}, conf.SourceDirectory,
-					conf.IgnoreDirectories, conf.IgnoreFiles)
-				fmt.Println(fsG)
-			}
-		}
-		switch lang {
-		case "python":
-			parser = &parsers.PythonParser{}
-		case "golang", "go":
-		case "kotlin":
-		case "swift":
-		}
-		depGraph := graphs.NewDependencyGraph()
-		fmt.Println(depGraph) // TODO: graph export
-	}
 }
 
 func EntityDependencyCreationTest(conf config.Config) {}
@@ -111,5 +91,6 @@ func EntityInheritanceCreationTest(conf config.Config) {}
 func EntityCompleteCreationTest(conf config.Config) {}
 
 func ParseConfigTest(conf config.Config) {
+	//fmt.Println(conf.Export.Arango == nil)
 	fmt.Println(conf)
 }
