@@ -8,6 +8,7 @@ type InheritanceGraph struct {
 	Edges             map[string]Edge
 	Parser            parsers.InheritanceExtractor
 	AllowedExtensions []string
+	Type              string
 }
 
 func NewEntityInheritanceGraph(fileDependencyGraph DependencyGraph, parser parsers.InheritanceExtractor, extensions []string) *InheritanceGraph {
@@ -17,6 +18,7 @@ func NewEntityInheritanceGraph(fileDependencyGraph DependencyGraph, parser parse
 		Edges:             make(map[string]Edge),
 		Parser:            parser,
 		AllowedExtensions: extensions,
+		Type:              "EntityInheritance",
 	}
 	inhG.CreateInheritanceGraph()
 	return inhG

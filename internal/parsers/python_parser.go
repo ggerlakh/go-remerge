@@ -8,6 +8,8 @@ func (parser *PythonParser) ExtractInheritance(filepath, entityName string) []st
 }
 
 func (parser *PythonParser) ExtractDependencies(nodeName string) []string {
+	// regexp: (?m)^(?:from[ ]+(\S+)[ ]+)?import[ ]+(\S+)(?:[ ]+as[ ]+\S+)?[ ]*$
+	// strings.Fields
 	return []string{}
 }
 

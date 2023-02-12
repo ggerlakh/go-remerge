@@ -1,7 +1,7 @@
 ---
 project_name: go-remerge
 analysis_name: self-check
-source_directory: C:\Users\Gleb\Desktop\Учеба\Диплом\go-remerge
+source_directory: /home/gleb/win_home/Desktop/Учеба/Диплом/go-remerge
 languages:
   - golang
 extensions:
@@ -10,6 +10,8 @@ ignore_directories:
   - .git
   - .idea
   - neo4jdb
+  - scripts
+  - export
 ignore_files:
   - .gitignore
   - go_build_go_remerge_linux
@@ -17,8 +19,6 @@ ignore_files:
   - log.json
 graphs:
   - graph: filesystem
-    type: directed
-  - graph: file_dependency
     type: directed
 export:
   as_file:
@@ -29,11 +29,10 @@ export:
   arango:
     username: root
     password: password
-    url: http://localhost:8529
+    endpoints:
+      - http://localhost:8529
     database: test
   neo4j:
     username: neo4j
     password: neo4jdevops
     uri: neo4j://localhost:7687
-
-

@@ -1,0 +1,2 @@
+FOR u IN yourcollectionname
+  REMOVE u IN yourcollectionname

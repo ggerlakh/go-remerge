@@ -34,20 +34,20 @@ type Edge struct {
 }
 
 type Graph struct {
-	Type  string
-	Name  string
-	Nodes map[string]Node // map[Node.Id]Node
-	Edges map[string]Edge // map[Edge.Key]Edge
+	Direction string
+	Name      string
+	Nodes     map[string]Node // map[Node.Id]Node
+	Edges     map[string]Edge // map[Edge.Key]Edge
 }
 
-func NewGraph(Type, Name string, Nodes []Node, Edges []Edge) *Graph {
-	if strings.ToLower(Type) == "undirected" || strings.ToLower(Type) == "directed" {
-		g := &Graph{Type: strings.ToLower(Type), Name: Name, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
+func NewGraph(Direction, Name string, Nodes []Node, Edges []Edge) *Graph {
+	if strings.ToLower(Direction) == "undirected" || strings.ToLower(Direction) == "directed" {
+		g := &Graph{Direction: strings.ToLower(Direction), Name: Name, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
 		g.SetNodes(Nodes)
 		g.SetEdges(Edges)
 		return g
 	} else {
-		panic(fmt.Sprintf("\"%v\" wrong graphs type value, graphs can be only directed or undirected", Type))
+		panic(fmt.Sprintf("\"%v\" wrong graphs type value, graphs can be only directed or undirected", Direction))
 	}
 }
 
@@ -76,23 +76,23 @@ func (g *Graph) AddEdge(e Edge) {
 	} else if !toInMap {
 		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.", e.To))
 	}
-	if g.Type == "undirected" {
+	if g.Direction == "undirected" {
 		e.Key = e.From.Id + "->" + e.To.Id
 		g.Edges[e.Key] = e
 		revEdge := Edge{From: e.To, To: e.From}
 		revEdge.Key = revEdge.From.Id + "->" + revEdge.To.Id
 		g.Edges[revEdge.Key] = revEdge
-	} else if g.Type == "directed" {
+	} else if g.Direction == "directed" {
 		e.Key = e.From.Id + "->" + e.To.Id
 		g.Edges[e.Key] = e
 	}
 }
 
 func (g *Graph) DeleteEdge(e Edge) {
-	if g.Type == "undirected" {
+	if g.Direction == "undirected" {
 		delete(g.Edges, e.From.Id+"->"+e.To.Id)
 		delete(g.Edges, e.To.Id+"->"+e.From.Id)
-	} else if g.Type == "directed" {
+	} else if g.Direction == "directed" {
 		delete(g.Edges, e.From.Id+"->"+e.To.Id)
 	}
 }
@@ -129,7 +129,7 @@ func (g *Graph) SetEdges(Edges []Edge) {
 func (g *Graph) GetPrettyGraph() map[string]any {
 	nodes := g.GetNodes()
 	edges := g.GetEdges()
-	return map[string]any{"type": g.Type, "nodes": nodes, "edges": edges}
+	return map[string]any{"type": g.Direction, "nodes": nodes, "edges": edges}
 }
 
 func (g *Graph) GetPrettyJson() string {
@@ -211,6 +211,7 @@ func (g *Graph) LoadArangoGraph(ctx context.Context, endpoints []string, usernam
 type Exporter interface {
 	GetPrettyJson() string
 	ToArango() string
+	GetNodes() []Node
 	LoadNeo4jGraph(ctx context.Context, uri, username, password string) error
 	LoadArangoGraph(ctx context.Context, endpoints []string, username, password, dbName string)
 }
