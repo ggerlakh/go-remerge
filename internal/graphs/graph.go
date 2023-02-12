@@ -52,9 +52,9 @@ func NewGraph(Direction, Name string, Nodes []Node, Edges []Edge) *Graph {
 }
 
 func (g *Graph) AddNode(n Node) {
-	if _, inNodes := g.Nodes[n.Id]; inNodes {
-		panic(fmt.Sprintf("Duplicate error, node with such id=%s already exists.", n.Id))
-	}
+	/*if _, inNodes := g.Nodes[n.Id]; inNodes {
+		panic(fmt.Sprintf("Duplicate error, node with such id=%s already exists. Node: %v", n.Id, n))
+	}*/
 	g.Nodes[n.Id] = n
 }
 
@@ -72,9 +72,9 @@ func (g *Graph) AddEdge(e Edge) {
 	_, fromInMap := g.Nodes[e.From.Id]
 	_, toInMap := g.Nodes[e.To.Id]
 	if !fromInMap {
-		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.", e.From))
+		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.\n%v", e.From, e))
 	} else if !toInMap {
-		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.", e.To))
+		panic(fmt.Sprintf("Edge creation error, node %v does not exist in graphs.\n%v", e.To, e))
 	}
 	if g.Direction == "undirected" {
 		e.Key = e.From.Id + "->" + e.To.Id
@@ -211,7 +211,6 @@ func (g *Graph) LoadArangoGraph(ctx context.Context, endpoints []string, usernam
 type Exporter interface {
 	GetPrettyJson() string
 	ToArango() string
-	GetNodes() []Node
 	LoadNeo4jGraph(ctx context.Context, uri, username, password string) error
 	LoadArangoGraph(ctx context.Context, endpoints []string, username, password, dbName string)
 }

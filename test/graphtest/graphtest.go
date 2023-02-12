@@ -47,7 +47,7 @@ func FileSystemGraphCreationTest(conf config.Config) {
 	//skipFiles := []string{".gitignore", "go_build_go_remerge_linux"}
 	for _, gConf := range conf.Graphs {
 		if gConf.Graph == "filesystem" {
-			fsG := graphs.NewFileSystemGraph(gConf.Type, gConf.Graph, []graphs.Node{}, []graphs.Edge{}, conf.SourceDirectory,
+			fsG := graphs.NewFileSystemGraph(gConf.Direction, gConf.Graph, []graphs.Node{}, []graphs.Edge{}, conf.SourceDirectory,
 				conf.IgnoreDirectories, conf.IgnoreFiles)
 			fmt.Println(fsG)
 		}

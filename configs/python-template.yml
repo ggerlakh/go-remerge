@@ -1,0 +1,34 @@
+---
+project_name: emerge test
+analysis_name: check python project analysis
+source_directory: /home/gleb/win_home/Desktop/emerge
+languages:
+  - python
+extensions:
+  - .py
+ignore_directories:
+  - .git
+  - .vscode
+  - .github
+  - output
+ignore_files:
+  - .gitignore
+graphs:
+  - graph: file_dependency
+    direction: directed
+export:
+  as_file:
+    output_dir: /home/gleb/go-remerge/export
+    formats:
+      - json
+      - arango_format
+  arango:
+    username: root
+    password: password
+    endpoints:
+      - http://localhost:8529
+    database: test_python
+  neo4j:
+    username: neo4j
+    password: neo4jdevops
+    uri: neo4j://localhost:7687

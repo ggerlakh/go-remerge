@@ -19,7 +19,7 @@ ignore_files:
   - log.json
 graphs:
   - graph: filesystem
-    type: directed
+    direction: directed
 export:
   as_file:
     output_dir: /home/gleb/go-remerge/export

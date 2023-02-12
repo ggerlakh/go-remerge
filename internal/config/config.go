@@ -10,8 +10,8 @@ import (
 )
 
 type GraphConfig struct {
-	Graph string `yaml:"graph"`
-	Type  string `yaml:"type"`
+	Graph     string `yaml:"graph"`
+	Direction string `yaml:"direction"`
 }
 
 type ArangoConfig struct {
@@ -64,6 +64,8 @@ func ParseConfig(configPath string) (Config, map[string]bool) {
 	if err != nil {
 		log.Fatalf("Error parsing yaml config %v\n", err)
 	}
+	fmt.Println("Source directory: ", conf.SourceDirectory)
+	fmt.Println("config: ", conf)
 	// check mandatory config fields
 	// check if path exists
 	if _, err := os.Stat(conf.SourceDirectory); err != nil {

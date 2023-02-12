@@ -2,6 +2,7 @@ package args
 
 import (
 	"flag"
+	"fmt"
 	"go-remerge/internal/analyzer"
 	"go-remerge/internal/config"
 	"go-remerge/internal/graphs"
@@ -13,6 +14,7 @@ func ParseArgs() {
 	flag.Parse()
 	//conf, _ := config.ParseConfig(configPath)
 	//graphtest.ParseConfigTest(conf)
+	fmt.Println(configPath)
 	conf, exportTypesMap := config.ParseConfig(configPath)
 	a := analyzer.Analyzer{Conf: conf, GraphMap: make(map[string]graphs.Exporter), ExportTypesMap: exportTypesMap}
 	a.Start()

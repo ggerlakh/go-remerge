@@ -78,9 +78,9 @@ func (fsG *FileSystemGraph) WalkTree() {
 					"isDirectory": info.IsDir()}})
 			} else {
 				// normalize path: all must start with Root dir
-				if !strings.HasPrefix(path, fsG.Root) {
-					path = filepath.Join(fsG.GetRootDir(fsG.Root), path)
-				}
+				//if !strings.HasPrefix(path, fsG.Root) {
+				//	path = filepath.Join(fsG.GetRootDir(fsG.Root), path)
+				//}
 				if filepath.Dir(path) == "." {
 					fromPath = fsG.GetRootDir(fsG.Root)
 				} else {

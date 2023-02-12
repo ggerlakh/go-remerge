@@ -66,10 +66,12 @@ func (depG *DependencyGraph) CreateFileDependencyGraph(filesystemGraph FileSyste
 					"path":        dependency,
 					"package":     depG.Parser.ExtractPackage(dependency),
 					"isDirectory": false}})
-				depG.AddEdge(Edge{
-					From: fileDependencyNode,
-					To:   depG.Nodes[toId],
-				})
+				if _, inNodes := depG.Nodes[toId]; inNodes {
+					depG.AddEdge(Edge{
+						From: fileDependencyNode,
+						To:   depG.Nodes[toId],
+					})
+				}
 			}
 		}
 	}
