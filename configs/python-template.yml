@@ -11,6 +11,7 @@ ignore_directories:
   - .vscode
   - .github
   - output
+  - testdata
 ignore_files:
   - .gitignore
 graphs:

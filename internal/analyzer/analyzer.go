@@ -79,10 +79,10 @@ func (a *Analyzer) CreateFileDependencyGraphIfNotCreated(Direction string, parse
 	a.CreateFilesystemGraphIfNotCreated(Direction)
 	if _, isFileDependencyGraphCreated := a.GraphMap["file_dependency"]; !isFileDependencyGraphCreated {
 		a.GraphMap["file_dependency"] = graphs.NewFileDependencyGraph(*a.GraphMap["filesystem"].(*graphs.FileSystemGraph),
-			parser, a.Conf.Extensions)
+			parser, a.Conf.Extensions, Direction)
 	} else if a.GraphMap["file_dependency"].(*graphs.DependencyGraph).Direction != Direction {
 		a.GraphMap["file_dependency"] = graphs.NewFileDependencyGraph(*a.GraphMap["filesystem"].(*graphs.FileSystemGraph),
-			parser, a.Conf.Extensions)
+			parser, a.Conf.Extensions, Direction)
 	}
 }
 
@@ -91,10 +91,10 @@ func (a *Analyzer) CreateEntityDependencyGraphIfNotCreated(Direction string, par
 	a.CreateFilesystemGraphIfNotCreated(Direction)
 	if _, isEntityDependencyGraphCreated := a.GraphMap["entity_dependency"]; !isEntityDependencyGraphCreated {
 		a.GraphMap["entity_dependency"] = graphs.NewEntityDependencyGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions)
+			parser, a.Conf.Extensions, Direction)
 	} else if a.GraphMap["entity_dependency"].(*graphs.DependencyGraph).Direction != Direction {
 		a.GraphMap["entity_dependency"] = graphs.NewEntityDependencyGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions)
+			parser, a.Conf.Extensions, Direction)
 	}
 }
 
@@ -103,10 +103,10 @@ func (a *Analyzer) CreateEntityInheritanceGraphIfNotCreated(Direction string, pa
 	a.CreateFilesystemGraphIfNotCreated(Direction)
 	if _, isEntityInheritanceGraphCreated := a.GraphMap["entity_inheritance"]; !isEntityInheritanceGraphCreated {
 		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions)
+			parser, a.Conf.Extensions, Direction)
 	} else if a.GraphMap["entity_inheritance"].(*graphs.DependencyGraph).Direction != Direction {
 		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions)
+			parser, a.Conf.Extensions, Direction)
 	}
 }
 
@@ -116,10 +116,10 @@ func (a *Analyzer) CreateEntityCompleteGraphIfNotCreated(Direction string, parse
 	a.CreateEntityDependencyGraphIfNotCreated(Direction, parser)
 	if _, isEntityCompleteGraphCreated := a.GraphMap["entity_complete"]; !isEntityCompleteGraphCreated {
 		a.GraphMap["entity_complete"] = graphs.NewEntityCompleteGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
-			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph))
+			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph), Direction)
 	} else if a.GraphMap["entity_complete"].(*graphs.CompleteGraph).Direction != Direction {
 		a.GraphMap["entity_complete"] = graphs.NewEntityCompleteGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
-			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph))
+			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph), Direction)
 	}
 }
 

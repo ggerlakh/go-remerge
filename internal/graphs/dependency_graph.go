@@ -1,6 +1,7 @@
 package graphs
 
 import (
+	"fmt"
 	"go-remerge/internal/parsers"
 	"go-remerge/tools/hashtool"
 	"path/filepath"
@@ -8,18 +9,23 @@ import (
 )
 
 type DependencyGraph struct {
-	FileSystemGraph
-	Nodes             map[string]Node
-	Edges             map[string]Edge
+	//FileSystemGraph
+	Graph
 	Parser            parsers.DependencyExtractor
 	AllowedExtensions []string
 }
 
-func NewFileDependencyGraph(filesystemGraph FileSystemGraph, parser parsers.DependencyExtractor, extensions []string) *DependencyGraph {
+func NewFileDependencyGraph(filesystemGraph FileSystemGraph, parser parsers.DependencyExtractor, extensions []string, direction string) *DependencyGraph {
 	depGraph := &DependencyGraph{
-		FileSystemGraph:   filesystemGraph,
-		Nodes:             make(map[string]Node),
-		Edges:             make(map[string]Edge),
+		//FileSystemGraph:   filesystemGraph,
+		//Nodes:             make(map[string]Node),
+		//Edges:             make(map[string]Edge),
+		Graph: Graph{
+			Nodes:     make(map[string]Node),
+			Edges:     make(map[string]Edge),
+			Direction: direction,
+			Name:      "file_dependency",
+		},
 		Parser:            parser,
 		AllowedExtensions: extensions,
 	}
@@ -27,10 +33,14 @@ func NewFileDependencyGraph(filesystemGraph FileSystemGraph, parser parsers.Depe
 	return depGraph
 }
 
-func NewEntityDependencyGraph(fileDependencyGraph DependencyGraph, parser parsers.DependencyExtractor, extensions []string) *DependencyGraph {
+func NewEntityDependencyGraph(fileDependencyGraph DependencyGraph, parser parsers.DependencyExtractor, extensions []string, direction string) *DependencyGraph {
 	depGraph := &DependencyGraph{
-		Nodes:             make(map[string]Node),
-		Edges:             make(map[string]Edge),
+		Graph: Graph{
+			Nodes:     make(map[string]Node),
+			Edges:     make(map[string]Edge),
+			Direction: direction,
+			Name:      "entity_dependency",
+		},
 		Parser:            parser,
 		AllowedExtensions: extensions,
 	}
@@ -42,6 +52,7 @@ func (depG *DependencyGraph) CheckNode(node Node) bool {
 	var hasAllowedExtension bool
 	for _, ext := range depG.AllowedExtensions {
 		if !node.Labels["isDirectory"].(bool) && strings.HasSuffix(node.Labels["name"].(string), ext) {
+			fmt.Println(strings.HasSuffix(node.Labels["name"].(string), ext), ext, node.Labels["name"])
 			hasAllowedExtension = true
 			break
 		}
@@ -61,17 +72,16 @@ func (depG *DependencyGraph) CreateFileDependencyGraph(filesystemGraph FileSyste
 			// adding "to" nodes (import dependencies)
 			for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
 				toId := hashtool.Sha256(dependency)
-				depG.AddNode(Node{Id: toId, Labels: map[string]any{
+				toNode := Node{Id: toId, Labels: map[string]any{
 					"name":        filepath.Base(dependency),
 					"path":        dependency,
 					"package":     depG.Parser.ExtractPackage(dependency),
-					"isDirectory": false}})
-				if _, inNodes := depG.Nodes[toId]; inNodes {
-					depG.AddEdge(Edge{
-						From: fileDependencyNode,
-						To:   depG.Nodes[toId],
-					})
-				}
+					"isDirectory": false}}
+				depG.AddNode(toNode)
+				depG.AddEdge(Edge{
+					From: fileDependencyNode,
+					To:   toNode,
+				})
 			}
 		}
 	}

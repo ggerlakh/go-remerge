@@ -1,14 +1,17 @@
 package graphs
 
 type CompleteGraph struct {
-	InheritanceGraph
-	DependencyGraph
+	Graph
 }
 
-func NewEntityCompleteGraph(entityDepG DependencyGraph, entityInhG InheritanceGraph) *CompleteGraph {
+func NewEntityCompleteGraph(entityDepG DependencyGraph, entityInhG InheritanceGraph, direction string) *CompleteGraph {
 	completeG := &CompleteGraph{
-		InheritanceGraph: entityInhG,
-		DependencyGraph:  entityDepG,
+		Graph: Graph{
+			Nodes:     make(map[string]Node),
+			Edges:     make(map[string]Edge),
+			Direction: direction,
+			Name:      "file_dependency",
+		},
 	}
 	completeG.CreateCompleteGraph()
 	return completeG
