@@ -2,7 +2,6 @@ package config
 
 import (
 	"errors"
-	"fmt"
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
@@ -64,8 +63,6 @@ func ParseConfig(configPath string) (Config, map[string]bool) {
 	if err != nil {
 		log.Fatalf("Error parsing yaml config %v\n", err)
 	}
-	fmt.Println("Source directory: ", conf.SourceDirectory)
-	fmt.Println("config: ", conf)
 	// check mandatory config fields
 	// check if path exists
 	if _, err := os.Stat(conf.SourceDirectory); err != nil {
@@ -78,7 +75,6 @@ func ParseConfig(configPath string) (Config, map[string]bool) {
 		log.Fatalf("Export parameters are not set in %s\n", configPath)
 	}
 	// check json file export in config
-	fmt.Println(reflect.DeepEqual(conf.Export.AsJSONFile, defaultJsonExportConfig), defaultJsonExportConfig, conf.Export.AsJSONFile)
 	if !reflect.DeepEqual(conf.Export.AsJSONFile, defaultJsonExportConfig) {
 		exportTypesMap["json"] = true
 	}
@@ -99,6 +95,5 @@ func ParseConfig(configPath string) (Config, map[string]bool) {
 	if reflect.DeepEqual(conf.Graphs, defaultGraphConfig) {
 		log.Fatalf("Graphs are not set in %s\n", configPath)
 	}
-	fmt.Println("ExportTypesMap: ", exportTypesMap)
 	return conf, exportTypesMap
 }

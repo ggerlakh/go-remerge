@@ -66,10 +66,10 @@ func (a *Analyzer) Start() {
 // CreateFilesystemGraphIfNotCreated fill GraphMap
 func (a *Analyzer) CreateFilesystemGraphIfNotCreated(Direction string) {
 	if _, isFilesystemGraphCreated := a.GraphMap["filesystem"]; !isFilesystemGraphCreated { // create graph if not created
-		a.GraphMap["filesystem"] = graphs.NewFileSystemGraph(Direction, "filesystem", []graphs.Node{}, []graphs.Edge{},
+		a.GraphMap["filesystem"] = graphs.NewFileSystemGraph(Direction, []graphs.Node{}, []graphs.Edge{},
 			a.Conf.SourceDirectory, a.Conf.IgnoreDirectories, a.Conf.IgnoreFiles)
 	} else if a.GraphMap["filesystem"].(*graphs.FileSystemGraph).Direction != Direction { // if type not equal type from config, create new graph with correct type
-		a.GraphMap["filesystem"] = graphs.NewFileSystemGraph(Direction, "filesystem", []graphs.Node{}, []graphs.Edge{},
+		a.GraphMap["filesystem"] = graphs.NewFileSystemGraph(Direction, []graphs.Node{}, []graphs.Edge{},
 			a.Conf.SourceDirectory, a.Conf.IgnoreDirectories, a.Conf.IgnoreFiles)
 	}
 }
@@ -148,26 +148,31 @@ func (a *Analyzer) Export(g graphs.Exporter, graphName string) {
 						if err != nil {
 							log.Fatalf("Error writing json output in file %s\n")
 						}
+						log.Printf("%s graph exported as JSON file in %s\n", graphName, outputJSONFile)
 					case "arango_format":
 						outputJSONArangoFormatFile := filepath.Join(a.Conf.Export.AsJSONFile.OutputDir, fmt.Sprintf("%sArangoFormat.json", graphName))
 						err := os.WriteFile(outputJSONArangoFormatFile, []byte(g.ToArango()), 0644)
 						if err != nil {
 							log.Fatalf("Error writing json in arango format output in file %s\n")
 						}
+						log.Printf("%s graph exported as ArangoDB formatted JSON file in %s\n", graphName, outputJSONArangoFormatFile)
 					}
 				}
 			}
 		}
 	}
 	if a.ExportTypesMap["arango"] {
+		log.Printf("starting export %s graph in ArangoDB...\n", graphName)
 		arangoCtx := context.Background()
 		arangoEndpoints := a.Conf.Export.Arango.Endpoints
 		arangoUsername := a.Conf.Export.Arango.Username
 		arangoPassword := a.Conf.Export.Arango.Password
 		arangoDatabase := a.Conf.Export.Arango.Database
 		g.LoadArangoGraph(arangoCtx, arangoEndpoints, arangoUsername, arangoPassword, arangoDatabase)
+		log.Printf("graph %s exported in ArangoDB\n", graphName)
 	}
 	if a.ExportTypesMap["neo4j"] {
+		log.Printf("starting export %s graph in Neo4j...\n", graphName)
 		neo4jCtx := context.Background()
 		neo4jURI := a.Conf.Export.Neo4j.URI
 		neo4jUsername := a.Conf.Export.Neo4j.Username
@@ -176,5 +181,6 @@ func (a *Analyzer) Export(g graphs.Exporter, graphName string) {
 		if err != nil {
 			log.Fatalf("Error loading graph in neo4j: %s\n", err)
 		}
+		log.Printf("%s graph exported in Neo4j\n", graphName)
 	}
 }

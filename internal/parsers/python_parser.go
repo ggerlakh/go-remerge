@@ -64,7 +64,6 @@ func (parser *PythonParser) ExtractDependencies(path string) []string {
 					} else if ostool.Exists(filepath.Clean(filepath.Join(currDir, cleanImportPath)) + ".py") {
 						dependency = filepath.Clean(filepath.Join(currDir, cleanImportPath)) + ".py"
 					} else {
-						log.Println("Dependency not exist: ", cleanImportPath, "path: ", path)
 						dependency = filepath.Join("external_dependency", filepath.Base(cleanImportPath))
 					}
 					dependencies = append(dependencies, dependency)
@@ -79,7 +78,6 @@ func (parser *PythonParser) ExtractDependencies(path string) []string {
 				} else if ostool.Exists(importPath) {
 					dependency = filepath.Join(importPath, "__init__.py")
 				} else {
-					log.Println("Dependency not exist: ", importPath, "path: ", path)
 					dependency = filepath.Join("external_dependency", importPath)
 				}
 				dependencies = append(dependencies, dependency)

@@ -16,11 +16,11 @@ type FileSystemGraph struct {
 	SkipFiles map[string]struct{}
 }
 
-func NewFileSystemGraph(Type, Name string, Nodes []Node, Edges []Edge, Root string, SkipDirs []string, SkipFiles []string) *FileSystemGraph {
-	if strings.ToLower(Type) == "undirected" || strings.ToLower(Type) == "directed" {
+func NewFileSystemGraph(direction string, Nodes []Node, Edges []Edge, Root string, SkipDirs []string, SkipFiles []string) *FileSystemGraph {
+	if strings.ToLower(direction) == "undirected" || strings.ToLower(direction) == "directed" {
 		fsG := &FileSystemGraph{Graph: Graph{
-			Direction: Type,
-			Name:      Name,
+			Direction: direction,
+			Name:      "filesystem",
 			Nodes:     make(map[string]Node),
 			Edges:     make(map[string]Edge)},
 			Root:      Root,
@@ -34,7 +34,7 @@ func NewFileSystemGraph(Type, Name string, Nodes []Node, Edges []Edge, Root stri
 		fsG.WalkTree()
 		return fsG
 	} else {
-		panic(fmt.Sprintf("\"%v\" wrong graphs type value, graphs can be only directed or undirected", Type))
+		panic(fmt.Sprintf("\"%v\" wrong graphs type value, graphs can be only directed or undirected", direction))
 	}
 }
 
@@ -59,16 +59,17 @@ func (fsG *FileSystemGraph) GetRootDir(Root string) string {
 }
 
 func (fsG *FileSystemGraph) WalkTree() {
+	//log.SetFlags(log.LstdFlags | log.Lshortfile)
 	err := filepath.Walk(".", func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
-			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
+			log.Printf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
 			return err
 		}
 		if _, skip := fsG.SkipDirs[info.Name()]; skip && info.IsDir() {
-			fmt.Printf("skipping a dir without errors: %+v \n", info.Name())
+			log.Printf("skipping a dir without errors: %+v \n", info.Name())
 			return filepath.SkipDir
 		} else if _, skip := fsG.SkipFiles[info.Name()]; skip && !info.IsDir() {
-			fmt.Printf("skipping a file without errors: %+v \n", info.Name())
+			log.Printf("skipping a file without errors: %+v \n", info.Name())
 		} else {
 			var fromPath, toPath string
 			if path == "." {
@@ -78,9 +79,6 @@ func (fsG *FileSystemGraph) WalkTree() {
 					"isDirectory": info.IsDir()}})
 			} else {
 				// normalize path: all must start with Root dir
-				//if !strings.HasPrefix(path, fsG.Root) {
-				//	path = filepath.Join(fsG.GetRootDir(fsG.Root), path)
-				//}
 				if filepath.Dir(path) == "." {
 					fromPath = fsG.GetRootDir(fsG.Root)
 				} else {
@@ -103,7 +101,6 @@ func (fsG *FileSystemGraph) WalkTree() {
 				}
 				if fromPath != toPath {
 					fsG.AddEdge(Edge{From: fsG.Nodes[hashtool.Sha256(fromPath)], To: fsG.Nodes[hashtool.Sha256(toPath)]})
-					fmt.Println(fromPath + "->" + toPath)
 				}
 			}
 		}

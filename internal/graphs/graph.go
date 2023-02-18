@@ -185,13 +185,14 @@ func (g *Graph) GetCypher() []string {
 	var cypherArr []string
 	// node creation in cypher
 	for _, node := range g.Nodes {
-		cypherArr = append(cypherArr, fmt.Sprintf("CREATE (n: Node %s);", node.ToCypher()))
+		//cypherArr = append(cypherArr, fmt.Sprintf("CREATE (n: Node %s);", node.ToCypher()))
+		cypherArr = append(cypherArr, fmt.Sprintf("CREATE (n: %s %s);", g.Name, node.ToCypher()))
 	}
 	//edge creation in cypher
 	for _, edge := range g.Edges {
 		cypherArr = append(cypherArr,
-			fmt.Sprintf("MATCH (from: Node {Id: '%s'}),  (to: Node {Id: '%s'}) MERGE (from)-[r: CONNECTED_WITH]->(to);",
-				edge.From.Id, edge.To.Id))
+			fmt.Sprintf("MATCH (from: %s {Id: '%s'}),  (to: %s {Id: '%s'}) MERGE (from)-[r: CONNECTED_WITH]->(to);",
+				g.Name, edge.From.Id, g.Name, edge.To.Id))
 	}
 	return cypherArr
 }

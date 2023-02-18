@@ -1,7 +1,6 @@
 package graphs
 
 import (
-	"fmt"
 	"go-remerge/internal/parsers"
 	"go-remerge/tools/hashtool"
 	"path/filepath"
@@ -9,7 +8,6 @@ import (
 )
 
 type DependencyGraph struct {
-	//FileSystemGraph
 	Graph
 	Parser            parsers.DependencyExtractor
 	AllowedExtensions []string
@@ -17,9 +15,6 @@ type DependencyGraph struct {
 
 func NewFileDependencyGraph(filesystemGraph FileSystemGraph, parser parsers.DependencyExtractor, extensions []string, direction string) *DependencyGraph {
 	depGraph := &DependencyGraph{
-		//FileSystemGraph:   filesystemGraph,
-		//Nodes:             make(map[string]Node),
-		//Edges:             make(map[string]Edge),
 		Graph: Graph{
 			Nodes:     make(map[string]Node),
 			Edges:     make(map[string]Edge),
@@ -52,7 +47,6 @@ func (depG *DependencyGraph) CheckNode(node Node) bool {
 	var hasAllowedExtension bool
 	for _, ext := range depG.AllowedExtensions {
 		if !node.Labels["isDirectory"].(bool) && strings.HasSuffix(node.Labels["name"].(string), ext) {
-			fmt.Println(strings.HasSuffix(node.Labels["name"].(string), ext), ext, node.Labels["name"])
 			hasAllowedExtension = true
 			break
 		}
