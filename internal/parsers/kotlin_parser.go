@@ -2,19 +2,19 @@ package parsers
 
 type KotlinParser struct{}
 
-func (parser *KotlinParser) ExtractInheritance(filepath, entityName string) []string {
+func (Parser *KotlinParser) ExtractInheritance(filePath, entityName string) []string {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (parser *KotlinParser) ExtractDependencies(nodeName string) []string {
+func (Parser *KotlinParser) ExtractDependencies(filePath string) []string {
 	return []string{}
 }
 
-func (parser *KotlinParser) ExtractEntities(filepath string) []string {
+func (Parser *KotlinParser) ExtractEntities(filePath string) []string {
 	return []string{}
 }
 
-func (parser *KotlinParser) ExtractPackage(filepath string) string {
+func (Parser *KotlinParser) ExtractPackage(filePath string) string {
 	return ""
 }

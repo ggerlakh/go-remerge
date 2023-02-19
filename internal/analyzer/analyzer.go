@@ -35,7 +35,7 @@ func (a *Analyzer) Start() {
 				case "python":
 					parser = &parsers.PythonParser{}
 				case "golang", "go":
-					parser = &parsers.GoParser{}
+					parser = &parsers.GoParser{ProjectDir: a.Conf.SourceDirectory}
 				case "kotlin":
 					parser = &parsers.KotlinParser{}
 				case "swift":

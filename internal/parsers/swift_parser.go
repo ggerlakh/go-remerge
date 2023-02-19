@@ -2,19 +2,19 @@ package parsers
 
 type SwiftParser struct{}
 
-func (parser *SwiftParser) ExtractInheritance(filepath, entityName string) []string {
+func (Parser *SwiftParser) ExtractInheritance(filePath, entityName string) []string {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (parser *SwiftParser) ExtractDependencies(nodeName string) []string {
+func (Parser *SwiftParser) ExtractDependencies(filePath string) []string {
 	return []string{}
 }
 
-func (parser *SwiftParser) ExtractEntities(filepath string) []string {
+func (Parser *SwiftParser) ExtractEntities(filePath string) []string {
 	return []string{}
 }
 
-func (parser *SwiftParser) ExtractPackage(filepath string) string {
+func (Parser *SwiftParser) ExtractPackage(filePath string) string {
 	return ""
 }

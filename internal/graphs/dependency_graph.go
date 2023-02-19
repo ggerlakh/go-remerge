@@ -83,29 +83,29 @@ func (depG *DependencyGraph) CreateFileDependencyGraph(filesystemGraph FileSyste
 
 func (depG *DependencyGraph) CreateEntityDependencyGraph(fileDependencyGraph DependencyGraph) {
 	for _, fileDependencyNode := range fileDependencyGraph.Nodes {
-		if depG.CheckNode(fileDependencyNode) {
-			for _, entity := range depG.Parser.ExtractEntities(fileDependencyNode.Labels["path"].(string)) {
-				// creating "from" nodes
-				fromId := hashtool.Sha256(entity)
-				depG.AddNode(Node{Id: fromId, Labels: map[string]any{
-					"name":        entity,
-					"path":        fileDependencyNode.Labels["path"].(string),
-					"package":     depG.Parser.ExtractPackage(fileDependencyNode.Labels["path"].(string)),
-					"isDirectory": false}})
-				// creating "to" nodes
-				for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
-					for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
-						toId := hashtool.Sha256(depEntity)
-						depG.AddNode(Node{Id: toId, Labels: map[string]any{
-							"name":        depEntity,
-							"path":        dependency,
-							"package":     depG.Parser.ExtractPackage(dependency),
-							"isDirectory": false}})
-						depG.AddEdge(Edge{
-							From: depG.Nodes[fromId],
-							To:   depG.Nodes[toId],
-						})
-					}
+		for _, entity := range depG.Parser.ExtractEntities(fileDependencyNode.Labels["path"].(string)) {
+			// creating "from" nodes
+			fromId := hashtool.Sha256(entity)
+			fromNode := Node{Id: fromId, Labels: map[string]any{
+				"name":        entity,
+				"path":        fileDependencyNode.Labels["path"].(string),
+				"package":     depG.Parser.ExtractPackage(fileDependencyNode.Labels["path"].(string)),
+				"isDirectory": false}}
+			depG.AddNode(fromNode)
+			// creating "to" nodes
+			for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
+				for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
+					toId := hashtool.Sha256(depEntity)
+					toNode := Node{Id: toId, Labels: map[string]any{
+						"name":        depEntity,
+						"path":        dependency,
+						"package":     depG.Parser.ExtractPackage(dependency),
+						"isDirectory": false}}
+					depG.AddNode(toNode)
+					depG.AddEdge(Edge{
+						From: fromNode,
+						To:   toNode,
+					})
 				}
 			}
 		}
