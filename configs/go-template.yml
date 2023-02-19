@@ -20,6 +20,8 @@ ignore_files:
 graphs:
   - graph: filesystem
     direction: directed
+  - graph: file_dependency
+    direction: directed
 export:
   as_file:
     output_dir: /home/gleb/go-remerge/export
@@ -31,7 +33,7 @@ export:
     password: password
     endpoints:
       - http://localhost:8529
-    database: test
+    database: test_go
   neo4j:
     username: neo4j
     password: neo4jdevops
