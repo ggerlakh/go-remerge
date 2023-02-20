@@ -46,7 +46,7 @@ func (a *Analyzer) Start() {
 					a.CreateFileDependencyGraphIfNotCreated(gConf.Direction, parser)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_dependency":
-					fmt.Printf("TODO %v\n", gConf.Graph)
+					//fmt.Printf("TODO %v\n", gConf.Graph)
 					a.CreateEntityDependencyGraphIfNotCreated(gConf.Direction, parser)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_inheritance":
@@ -88,7 +88,7 @@ func (a *Analyzer) CreateFileDependencyGraphIfNotCreated(Direction string, parse
 
 // CreateEntityDependencyGraphIfNotCreated fill GraphMap
 func (a *Analyzer) CreateEntityDependencyGraphIfNotCreated(Direction string, parser parsers.DependencyExtractor) {
-	a.CreateFilesystemGraphIfNotCreated(Direction)
+	a.CreateFileDependencyGraphIfNotCreated(Direction, parser)
 	if _, isEntityDependencyGraphCreated := a.GraphMap["entity_dependency"]; !isEntityDependencyGraphCreated {
 		a.GraphMap["entity_dependency"] = graphs.NewEntityDependencyGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
 			parser, a.Conf.Extensions, Direction)

@@ -93,19 +93,22 @@ func (depG *DependencyGraph) CreateEntityDependencyGraph(fileDependencyGraph Dep
 				"isDirectory": false}}
 			depG.AddNode(fromNode)
 			// creating "to" nodes
-			for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
-				for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
-					toId := hashtool.Sha256(depEntity)
-					toNode := Node{Id: toId, Labels: map[string]any{
-						"name":        depEntity,
-						"path":        dependency,
-						"package":     depG.Parser.ExtractPackage(dependency),
-						"isDirectory": false}}
-					depG.AddNode(toNode)
-					depG.AddEdge(Edge{
-						From: fromNode,
-						To:   toNode,
-					})
+			// edges creation based on file_dependency graph
+			if fileDependencyNode.Labels["dependencies"] != nil {
+				for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
+					for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
+						toId := hashtool.Sha256(depEntity)
+						toNode := Node{Id: toId, Labels: map[string]any{
+							"name":        depEntity,
+							"path":        dependency,
+							"package":     depG.Parser.ExtractPackage(dependency),
+							"isDirectory": false}}
+						depG.AddNode(toNode)
+						depG.AddEdge(Edge{
+							From: fromNode,
+							To:   toNode,
+						})
+					}
 				}
 			}
 		}
