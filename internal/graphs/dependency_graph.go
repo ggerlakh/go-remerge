@@ -1,6 +1,7 @@
 package graphs
 
 import (
+	"fmt"
 	"go-remerge/internal/parsers"
 	"go-remerge/tools/hashtool"
 	"path/filepath"
@@ -92,17 +93,22 @@ func (depG *DependencyGraph) CreateEntityDependencyGraph(fileDependencyGraph Dep
 				"package":     depG.Parser.ExtractPackage(fileDependencyNode.Labels["path"].(string)),
 				"isDirectory": false}}
 			depG.AddNode(fromNode)
+			// costyl'
+			if fileDependencyNode.Labels["dependencies"] == nil {
+				fmt.Println("fileDepNode", fileDependencyNode)
+				fileDependencyNode.Labels["dependencies"] = depG.Parser.ExtractDependencies(fileDependencyNode.Labels["path"].(string))
+			}
 			// creating "to" nodes
 			// edges creation based on file_dependency graph
-			if fileDependencyNode.Labels["dependencies"] != nil {
-				for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
-					for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
-						toId := hashtool.Sha256(depEntity)
-						toNode := Node{Id: toId, Labels: map[string]any{
-							"name":        depEntity,
-							"path":        dependency,
-							"package":     depG.Parser.ExtractPackage(dependency),
-							"isDirectory": false}}
+			for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
+				for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
+					toId := hashtool.Sha256(depEntity)
+					toNode := Node{Id: toId, Labels: map[string]any{
+						"name":        depEntity,
+						"path":        dependency,
+						"package":     depG.Parser.ExtractPackage(dependency),
+						"isDirectory": false}}
+					if depG.Parser.HasEntityDependency(fromNode.Labels["name"].(string), fromNode.Labels["path"].(string), toNode.Labels["name"].(string), toNode.Labels["package"].(string)) {
 						depG.AddNode(toNode)
 						depG.AddEdge(Edge{
 							From: fromNode,
@@ -111,6 +117,7 @@ func (depG *DependencyGraph) CreateEntityDependencyGraph(fileDependencyGraph Dep
 					}
 				}
 			}
+			//}
 		}
 	}
 }

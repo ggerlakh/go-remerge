@@ -1,10 +1,12 @@
 package parsers
 
 import (
+	"fmt"
 	"go-remerge/tools/ostool"
 	"go/ast"
 	"go/parser"
 	"go/token"
+	"log"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -76,14 +78,14 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 				switch decl.(type) {
 				case *ast.GenDecl:
 					genDecl := decl.(*ast.GenDecl)
-					if genDecl.Tok == token.TYPE {
+					if genDecl.Tok == token.TYPE || genDecl.Tok == token.FUNC || genDecl.Tok == token.CONST {
 						for _, spec := range genDecl.Specs {
 							typeSpec := spec.(*ast.TypeSpec)
 							lines := ostool.FilterComments(filePath)
 							regex := `^.*` + filepath.Base(path) + `\.` + typeSpec.Name.Name + `.*$`
-							importedStruct := regexp.MustCompile(regex)
+							imported := regexp.MustCompile(regex)
 							for _, line := range lines {
-								if importedStruct.MatchString(line) {
+								if imported.MatchString(line) {
 									fileDependenciesMap[packageGoFile] = struct{}{}
 								}
 							}
@@ -124,6 +126,82 @@ func (Parser *GoParser) ExtractEntities(filePath string) []string {
 		}
 	}
 	return entityResult
+}
+
+func (Parser *GoParser) HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPackage string) bool {
+	var hasEntityDependency bool
+	fromNodeBytes, err := os.ReadFile(fromEntityPath)
+	if err != nil {
+		log.Fatalf("Error reading file: %v\n", err)
+	}
+	fset := token.NewFileSet()
+	node, err := parser.ParseFile(fset, fromEntityPath, nil, parser.ParseComments)
+	if err != nil {
+		log.Fatalf("Error parsing file: %v\n", err)
+	}
+	// Extract function source code
+	for _, decl := range node.Decls {
+		switch decl.(type) {
+		case *ast.FuncDecl:
+			if fn, ok := decl.(*ast.FuncDecl); ok {
+				if fn.Recv != nil {
+					switch fn.Recv.List[0].Type.(type) {
+					case *ast.StarExpr:
+						//fmt.Printf("Recevier: %v\n", fn.Recv.List[0].Type.(*ast.StarExpr).X)
+						if fmt.Sprintf("%v", fn.Recv.List[0].Type.(*ast.StarExpr).X) == fromEntityName {
+							startLine := fset.Position(fn.Pos()).Line
+							endLine := fset.Position(fn.End()).Line
+							regex := `^.*` + toEntityPackage + `\.` + toEntityName + `.*$`
+							importedObj := regexp.MustCompile(regex)
+							// if field struct method has imported obj return true
+							for _, funcLine := range strings.Split(string(fromNodeBytes), "\n")[startLine-1 : endLine] {
+								if importedObj.MatchString(funcLine) && !strings.Contains(funcLine, "//") && !strings.Contains(funcLine, "/*") {
+									return true
+								}
+							}
+						}
+					case *ast.Ident:
+						//fmt.Printf("Recevier: %v\n", fn.Recv.List[0].Type.(*ast.Ident).Name)
+						if fn.Recv.List[0].Type.(*ast.Ident).Name == fromEntityName {
+							startLine := fset.Position(fn.Pos()).Line
+							endLine := fset.Position(fn.End()).Line
+							regex := `^.*` + toEntityPackage + `\.` + toEntityName + `.*$`
+							importedObj := regexp.MustCompile(regex)
+							// if field struct method has imported obj return true
+							for _, funcLine := range strings.Split(string(fromNodeBytes), "\n")[startLine-1 : endLine] {
+								if importedObj.MatchString(funcLine) && !strings.Contains(funcLine, "//") && !strings.Contains(funcLine, "/*") {
+									return true
+								}
+							}
+						}
+					}
+				}
+			}
+		case *ast.GenDecl:
+			genDecl := decl.(*ast.GenDecl)
+			if genDecl.Tok == token.TYPE {
+				for _, spec := range genDecl.Specs {
+					if typeSpec, ok := spec.(*ast.TypeSpec); ok {
+						if structType, ok := typeSpec.Type.(*ast.StructType); ok {
+							// extract struct source code
+							startLine := fset.Position(structType.Pos()).Line
+							endLine := fset.Position(structType.End()).Line
+							regex := `^.*` + toEntityPackage + `\.` + toEntityName + `.*$`
+							importedObj := regexp.MustCompile(regex)
+							// if field struct field has imported obj return true
+							for _, structLine := range strings.Split(string(fromNodeBytes), "\n")[startLine-1 : endLine] {
+								//fmt.Println("regex: ", regex, importedObj.MatchString(structLine) && !strings.Contains(structLine, "//") && !strings.Contains(structLine, "/*"), structLine)
+								if importedObj.MatchString(structLine) && !strings.Contains(structLine, "//") && !strings.Contains(structLine, "/*") {
+									return true
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return hasEntityDependency
 }
 
 func (Parser *GoParser) ExtractPackage(filePath string) string {

@@ -15,6 +15,12 @@ func (Parser *KotlinParser) ExtractEntities(filePath string) []string {
 	return []string{}
 }
 
+func (Parser *KotlinParser) HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPath string) bool {
+	var hasEntityDependency bool
+	// TODO
+	return hasEntityDependency
+}
+
 func (Parser *KotlinParser) ExtractPackage(filePath string) string {
 	return ""
 }

@@ -146,14 +146,14 @@ func (a *Analyzer) Export(g graphs.Exporter, graphName string) {
 						outputJSONFile := filepath.Join(a.Conf.Export.AsJSONFile.OutputDir, fmt.Sprintf("%s.json", graphName))
 						err := os.WriteFile(outputJSONFile, []byte(g.GetPrettyJson()), 0644)
 						if err != nil {
-							log.Fatalf("Error writing json output in file %s\n")
+							log.Fatalf("Error writing json output in file %s\n", outputJSONFile)
 						}
 						log.Printf("%s graph exported as JSON file in %s\n", graphName, outputJSONFile)
 					case "arango_format":
 						outputJSONArangoFormatFile := filepath.Join(a.Conf.Export.AsJSONFile.OutputDir, fmt.Sprintf("%sArangoFormat.json", graphName))
 						err := os.WriteFile(outputJSONArangoFormatFile, []byte(g.ToArango()), 0644)
 						if err != nil {
-							log.Fatalf("Error writing json in arango format output in file %s\n")
+							log.Fatalf("Error writing json in arango format output in file %s\n", outputJSONArangoFormatFile)
 						}
 						log.Printf("%s graph exported as ArangoDB formatted JSON file in %s\n", graphName, outputJSONArangoFormatFile)
 					}

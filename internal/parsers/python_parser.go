@@ -94,6 +94,12 @@ func (Parser *PythonParser) ExtractEntities(filePath string) []string {
 	return []string{}
 }
 
+func (Parser *PythonParser) HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPath string) bool {
+	var hasEntityDependency bool
+	// TODO
+	return hasEntityDependency
+}
+
 func (Parser *PythonParser) ExtractPackage(filePath string) string {
 	// TODO
 	return ""
