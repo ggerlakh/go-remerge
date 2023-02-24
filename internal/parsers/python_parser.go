@@ -12,7 +12,7 @@ import (
 
 type PythonParser struct{}
 
-func (Parser *PythonParser) ExtractInheritance(filePath, entityName string) []string {
+func (Parser *PythonParser) ExtractInheritance(filePath, entityName string) []map[string]string {
 	//TODO implement me
 	panic("implement me")
 }

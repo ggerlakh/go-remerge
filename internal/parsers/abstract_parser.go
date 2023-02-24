@@ -11,9 +11,8 @@ type DependencyExtractor interface {
 
 type InheritanceExtractor interface {
 	// ExtractInheritance extracts inheritance entities for entity from given file
-	ExtractInheritance(filepath, entityName string) []string
-	ExtractEntities(filepath string) []string
-	HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPath string) bool
+	ExtractInheritance(filepath, entityName string) []map[string]string
+	ExtractPackage(filepath string) string
 }
 
 type CompleteGraphExtractor interface {

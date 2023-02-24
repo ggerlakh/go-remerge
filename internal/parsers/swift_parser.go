@@ -2,7 +2,7 @@ package parsers
 
 type SwiftParser struct{}
 
-func (Parser *SwiftParser) ExtractInheritance(filePath, entityName string) []string {
+func (Parser *SwiftParser) ExtractInheritance(filePath, entityName string) []map[string]string {
 	//TODO implement me
 	panic("implement me")
 }

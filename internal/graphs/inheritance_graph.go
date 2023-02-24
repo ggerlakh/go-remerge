@@ -1,6 +1,10 @@
 package graphs
 
-import "go-remerge/internal/parsers"
+import (
+	"go-remerge/internal/parsers"
+	"go-remerge/tools/hashtool"
+	"strings"
+)
 
 type InheritanceGraph struct {
 	Graph
@@ -10,18 +14,39 @@ type InheritanceGraph struct {
 	AllowedExtensions []string
 }
 
-func NewEntityInheritanceGraph(fileDependencyGraph DependencyGraph, parser parsers.InheritanceExtractor, extensions []string, direction string) *InheritanceGraph {
+func NewEntityInheritanceGraph(entityDependencyGraph DependencyGraph, parser parsers.InheritanceExtractor, extensions []string, direction string) *InheritanceGraph {
 	inhG := &InheritanceGraph{
 		Graph: Graph{
 			Nodes:     make(map[string]Node),
 			Edges:     make(map[string]Edge),
 			Direction: direction,
-			Name:      "file_dependency",
+			Name:      "entity_inheritance",
 		},
 		AllowedExtensions: extensions,
 	}
-	inhG.CreateInheritanceGraph()
+	inhG.CreateInheritanceGraph(entityDependencyGraph)
 	return inhG
 }
 
-func (inhG *InheritanceGraph) CreateInheritanceGraph() {}
+func (inhG *InheritanceGraph) CreateInheritanceGraph(entityDependencyGraph DependencyGraph) {
+	for _, entityNode := range entityDependencyGraph.Nodes {
+		if !strings.HasPrefix(entityNode.Labels["path"].(string), "external_dependency") {
+			// creating "from" nodes
+			fromNode := entityNode
+			inhG.AddNode(fromNode)
+			for _, parentEntityMap := range inhG.Parser.ExtractInheritance(entityNode.Labels["path"].(string), entityNode.Labels["name"].(string)) {
+				toId := hashtool.Sha256(parentEntityMap["name"])
+				toNode := Node{Id: toId, Labels: map[string]any{
+					"name":        parentEntityMap["name"],
+					"path":        parentEntityMap["path"],
+					"package":     inhG.Parser.ExtractPackage(parentEntityMap["path"]),
+					"isDirectory": false}}
+				inhG.AddNode(toNode)
+				inhG.AddEdge(Edge{
+					From: fromNode,
+					To:   toNode,
+				})
+			}
+		}
+	}
+}

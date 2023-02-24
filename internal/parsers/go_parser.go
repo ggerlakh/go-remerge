@@ -18,7 +18,7 @@ type GoParser struct {
 	ProjectDir string
 }
 
-func (Parser *GoParser) ExtractInheritance(filePath, entityName string) []string {
+func (Parser *GoParser) ExtractInheritance(filePath, entityName string) []map[string]string {
 	//TODO implement me
 	panic("implement me")
 }
