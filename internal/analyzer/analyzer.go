@@ -46,15 +46,12 @@ func (a *Analyzer) Start() {
 					a.CreateFileDependencyGraphIfNotCreated(gConf.Direction, parser)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_dependency":
-					//fmt.Printf("TODO %v\n", gConf.Graph)
 					a.CreateEntityDependencyGraphIfNotCreated(gConf.Direction, parser)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_inheritance":
-					fmt.Printf("TODO %v\n", gConf.Graph)
 					a.CreateEntityInheritanceGraphIfNotCreated(gConf.Direction, parser)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_complete":
-					fmt.Printf("TODO %v\n", gConf.Graph)
 					a.CreateEntityCompleteGraphIfNotCreated(gConf.Direction, parser)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				}
@@ -99,21 +96,21 @@ func (a *Analyzer) CreateEntityDependencyGraphIfNotCreated(Direction string, par
 }
 
 // CreateEntityInheritanceGraphIfNotCreated fill GraphMap
-func (a *Analyzer) CreateEntityInheritanceGraphIfNotCreated(Direction string, parser parsers.InheritanceExtractor) {
-	a.CreateFilesystemGraphIfNotCreated(Direction)
+func (a *Analyzer) CreateEntityInheritanceGraphIfNotCreated(Direction string, parser parsers.CompleteGraphExtractor) {
+	a.CreateEntityDependencyGraphIfNotCreated(Direction, parser)
 	if _, isEntityInheritanceGraphCreated := a.GraphMap["entity_inheritance"]; !isEntityInheritanceGraphCreated {
-		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
+		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
 			parser, a.Conf.Extensions, Direction)
-	} else if a.GraphMap["entity_inheritance"].(*graphs.DependencyGraph).Direction != Direction {
-		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
+	} else if a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph).Direction != Direction {
+		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
 			parser, a.Conf.Extensions, Direction)
 	}
 }
 
 // CreateEntityCompleteGraphIfNotCreated fill GraphMap
 func (a *Analyzer) CreateEntityCompleteGraphIfNotCreated(Direction string, parser parsers.CompleteGraphExtractor) {
-	a.CreateEntityInheritanceGraphIfNotCreated(Direction, parser)
 	a.CreateEntityDependencyGraphIfNotCreated(Direction, parser)
+	a.CreateEntityInheritanceGraphIfNotCreated(Direction, parser)
 	if _, isEntityCompleteGraphCreated := a.GraphMap["entity_complete"]; !isEntityCompleteGraphCreated {
 		a.GraphMap["entity_complete"] = graphs.NewEntityCompleteGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
 			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph), Direction)

@@ -11,7 +11,7 @@ type DependencyExtractor interface {
 
 type InheritanceExtractor interface {
 	// ExtractInheritance extracts inheritance entities for entity from given file
-	ExtractInheritance(filepath, entityName string) []map[string]string
+	ExtractInheritance(entityFilePath, entityName string) []map[string]string
 	ExtractPackage(filepath string) string
 }
 

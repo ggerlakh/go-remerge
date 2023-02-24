@@ -24,6 +24,10 @@ graphs:
     direction: directed
   - graph: entity_dependency
     direction: directed
+  - graph: entity_inheritance
+    direction: directed
+  - graph: entity_complete
+    direction: directed
 export:
   as_file:
     output_dir: C:\Users\Gleb\Desktop\Учеба\Диплом\go-remerge\export
@@ -35,7 +39,7 @@ export:
     password: password
     endpoints:
       - http://localhost:8529
-    database: test_entity_dependency
+    database: test_golang
   neo4j:
     username: neo4j
     password: neo4jdevops

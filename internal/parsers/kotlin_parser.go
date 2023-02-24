@@ -2,7 +2,7 @@ package parsers
 
 type KotlinParser struct{}
 
-func (Parser *KotlinParser) ExtractInheritance(filePath, entityName string) []map[string]string {
+func (Parser *KotlinParser) ExtractInheritance(entityFilePath, entityName string) []map[string]string {
 	//TODO implement me
 	panic("implement me")
 }

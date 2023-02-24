@@ -8,8 +8,6 @@ import (
 
 type InheritanceGraph struct {
 	Graph
-	Nodes             map[string]Node
-	Edges             map[string]Edge
 	Parser            parsers.InheritanceExtractor
 	AllowedExtensions []string
 }
@@ -22,6 +20,7 @@ func NewEntityInheritanceGraph(entityDependencyGraph DependencyGraph, parser par
 			Direction: direction,
 			Name:      "entity_inheritance",
 		},
+		Parser:            parser,
 		AllowedExtensions: extensions,
 	}
 	inhG.CreateInheritanceGraph(entityDependencyGraph)
@@ -34,7 +33,7 @@ func (inhG *InheritanceGraph) CreateInheritanceGraph(entityDependencyGraph Depen
 			// creating "from" nodes
 			fromNode := entityNode
 			inhG.AddNode(fromNode)
-			for _, parentEntityMap := range inhG.Parser.ExtractInheritance(entityNode.Labels["path"].(string), entityNode.Labels["name"].(string)) {
+			for _, parentEntityMap := range inhG.Parser.ExtractInheritance(fromNode.Labels["path"].(string), fromNode.Labels["name"].(string)) {
 				toId := hashtool.Sha256(parentEntityMap["name"])
 				toNode := Node{Id: toId, Labels: map[string]any{
 					"name":        parentEntityMap["name"],
@@ -42,10 +41,12 @@ func (inhG *InheritanceGraph) CreateInheritanceGraph(entityDependencyGraph Depen
 					"package":     inhG.Parser.ExtractPackage(parentEntityMap["path"]),
 					"isDirectory": false}}
 				inhG.AddNode(toNode)
-				inhG.AddEdge(Edge{
-					From: fromNode,
-					To:   toNode,
-				})
+				if fromNode.Id != toNode.Id {
+					inhG.AddEdge(Edge{
+						From: fromNode,
+						To:   toNode,
+					})
+				}
 			}
 		}
 	}

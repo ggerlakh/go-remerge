@@ -18,9 +18,210 @@ type GoParser struct {
 	ProjectDir string
 }
 
-func (Parser *GoParser) ExtractInheritance(filePath, entityName string) []map[string]string {
-	//TODO implement me
-	panic("implement me")
+func (Parser *GoParser) ExtractInheritance(entityFilePath, entityName string) []map[string]string {
+	// inheritance in Golang implemented by embedding one struct to another
+	var parentInheritanceEntities []map[string]string
+	var pkgEntities []map[string]string
+	fromNodeBytes, err := os.ReadFile(entityFilePath)
+	if err != nil {
+		log.Fatalf("Error reading file: %v\n", err)
+	}
+	fset := token.NewFileSet()
+	// extract all entities that is in the same package with given entity
+	file, err := parser.ParseFile(fset, entityFilePath, nil, parser.PackageClauseOnly)
+	if err != nil {
+		log.Fatalf("Error parsing file: %s\n", err)
+	}
+	// Get the package name.
+	pkgName := file.Name.Name
+	// Get the package directory.
+	pkgDir := filepath.Dir(entityFilePath)
+	// Read all the files in the package directory.
+	files, err := os.ReadDir(pkgDir)
+	if err != nil {
+		log.Fatalf("Error reading package directory: %s\n", err)
+	}
+	// Loop through all the files in the package directory.
+	for _, fileInfo := range files {
+		if !fileInfo.IsDir() && filepath.Ext(fileInfo.Name()) == ".go" {
+			// Parse the file and check if it belongs to the same package.
+			fileParse, err := parser.ParseFile(fset, filepath.Join(pkgDir, fileInfo.Name()), nil, parser.PackageClauseOnly)
+			if err == nil && fileParse.Name.Name == pkgName {
+				fileNode, err := parser.ParseFile(fset, filepath.Join(pkgDir, fileInfo.Name()), nil, parser.ParseComments)
+				if err != nil {
+					panic(err)
+				}
+				// Iterate through the top-level declarations and find the structures
+				for _, decl := range fileNode.Decls {
+					switch decl.(type) {
+					case *ast.GenDecl:
+						genDecl := decl.(*ast.GenDecl)
+						if genDecl.Tok == token.TYPE || genDecl.Tok == token.FUNC || genDecl.Tok == token.CONST {
+							for _, spec := range genDecl.Specs {
+								typeSpec := spec.(*ast.TypeSpec)
+								pkgEntities = append(pkgEntities, map[string]string{
+									"name": typeSpec.Name.Name,
+									"path": filepath.Join(pkgDir, fileInfo.Name()),
+								})
+								//fmt.Printf("Found struct %q in file %q\n", typeSpec.Name.Name, fileInfo.Name())
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	fset = token.NewFileSet()
+	node, err := parser.ParseFile(fset, entityFilePath, nil, parser.ParseComments)
+	if err != nil {
+		log.Fatalf("Error parsing file: %v\n", err)
+	}
+	// case if no imports in file
+	if len(node.Imports) == 0 {
+		// extract entity source code
+		for _, decl := range node.Decls {
+			switch decl.(type) {
+			case *ast.GenDecl:
+				genDecl := decl.(*ast.GenDecl)
+				if genDecl.Tok == token.TYPE {
+					for _, spec := range genDecl.Specs {
+						if typeSpec, ok := spec.(*ast.TypeSpec); ok {
+							// parse specific struct/interface with name that set in param `entityName`
+							structType, stOk := typeSpec.Type.(*ast.StructType)
+							interfaceType, interfaceOk := typeSpec.Type.(*ast.InterfaceType)
+							if (stOk || interfaceOk) && typeSpec.Name.Name == entityName {
+								var entityType ast.Expr
+								if stOk {
+									entityType = structType
+								} else {
+									entityType = interfaceType
+								}
+								// extract struct source code
+								startLine := fset.Position(entityType.Pos()).Line
+								endLine := fset.Position(entityType.End()).Line
+								for _, structLine := range strings.Split(string(fromNodeBytes), "\n")[startLine-1 : endLine] {
+									if !strings.HasPrefix(strings.TrimSpace(structLine), "//") && !strings.HasPrefix(strings.TrimSpace(structLine), "/*") {
+										// checking for entities in the same package
+										for _, pkgEntity := range pkgEntities {
+											cleanStructLine := strings.TrimSpace(structLine)
+											var fieldType string
+											// process struct comments
+											if strings.Contains(cleanStructLine, `\\`) {
+												cleanStructLine = strings.Split(cleanStructLine, `\\`)[0]
+											} else if strings.Contains(cleanStructLine, `\*`) {
+												cleanStructLine = strings.Split(cleanStructLine, `\*`)[0]
+											}
+											fieldList := strings.Fields(cleanStructLine)
+											// process tags in struct
+											if strings.Contains(cleanStructLine, "`") {
+												fieldType = fieldList[len(fieldList)-2]
+											} else {
+												fieldType = fieldList[len(fieldList)-1]
+											}
+											// process slice, map or selector type
+											if strings.Contains(fieldType, "map[") {
+												for _, mapType := range []string{strings.Split(fieldType, "]")[1], strings.Split(strings.Split(fieldType, "]")[1], "[")[1]} {
+													if !strings.Contains(structLine, "{") && !strings.Contains(structLine, "}") && mapType == pkgEntity["name"] {
+														parentInheritanceEntities = append(parentInheritanceEntities, pkgEntity)
+													}
+												}
+											} else if strings.Contains(fieldType, "]") {
+												if !strings.Contains(structLine, "{") && !strings.Contains(structLine, "}") && strings.Split(fieldType, "]")[1] == pkgEntity["name"] {
+													parentInheritanceEntities = append(parentInheritanceEntities, pkgEntity)
+												}
+											} else {
+												if !strings.Contains(structLine, "{") && !strings.Contains(structLine, "}") && fieldType == pkgEntity["name"] {
+													parentInheritanceEntities = append(parentInheritanceEntities, pkgEntity)
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	// extract all imports from file
+	for _, imp := range node.Imports {
+		impPath := imp.Path.Value[1 : len(imp.Path.Value)-1]
+		// Extract struct source code
+		for _, decl := range node.Decls {
+			switch decl.(type) {
+			case *ast.GenDecl:
+				genDecl := decl.(*ast.GenDecl)
+				if genDecl.Tok == token.TYPE {
+					for _, spec := range genDecl.Specs {
+						if typeSpec, ok := spec.(*ast.TypeSpec); ok {
+							// parse specific struct/interface with name that set in param `entityName`
+							structType, stOk := typeSpec.Type.(*ast.StructType)
+							interfaceType, interfaceOk := typeSpec.Type.(*ast.InterfaceType)
+							if (stOk || interfaceOk) && typeSpec.Name.Name == entityName {
+								var entityType ast.Expr
+								if stOk {
+									entityType = structType
+								} else {
+									entityType = interfaceType
+								}
+								// extract struct source code
+								startLine := fset.Position(entityType.Pos()).Line
+								endLine := fset.Position(entityType.End()).Line
+								regex := filepath.Base(impPath) + `\.\w+`
+								parentInheritanceEntityRegex := regexp.MustCompile(regex)
+								for _, structLine := range strings.Split(string(fromNodeBytes), "\n")[startLine-1 : endLine] {
+									if !strings.HasPrefix(strings.TrimSpace(structLine), "//") && !strings.HasPrefix(strings.TrimSpace(structLine), "/*") {
+										inhEntity := parentInheritanceEntityRegex.Find([]byte(structLine))
+										if string(inhEntity) != "" {
+											inhMap := map[string]string{"name": strings.Split(string(inhEntity), ".")[1], "path": impPath}
+											parentInheritanceEntities = append(parentInheritanceEntities, inhMap)
+										} else {
+											// checking for entities in the same package
+											for _, pkgEntity := range pkgEntities {
+												cleanStructLine := strings.TrimSpace(structLine)
+												var fieldType string
+												// process struct comments
+												if strings.Contains(cleanStructLine, `\\`) {
+													cleanStructLine = strings.Split(cleanStructLine, `\\`)[0]
+												} else if strings.Contains(cleanStructLine, `\*`) {
+													cleanStructLine = strings.Split(cleanStructLine, `\*`)[0]
+												}
+												fieldList := strings.Fields(cleanStructLine)
+												// process struct tags case
+												if strings.Contains(cleanStructLine, "`") {
+													fieldType = fieldList[len(fieldList)-2]
+												} else {
+													fieldType = fieldList[len(fieldList)-1]
+												}
+												// process slice, map or selector type
+												if strings.Contains(fieldType, "map[") {
+													for _, mapType := range []string{strings.Split(fieldType, "]")[1], strings.Split(strings.Split(fieldType, "]")[0], "[")[1]} {
+														if !strings.Contains(structLine, "{") && !strings.Contains(structLine, "}") && mapType == pkgEntity["name"] {
+															parentInheritanceEntities = append(parentInheritanceEntities, pkgEntity)
+														}
+													}
+												} else if strings.Contains(fieldType, "]") {
+													if !strings.Contains(structLine, "{") && !strings.Contains(structLine, "}") && strings.Split(fieldType, "]")[1] == pkgEntity["name"] {
+														parentInheritanceEntities = append(parentInheritanceEntities, pkgEntity)
+													}
+												} else {
+													if !strings.Contains(structLine, "{") && !strings.Contains(structLine, "}") && fieldType == pkgEntity["name"] {
+														parentInheritanceEntities = append(parentInheritanceEntities, pkgEntity)
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return parentInheritanceEntities
 }
 
 func (Parser *GoParser) ExtractDependencies(filePath string) []string {
@@ -37,43 +238,31 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 	for _, i := range node.Imports {
 		// Get the import path
 		path := i.Path.Value[1 : len(i.Path.Value)-1]
-		//openPath := path
-		// Parse the imported file
+		// Parse the imports in Golang file
 		if !ostool.Exists(path) {
-			//fmt.Println("Replace: ", strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), Parser.ProjectDir, ""))
 			path = strings.TrimPrefix(strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), Parser.ProjectDir, ""), string(filepath.Separator))
-			//path = strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), Parser.ProjectDir, "")
 			if !ostool.Exists(path) {
 				path = strings.TrimLeft(strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), filepath.Dir(Parser.ProjectDir), ""), string(filepath.Separator))
-				//fmt.Printf("Skipping external dependency %v\n", path)
 				fileDependenciesMap[filepath.Join("external_dependency", path)] = struct{}{}
 				continue
 			}
 		}
-		//fmt.Printf("File: %s, Import path: %s\n", filePath, path)
 		var packageGoFiles []string
-		f, err := os.Open(path)
-		if err != nil {
-			panic(err)
-		}
-		files, err := f.Readdir(0)
+		// iterating over all .go files in package
+		files, err := os.ReadDir(path)
 		if err != nil {
 			panic(err)
 		}
 		for _, file := range files {
-			if strings.HasSuffix(file.Name(), ".go") {
+			if !file.IsDir() && filepath.Ext(file.Name()) == ".go" {
 				packageGoFiles = append(packageGoFiles, filepath.Join(path, file.Name()))
 			}
 		}
-		//packageGoFiles, err := filepath.Glob(filepath.Join(path, "*.go"))
-		//fmt.Printf("Package go files: %s\n", packageGoFiles)
 		for _, packageGoFile := range packageGoFiles {
-			//fmt.Printf("Package go file: %s\n", packageGoFile)
 			importedNode, err := parser.ParseFile(fset, packageGoFile, nil, parser.ParseComments)
 			if err != nil {
 				panic(err)
 			}
-			//packageGoFile = strings.TrimPrefix(strings.ReplaceAll(packageGoFile, Parser.ProjectDir, ""), string(filepath.Separator))
 			// Iterate through the top-level declarations and find the structures
 			for _, decl := range importedNode.Decls {
 				switch decl.(type) {
@@ -105,7 +294,6 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 func (Parser *GoParser) ExtractEntities(filePath string) []string {
 	var entityResult []string
 	if !ostool.Exists(filePath) {
-		//fmt.Printf("Path is not exist %s\n", filePath)
 		return []string{}
 	}
 	fset := token.NewFileSet()
@@ -168,7 +356,7 @@ func (Parser *GoParser) HasEntityDependency(fromEntityName, fromEntityPath, toEn
 	if err != nil {
 		log.Fatalf("Error parsing file: %v\n", err)
 	}
-	// Extract function source code
+	// Extract function/struct source code
 	for _, decl := range node.Decls {
 		switch decl.(type) {
 		case *ast.FuncDecl:
@@ -176,7 +364,6 @@ func (Parser *GoParser) HasEntityDependency(fromEntityName, fromEntityPath, toEn
 				if fn.Recv != nil {
 					switch fn.Recv.List[0].Type.(type) {
 					case *ast.StarExpr:
-						//fmt.Printf("Recevier: %v\n", fn.Recv.List[0].Type.(*ast.StarExpr).X)
 						if fmt.Sprintf("%v", fn.Recv.List[0].Type.(*ast.StarExpr).X) == fromEntityName {
 							startLine := fset.Position(fn.Pos()).Line
 							endLine := fset.Position(fn.End()).Line
@@ -190,7 +377,6 @@ func (Parser *GoParser) HasEntityDependency(fromEntityName, fromEntityPath, toEn
 							}
 						}
 					case *ast.Ident:
-						//fmt.Printf("Recevier: %v\n", fn.Recv.List[0].Type.(*ast.Ident).Name)
 						if fn.Recv.List[0].Type.(*ast.Ident).Name == fromEntityName {
 							startLine := fset.Position(fn.Pos()).Line
 							endLine := fset.Position(fn.End()).Line
@@ -219,7 +405,7 @@ func (Parser *GoParser) HasEntityDependency(fromEntityName, fromEntityPath, toEn
 							importedObj := regexp.MustCompile(regex)
 							// if field struct field has imported obj return true
 							for _, structLine := range strings.Split(string(fromNodeBytes), "\n")[startLine-1 : endLine] {
-								if importedObj.MatchString(structLine) && !strings.Contains(structLine, "//") && !strings.Contains(structLine, "/*") {
+								if importedObj.MatchString(structLine) && !strings.HasPrefix(strings.TrimSpace(structLine), "//") && !strings.HasPrefix(strings.TrimSpace(structLine), "/*") {
 									return true
 								}
 							}

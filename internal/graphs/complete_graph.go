@@ -10,11 +10,24 @@ func NewEntityCompleteGraph(entityDepG DependencyGraph, entityInhG InheritanceGr
 			Nodes:     make(map[string]Node),
 			Edges:     make(map[string]Edge),
 			Direction: direction,
-			Name:      "file_dependency",
+			Name:      "entity_complete",
 		},
 	}
-	completeG.CreateCompleteGraph()
+	completeG.CreateCompleteGraph(entityDepG, entityInhG)
 	return completeG
 }
 
-func (completeG *CompleteGraph) CreateCompleteGraph() {}
+func (completeG *CompleteGraph) CreateCompleteGraph(entityDepG DependencyGraph, entityInhG InheritanceGraph) {
+	completeG.Nodes = entityDepG.Nodes
+	for idInh, inhNode := range entityInhG.Nodes {
+		if _, exists := completeG.Nodes[idInh]; !exists {
+			completeG.AddNode(inhNode)
+		}
+	}
+	for _, edgeInh := range entityInhG.Edges {
+		completeG.AddEdge(edgeInh)
+	}
+	for _, edgeDep := range entityDepG.Edges {
+		completeG.AddEdge(edgeDep)
+	}
+}
