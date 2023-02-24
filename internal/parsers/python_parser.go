@@ -91,7 +91,31 @@ func (Parser *PythonParser) ExtractDependencies(filePath string) []string {
 }
 
 func (Parser *PythonParser) ExtractEntities(filePath string) []string {
-	return []string{}
+	var entities []string
+	file, err := os.Open(filePath)
+	if err != nil {
+		log.Fatalf("Error opening file: %v\n", err)
+	}
+	defer file.Close()
+	// Create a regular expression to match class definitions
+	classRegex := regexp.MustCompile(`class\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(`)
+	// Read the file line by line
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		// Match the regular expression against the line
+		match := classRegex.FindStringSubmatch(line)
+		if match != nil {
+			// The first match group is the class name
+			className := match[1]
+			entities = append(entities, className)
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatalf("Error reading file: %v\n", err)
+	}
+	return entities
 }
 
 func (Parser *PythonParser) ExtractExternalEntities(externalDependencyName, fromNodePath string) []string {
@@ -106,6 +130,11 @@ func (Parser *PythonParser) HasEntityDependency(fromEntityName, fromEntityPath, 
 }
 
 func (Parser *PythonParser) ExtractPackage(filePath string) string {
-	// TODO
-	return ""
+	var pyPackage string
+	if strings.HasPrefix(filePath, "external_dependency") {
+		pyPackage = strings.ReplaceAll(filePath, "external_dependency"+string(filepath.Separator), "")
+	} else if ostool.Exists(filepath.Join(filepath.Dir(filePath), "__init__.py")) {
+		pyPackage = filepath.Base(filepath.Dir(filePath))
+	}
+	return pyPackage
 }
