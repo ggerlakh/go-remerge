@@ -5,6 +5,7 @@ type DependencyExtractor interface {
 	ExtractDependencies(nodeName string) []string
 	ExtractEntities(filepath string) []string
 	ExtractPackage(filepath string) string
+	ExtractExternalEntities(externalDependencyName, fromNodePath string) []string
 	HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPath string) bool
 }
 

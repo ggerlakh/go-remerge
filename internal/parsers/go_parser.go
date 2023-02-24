@@ -1,6 +1,7 @@
 package parsers
 
 import (
+	"bufio"
 	"fmt"
 	"go-remerge/tools/ostool"
 	"go/ast"
@@ -128,6 +129,34 @@ func (Parser *GoParser) ExtractEntities(filePath string) []string {
 	return entityResult
 }
 
+func (Parser *GoParser) ExtractExternalEntities(externalDependencyName, fromNodePath string) []string {
+	var externalEntityDependencies []string
+	file, err := os.Open(fromNodePath)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	splittedName := strings.Split(externalDependencyName, string(filepath.Separator))
+	regex := strings.Split(splittedName[len(splittedName)-1], ".")[0] + `\.\w+`
+	importedExternalDependency := regexp.MustCompile(regex)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if !strings.Contains(line, "//") && !strings.Contains(line, "/*") {
+			tmpRes := importedExternalDependency.Find([]byte(line))
+			if string(tmpRes) != "" {
+				externalEntityDependencies = append(externalEntityDependencies, string(tmpRes))
+			}
+		}
+	}
+	if err := scanner.Err(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return externalEntityDependencies
+}
+
 func (Parser *GoParser) HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPackage string) bool {
 	var hasEntityDependency bool
 	fromNodeBytes, err := os.ReadFile(fromEntityPath)
@@ -190,7 +219,6 @@ func (Parser *GoParser) HasEntityDependency(fromEntityName, fromEntityPath, toEn
 							importedObj := regexp.MustCompile(regex)
 							// if field struct field has imported obj return true
 							for _, structLine := range strings.Split(string(fromNodeBytes), "\n")[startLine-1 : endLine] {
-								//fmt.Println("regex: ", regex, importedObj.MatchString(structLine) && !strings.Contains(structLine, "//") && !strings.Contains(structLine, "/*"), structLine)
 								if importedObj.MatchString(structLine) && !strings.Contains(structLine, "//") && !strings.Contains(structLine, "/*") {
 									return true
 								}

@@ -15,6 +15,11 @@ func (Parser *SwiftParser) ExtractEntities(filePath string) []string {
 	return []string{}
 }
 
+func (Parser *SwiftParser) ExtractExternalEntities(externalDependencyName, fromNodePath string) []string {
+	var externalEntityDependencies []string
+	return externalEntityDependencies
+}
+
 func (Parser *SwiftParser) HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPath string) bool {
 	var hasEntityDependency bool
 	// TODO

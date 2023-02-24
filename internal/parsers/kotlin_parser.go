@@ -15,6 +15,11 @@ func (Parser *KotlinParser) ExtractEntities(filePath string) []string {
 	return []string{}
 }
 
+func (Parser *KotlinParser) ExtractExternalEntities(externalDependencyName, fromNodePath string) []string {
+	var externalEntityDependencies []string
+	return externalEntityDependencies
+}
+
 func (Parser *KotlinParser) HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPath string) bool {
 	var hasEntityDependency bool
 	// TODO
