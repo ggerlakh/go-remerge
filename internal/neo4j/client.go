@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+	"strings"
 )
 
 func HelloWorld(ctx context.Context, uri, username, password string) (string, error) {
@@ -50,6 +51,9 @@ func ExecCypher(ctx context.Context, uri, username, password string, cypherQueri
 	_, err = session.ExecuteWrite(ctx, func(transaction neo4j.ManagedTransaction) (any, error) {
 		var result neo4j.ResultWithContext
 		for _, cypher := range cypherQueries {
+			if strings.Contains(cypher, `\u`) {
+				cypher = strings.ReplaceAll(cypher, `\u`, `\\u`)
+			}
 			result, err = transaction.Run(ctx, cypher, nil)
 		}
 		if err != nil {

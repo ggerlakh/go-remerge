@@ -67,9 +67,11 @@ func (depG *DependencyGraph) CreateFileDependencyGraph(filesystemGraph FileSyste
 			for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
 				var toDependencies []string
 				toId := hashtool.Sha256(dependency)
+				// extract dependencies if the local file
 				if !strings.HasPrefix(dependency, "external_dependency") {
 					toDependencies = depG.Parser.ExtractDependencies(dependency)
 				} else {
+					// do not extract entities if external dependency
 					toDependencies = []string{}
 				}
 				toNode := Node{Id: toId, Labels: map[string]any{
@@ -90,48 +92,50 @@ func (depG *DependencyGraph) CreateFileDependencyGraph(filesystemGraph FileSyste
 
 func (depG *DependencyGraph) CreateEntityDependencyGraph(fileDependencyGraph DependencyGraph) {
 	for _, fileDependencyNode := range fileDependencyGraph.Nodes {
-		for _, entity := range depG.Parser.ExtractEntities(fileDependencyNode.Labels["path"].(string)) {
-			// creating "from" nodes
-			fromId := hashtool.Sha256(entity)
-			fromNode := Node{Id: fromId, Labels: map[string]any{
-				"name":        entity,
-				"path":        fileDependencyNode.Labels["path"].(string),
-				"package":     depG.Parser.ExtractPackage(fileDependencyNode.Labels["path"].(string)),
-				"isDirectory": false}}
-			depG.AddNode(fromNode)
-			// creating "to" nodes
-			// edges creation based on file_dependency graph
-			for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
-				// external entity dependencies
-				if strings.HasPrefix(dependency, "external_dependency") {
-					for _, externalEntity := range depG.Parser.ExtractExternalEntities(strings.ReplaceAll(dependency, "external_dependency"+string(filepath.Separator), ""), fromNode.Labels["path"].(string)) {
-						toId := hashtool.Sha256(externalEntity)
-						toNode := Node{Id: toId, Labels: map[string]any{
-							"name":        externalEntity,
-							"path":        dependency,
-							"package":     depG.Parser.ExtractPackage(dependency),
-							"isDirectory": false}}
-						depG.AddNode(toNode)
-						depG.AddEdge(Edge{
-							From: fromNode,
-							To:   toNode,
-						})
-					}
-				} else {
-					// internal entity dependencies
-					for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
-						toId := hashtool.Sha256(depEntity)
-						toNode := Node{Id: toId, Labels: map[string]any{
-							"name":        depEntity,
-							"path":        dependency,
-							"package":     depG.Parser.ExtractPackage(dependency),
-							"isDirectory": false}}
-						if depG.Parser.HasEntityDependency(fromNode.Labels["name"].(string), fromNode.Labels["path"].(string), toNode.Labels["name"].(string), toNode.Labels["package"].(string)) {
+		if !strings.HasPrefix(fileDependencyNode.Labels["path"].(string), "external_dependency") {
+			for _, entity := range depG.Parser.ExtractEntities(fileDependencyNode.Labels["path"].(string)) {
+				// creating "from" nodes
+				fromId := hashtool.Sha256(entity)
+				fromNode := Node{Id: fromId, Labels: map[string]any{
+					"name":        entity,
+					"path":        fileDependencyNode.Labels["path"].(string),
+					"package":     depG.Parser.ExtractPackage(fileDependencyNode.Labels["path"].(string)),
+					"isDirectory": false}}
+				depG.AddNode(fromNode)
+				// creating "to" nodes
+				// edges creation based on file_dependency graph
+				for _, dependency := range fileDependencyNode.Labels["dependencies"].([]string) {
+					// external entity dependencies
+					if strings.HasPrefix(dependency, "external_dependency") {
+						for _, externalEntity := range depG.Parser.ExtractExternalEntities(strings.ReplaceAll(dependency, "external_dependency"+string(filepath.Separator), ""), fromNode.Labels["path"].(string), fromNode.Labels["name"].(string)) {
+							toId := hashtool.Sha256(externalEntity)
+							toNode := Node{Id: toId, Labels: map[string]any{
+								"name":        externalEntity,
+								"path":        dependency,
+								"package":     depG.Parser.ExtractPackage(dependency),
+								"isDirectory": false}}
 							depG.AddNode(toNode)
 							depG.AddEdge(Edge{
 								From: fromNode,
 								To:   toNode,
 							})
+						}
+					} else {
+						// internal entity dependencies
+						for _, depEntity := range depG.Parser.ExtractEntities(dependency) {
+							toId := hashtool.Sha256(depEntity + dependency)
+							toNode := Node{Id: toId, Labels: map[string]any{
+								"name":        depEntity,
+								"path":        dependency,
+								"package":     depG.Parser.ExtractPackage(dependency),
+								"isDirectory": false}}
+							if depG.Parser.HasEntityDependency(fromNode.Labels["name"].(string), fromNode.Labels["path"].(string), toNode.Labels["name"].(string), toNode.Labels["package"].(string)) {
+								depG.AddNode(toNode)
+								depG.AddEdge(Edge{
+									From: fromNode,
+									To:   toNode,
+								})
+							}
 						}
 					}
 				}

@@ -15,7 +15,7 @@ func (Parser *SwiftParser) ExtractEntities(filePath string) []string {
 	return []string{}
 }
 
-func (Parser *SwiftParser) ExtractExternalEntities(externalDependencyName, fromNodePath string) []string {
+func (Parser *SwiftParser) ExtractExternalEntities(externalDependencyName, fromNodePath, fromNodeEntityName string) []string {
 	var externalEntityDependencies []string
 	return externalEntityDependencies
 }

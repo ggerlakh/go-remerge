@@ -1,7 +1,7 @@
 ---
 project_name: emerge test
 analysis_name: check python project analysis
-source_directory: /home/gleb/win_home/Desktop/emerge
+source_directory: C:\Users\Gleb\Desktop\Учеба\Диплом\emerge
 languages:
   - python
 extensions:
@@ -19,19 +19,15 @@ graphs:
     direction: directed
   - graph: file_dependency
     direction: directed
+  - graph: entity_dependency
+    direction: directed
 export:
   as_file:
-    output_dir: /home/gleb/go-remerge/export
+    output_dir: C:\Users\Gleb\Desktop\Учеба\Диплом\go-remerge\export
     formats:
       - json
       - arango_format
-  arango:
-    username: root
-    password: password
-    endpoints:
-      - http://localhost:8529
-    database: test_python
   neo4j:
     username: neo4j
-    password: neo4jdevops
+    password: neo4jpython
     uri: neo4j://localhost:7687

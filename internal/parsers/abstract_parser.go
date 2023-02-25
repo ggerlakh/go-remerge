@@ -5,8 +5,8 @@ type DependencyExtractor interface {
 	ExtractDependencies(nodeName string) []string
 	ExtractEntities(filepath string) []string
 	ExtractPackage(filepath string) string
-	ExtractExternalEntities(externalDependencyName, fromNodePath string) []string
-	HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPath string) bool
+	ExtractExternalEntities(externalDependencyName, fromNodePath, fromNodeEntityName string) []string
+	HasEntityDependency(fromEntityName, fromEntityPath, toEntityName, toEntityPackage string) bool
 }
 
 type InheritanceExtractor interface {

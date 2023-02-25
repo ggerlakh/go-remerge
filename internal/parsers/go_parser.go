@@ -317,7 +317,8 @@ func (Parser *GoParser) ExtractEntities(filePath string) []string {
 	return entityResult
 }
 
-func (Parser *GoParser) ExtractExternalEntities(externalDependencyName, fromNodePath string) []string {
+func (Parser *GoParser) ExtractExternalEntities(externalDependencyName, fromNodePath, fromNodeEntityName string) []string {
+	/// !!!! Need third param
 	var externalEntityDependencies []string
 	file, err := os.Open(fromNodePath)
 	if err != nil {
