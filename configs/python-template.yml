@@ -29,5 +29,11 @@ export:
       - arango_format
   neo4j:
     username: neo4j
-    password: neo4jpython
+    password: neo4jdevops
     uri: neo4j://localhost:7687
+  arango:
+    username: root
+    password: password
+    endpoints:
+      - http://localhost:8529
+    database: test_python

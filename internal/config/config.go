@@ -1,7 +1,7 @@
 package config
 
 import (
-	"errors"
+	"go-remerge/tools/ostool"
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
@@ -65,10 +65,8 @@ func ParseConfig(configPath string) (Config, map[string]bool) {
 	}
 	// check mandatory config fields
 	// check if path exists
-	if _, err := os.Stat(conf.SourceDirectory); err != nil {
-		if errors.Is(err, os.ErrNotExist) {
-			log.Fatalf("source directory %s does not exist\n", conf.SourceDirectory)
-		}
+	if !ostool.Exists(conf.SourceDirectory) {
+		log.Fatalf("source directory %s does not exist\n", conf.SourceDirectory)
 	}
 	// check export fields in config
 	if reflect.DeepEqual(conf.Export, defaultExport) {

@@ -67,10 +67,10 @@ func (fsG *FileSystemGraph) WalkTree() {
 			return err
 		}
 		if _, skip := fsG.SkipDirs[info.Name()]; skip && info.IsDir() {
-			log.Printf("skipping a dir without errors: %+v \n", info.Name())
+			fmt.Printf("skipping a dir without errors: %+v \n", info.Name())
 			return filepath.SkipDir
 		} else if _, skip := fsG.SkipFiles[info.Name()]; skip && !info.IsDir() {
-			log.Printf("skipping a file without errors: %+v \n", info.Name())
+			fmt.Printf("skipping a file without errors: %+v \n", info.Name())
 		} else {
 			var fromPath, toPath string
 			if path == "." {
