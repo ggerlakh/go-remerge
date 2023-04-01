@@ -241,6 +241,7 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 		// Parse the imports in Golang file
 		if !ostool.Exists(path) {
 			path = strings.TrimPrefix(strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), Parser.ProjectDir, ""), string(filepath.Separator))
+			//fmt.Println("file: ", filePath, "import: ", path)
 			if !ostool.Exists(path) {
 				path = strings.TrimLeft(strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), filepath.Dir(Parser.ProjectDir), ""), string(filepath.Separator))
 				fileDependenciesMap[filepath.Join("external_dependency", path)] = struct{}{}
@@ -261,14 +262,14 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 		for _, packageGoFile := range packageGoFiles {
 			importedNode, err := parser.ParseFile(fset, packageGoFile, nil, parser.ParseComments)
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 			// Iterate through the top-level declarations and find the structures
 			for _, decl := range importedNode.Decls {
 				switch decl.(type) {
 				case *ast.GenDecl:
 					genDecl := decl.(*ast.GenDecl)
-					if genDecl.Tok == token.TYPE || genDecl.Tok == token.FUNC || genDecl.Tok == token.CONST {
+					if genDecl.Tok == token.TYPE || genDecl.Tok == token.CONST {
 						for _, spec := range genDecl.Specs {
 							typeSpec := spec.(*ast.TypeSpec)
 							lines := ostool.FilterComments(filePath)
@@ -279,6 +280,16 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 									fileDependenciesMap[packageGoFile] = struct{}{}
 								}
 							}
+						}
+					}
+				case *ast.FuncDecl:
+					funcDecl := decl.(*ast.FuncDecl)
+					lines := ostool.FilterComments(filePath)
+					regex := `^.*` + filepath.Base(path) + `\.` + funcDecl.Name.Name + `.*$`
+					imported := regexp.MustCompile(regex)
+					for _, line := range lines {
+						if imported.MatchString(line) {
+							fileDependenciesMap[packageGoFile] = struct{}{}
 						}
 					}
 				}
@@ -301,7 +312,7 @@ func (Parser *GoParser) ExtractEntities(filePath string) []string {
 	if err != nil {
 		panic(err)
 	}
-	// Iterate through the top-level declarations and find the structures
+	// Iterate through the top-level declarations and find the structures and functions
 	for _, decl := range fileNode.Decls {
 		switch decl.(type) {
 		case *ast.GenDecl:
