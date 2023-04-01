@@ -13,13 +13,14 @@ type DependencyGraph struct {
 	AllowedExtensions []string
 }
 
-func NewFileDependencyGraph(filesystemGraph FileSystemGraph, parser parsers.DependencyExtractor, extensions []string, direction string) *DependencyGraph {
+func NewFileDependencyGraph(filesystemGraph FileSystemGraph, parser parsers.DependencyExtractor, extensions []string, direction string, AnalysisProjectName string) *DependencyGraph {
 	depGraph := &DependencyGraph{
 		Graph: Graph{
-			Nodes:     make(map[string]Node),
-			Edges:     make(map[string]Edge),
-			Direction: direction,
-			Name:      "file_dependency",
+			Nodes:               make(map[string]Node),
+			Edges:               make(map[string]Edge),
+			Direction:           direction,
+			Name:                "file_dependency",
+			AnalysisProjectName: AnalysisProjectName,
 		},
 		Parser:            parser,
 		AllowedExtensions: extensions,
@@ -28,13 +29,14 @@ func NewFileDependencyGraph(filesystemGraph FileSystemGraph, parser parsers.Depe
 	return depGraph
 }
 
-func NewEntityDependencyGraph(fileDependencyGraph DependencyGraph, parser parsers.DependencyExtractor, extensions []string, direction string) *DependencyGraph {
+func NewEntityDependencyGraph(fileDependencyGraph DependencyGraph, parser parsers.DependencyExtractor, extensions []string, direction string, AnalysisProjectName string) *DependencyGraph {
 	depGraph := &DependencyGraph{
 		Graph: Graph{
-			Nodes:     make(map[string]Node),
-			Edges:     make(map[string]Edge),
-			Direction: direction,
-			Name:      "entity_dependency",
+			Nodes:               make(map[string]Node),
+			Edges:               make(map[string]Edge),
+			Direction:           direction,
+			Name:                "entity_dependency",
+			AnalysisProjectName: AnalysisProjectName,
 		},
 		Parser:            parser,
 		AllowedExtensions: extensions,

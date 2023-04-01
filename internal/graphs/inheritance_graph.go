@@ -12,13 +12,14 @@ type InheritanceGraph struct {
 	AllowedExtensions []string
 }
 
-func NewEntityInheritanceGraph(entityDependencyGraph DependencyGraph, parser parsers.InheritanceExtractor, extensions []string, direction string) *InheritanceGraph {
+func NewEntityInheritanceGraph(entityDependencyGraph DependencyGraph, parser parsers.InheritanceExtractor, extensions []string, direction string, AnalysisProjectName string) *InheritanceGraph {
 	inhG := &InheritanceGraph{
 		Graph: Graph{
-			Nodes:     make(map[string]Node),
-			Edges:     make(map[string]Edge),
-			Direction: direction,
-			Name:      "entity_inheritance",
+			Nodes:               make(map[string]Node),
+			Edges:               make(map[string]Edge),
+			Direction:           direction,
+			Name:                "entity_inheritance",
+			AnalysisProjectName: AnalysisProjectName,
 		},
 		Parser:            parser,
 		AllowedExtensions: extensions,

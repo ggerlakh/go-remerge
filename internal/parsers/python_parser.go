@@ -91,6 +91,7 @@ func (Parser *PythonParser) ExtractDependencies(filePath string) []string {
 }
 
 func (Parser *PythonParser) ExtractEntities(filePath string) []string {
+	//TODO
 	var entities []string
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -111,7 +112,6 @@ func (Parser *PythonParser) ExtractEntities(filePath string) []string {
 			entities = append(entities, className)
 		}
 	}
-
 	if err := scanner.Err(); err != nil {
 		log.Fatalf("Error reading file: %v\n", err)
 	}
@@ -119,6 +119,7 @@ func (Parser *PythonParser) ExtractEntities(filePath string) []string {
 }
 
 func (Parser *PythonParser) ExtractExternalEntities(externalDependencyName, fromNodePath, fromNodeEntityName string) []string {
+	//TODO
 	var externalEntityDependencies []string
 	// iterating over fromEntityName source code in .py file
 	// Define regular expression to match class definition lines

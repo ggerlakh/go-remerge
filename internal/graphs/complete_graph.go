@@ -4,13 +4,14 @@ type CompleteGraph struct {
 	Graph
 }
 
-func NewEntityCompleteGraph(entityDepG DependencyGraph, entityInhG InheritanceGraph, direction string) *CompleteGraph {
+func NewEntityCompleteGraph(entityDepG DependencyGraph, entityInhG InheritanceGraph, direction string, AnalysisProjectName string) *CompleteGraph {
 	completeG := &CompleteGraph{
 		Graph: Graph{
-			Nodes:     make(map[string]Node),
-			Edges:     make(map[string]Edge),
-			Direction: direction,
-			Name:      "entity_complete",
+			Nodes:               make(map[string]Node),
+			Edges:               make(map[string]Edge),
+			Direction:           direction,
+			Name:                "entity_complete",
+			AnalysisProjectName: AnalysisProjectName,
 		},
 	}
 	completeG.CreateCompleteGraph(entityDepG, entityInhG)

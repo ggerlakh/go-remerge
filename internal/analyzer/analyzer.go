@@ -26,7 +26,7 @@ func (a *Analyzer) Start() {
 	}
 	for _, gConf := range a.Conf.Graphs {
 		if gConf.Graph == "filesystem" {
-			a.CreateFilesystemGraphIfNotCreated(gConf.Direction)
+			a.CreateFilesystemGraphIfNotCreated(gConf.Direction, a.Conf.ProjectName)
 			a.Export(a.GraphMap["filesystem"], gConf.Graph)
 		} else {
 			for _, lang := range a.Conf.Languages {
@@ -43,16 +43,16 @@ func (a *Analyzer) Start() {
 				}
 				switch gConf.Graph {
 				case "file_dependency":
-					a.CreateFileDependencyGraphIfNotCreated(gConf.Direction, parser)
+					a.CreateFileDependencyGraphIfNotCreated(gConf.Direction, parser, a.Conf.ProjectName)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_dependency":
-					a.CreateEntityDependencyGraphIfNotCreated(gConf.Direction, parser)
+					a.CreateEntityDependencyGraphIfNotCreated(gConf.Direction, parser, a.Conf.ProjectName)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_inheritance":
-					a.CreateEntityInheritanceGraphIfNotCreated(gConf.Direction, parser)
+					a.CreateEntityInheritanceGraphIfNotCreated(gConf.Direction, parser, a.Conf.ProjectName)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				case "entity_complete":
-					a.CreateEntityCompleteGraphIfNotCreated(gConf.Direction, parser)
+					a.CreateEntityCompleteGraphIfNotCreated(gConf.Direction, parser, a.Conf.ProjectName)
 					a.Export(a.GraphMap[gConf.Graph], gConf.Graph)
 				}
 			}
@@ -61,62 +61,62 @@ func (a *Analyzer) Start() {
 }
 
 // CreateFilesystemGraphIfNotCreated fill GraphMap
-func (a *Analyzer) CreateFilesystemGraphIfNotCreated(Direction string) {
+func (a *Analyzer) CreateFilesystemGraphIfNotCreated(Direction string, AnalysisProjectName string) {
 	if _, isFilesystemGraphCreated := a.GraphMap["filesystem"]; !isFilesystemGraphCreated { // create graph if not created
 		a.GraphMap["filesystem"] = graphs.NewFileSystemGraph(Direction, []graphs.Node{}, []graphs.Edge{},
-			a.Conf.SourceDirectory, a.Conf.IgnoreDirectories, a.Conf.IgnoreFiles)
+			a.Conf.SourceDirectory, a.Conf.IgnoreDirectories, a.Conf.IgnoreFiles, AnalysisProjectName)
 	} else if a.GraphMap["filesystem"].(*graphs.FileSystemGraph).Direction != Direction { // if type not equal type from config, create new graph with correct type
 		a.GraphMap["filesystem"] = graphs.NewFileSystemGraph(Direction, []graphs.Node{}, []graphs.Edge{},
-			a.Conf.SourceDirectory, a.Conf.IgnoreDirectories, a.Conf.IgnoreFiles)
+			a.Conf.SourceDirectory, a.Conf.IgnoreDirectories, a.Conf.IgnoreFiles, AnalysisProjectName)
 	}
 }
 
 // CreateFileDependencyGraphIfNotCreated fill GraphMap
-func (a *Analyzer) CreateFileDependencyGraphIfNotCreated(Direction string, parser parsers.DependencyExtractor) {
-	a.CreateFilesystemGraphIfNotCreated(Direction)
+func (a *Analyzer) CreateFileDependencyGraphIfNotCreated(Direction string, parser parsers.DependencyExtractor, AnalysisProjectName string) {
+	a.CreateFilesystemGraphIfNotCreated(Direction, AnalysisProjectName)
 	if _, isFileDependencyGraphCreated := a.GraphMap["file_dependency"]; !isFileDependencyGraphCreated {
 		a.GraphMap["file_dependency"] = graphs.NewFileDependencyGraph(*a.GraphMap["filesystem"].(*graphs.FileSystemGraph),
-			parser, a.Conf.Extensions, Direction)
+			parser, a.Conf.Extensions, Direction, AnalysisProjectName)
 	} else if a.GraphMap["file_dependency"].(*graphs.DependencyGraph).Direction != Direction {
 		a.GraphMap["file_dependency"] = graphs.NewFileDependencyGraph(*a.GraphMap["filesystem"].(*graphs.FileSystemGraph),
-			parser, a.Conf.Extensions, Direction)
+			parser, a.Conf.Extensions, Direction, AnalysisProjectName)
 	}
 }
 
 // CreateEntityDependencyGraphIfNotCreated fill GraphMap
-func (a *Analyzer) CreateEntityDependencyGraphIfNotCreated(Direction string, parser parsers.DependencyExtractor) {
-	a.CreateFileDependencyGraphIfNotCreated(Direction, parser)
+func (a *Analyzer) CreateEntityDependencyGraphIfNotCreated(Direction string, parser parsers.DependencyExtractor, AnalysisProjectName string) {
+	a.CreateFileDependencyGraphIfNotCreated(Direction, parser, AnalysisProjectName)
 	if _, isEntityDependencyGraphCreated := a.GraphMap["entity_dependency"]; !isEntityDependencyGraphCreated {
 		a.GraphMap["entity_dependency"] = graphs.NewEntityDependencyGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions, Direction)
+			parser, a.Conf.Extensions, Direction, AnalysisProjectName)
 	} else if a.GraphMap["entity_dependency"].(*graphs.DependencyGraph).Direction != Direction {
 		a.GraphMap["entity_dependency"] = graphs.NewEntityDependencyGraph(*a.GraphMap["file_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions, Direction)
+			parser, a.Conf.Extensions, Direction, AnalysisProjectName)
 	}
 }
 
 // CreateEntityInheritanceGraphIfNotCreated fill GraphMap
-func (a *Analyzer) CreateEntityInheritanceGraphIfNotCreated(Direction string, parser parsers.CompleteGraphExtractor) {
-	a.CreateEntityDependencyGraphIfNotCreated(Direction, parser)
+func (a *Analyzer) CreateEntityInheritanceGraphIfNotCreated(Direction string, parser parsers.CompleteGraphExtractor, AnalysisProjectName string) {
+	a.CreateEntityDependencyGraphIfNotCreated(Direction, parser, AnalysisProjectName)
 	if _, isEntityInheritanceGraphCreated := a.GraphMap["entity_inheritance"]; !isEntityInheritanceGraphCreated {
 		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions, Direction)
+			parser, a.Conf.Extensions, Direction, AnalysisProjectName)
 	} else if a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph).Direction != Direction {
 		a.GraphMap["entity_inheritance"] = graphs.NewEntityInheritanceGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
-			parser, a.Conf.Extensions, Direction)
+			parser, a.Conf.Extensions, Direction, AnalysisProjectName)
 	}
 }
 
 // CreateEntityCompleteGraphIfNotCreated fill GraphMap
-func (a *Analyzer) CreateEntityCompleteGraphIfNotCreated(Direction string, parser parsers.CompleteGraphExtractor) {
-	a.CreateEntityDependencyGraphIfNotCreated(Direction, parser)
-	a.CreateEntityInheritanceGraphIfNotCreated(Direction, parser)
+func (a *Analyzer) CreateEntityCompleteGraphIfNotCreated(Direction string, parser parsers.CompleteGraphExtractor, AnalysisProjectName string) {
+	a.CreateEntityDependencyGraphIfNotCreated(Direction, parser, AnalysisProjectName)
+	a.CreateEntityInheritanceGraphIfNotCreated(Direction, parser, AnalysisProjectName)
 	if _, isEntityCompleteGraphCreated := a.GraphMap["entity_complete"]; !isEntityCompleteGraphCreated {
 		a.GraphMap["entity_complete"] = graphs.NewEntityCompleteGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
-			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph), Direction)
+			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph), Direction, AnalysisProjectName)
 	} else if a.GraphMap["entity_complete"].(*graphs.CompleteGraph).Direction != Direction {
 		a.GraphMap["entity_complete"] = graphs.NewEntityCompleteGraph(*a.GraphMap["entity_dependency"].(*graphs.DependencyGraph),
-			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph), Direction)
+			*a.GraphMap["entity_inheritance"].(*graphs.InheritanceGraph), Direction, AnalysisProjectName)
 	}
 }
 
@@ -140,14 +140,14 @@ func (a *Analyzer) Export(g graphs.Exporter, graphName string) {
 				} else {
 					switch format {
 					case "json":
-						outputJSONFile := filepath.Join(a.Conf.Export.AsJSONFile.OutputDir, fmt.Sprintf("%s.json", graphName))
+						outputJSONFile := filepath.Join(a.Conf.Export.AsJSONFile.OutputDir, fmt.Sprintf("%s_%s.json", a.Conf.ProjectName, graphName))
 						err := os.WriteFile(outputJSONFile, []byte(g.GetPrettyJson()), 0644)
 						if err != nil {
 							log.Fatalf("Error writing json output in file %s\n", outputJSONFile)
 						}
 						log.Printf("%s graph exported as JSON file in %s\n", graphName, outputJSONFile)
 					case "arango_format":
-						outputJSONArangoFormatFile := filepath.Join(a.Conf.Export.AsJSONFile.OutputDir, fmt.Sprintf("%sArangoFormat.json", graphName))
+						outputJSONArangoFormatFile := filepath.Join(a.Conf.Export.AsJSONFile.OutputDir, fmt.Sprintf("%s_%sArangoFormat.json", a.Conf.ProjectName, graphName))
 						err := os.WriteFile(outputJSONArangoFormatFile, []byte(g.ToArango()), 0644)
 						if err != nil {
 							log.Fatalf("Error writing json in arango format output in file %s\n", outputJSONArangoFormatFile)

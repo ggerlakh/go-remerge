@@ -1,5 +1,5 @@
 ---
-project_name: emerge test
+project_name: emerge
 analysis_name: check python project analysis
 source_directory: C:\Users\Gleb\Desktop\Учеба\Диплом\emerge
 languages:

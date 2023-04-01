@@ -15,9 +15,10 @@ type Node struct {
 	Labels map[string]any
 }
 
-func (n *Node) ToCypher() string {
+func (n *Node) ToCypher(GraphName string) string {
 	var props []string
 	props = append(props, fmt.Sprintf("Id: '%v'", n.Id))
+	props = append(props, fmt.Sprintf("graph: '%v'", GraphName))
 	for k, v := range n.Labels {
 		if strings.Contains(fmt.Sprintf("%v", v), `\t`) {
 			v = strings.Replace(fmt.Sprintf("%v", v), `\t`, `\\t`, -1)
@@ -34,15 +35,16 @@ type Edge struct {
 }
 
 type Graph struct {
-	Direction string
-	Name      string
-	Nodes     map[string]Node // map[Node.Id]Node
-	Edges     map[string]Edge // map[Edge.Key]Edge
+	Direction           string
+	Name                string
+	AnalysisProjectName string
+	Nodes               map[string]Node // map[Node.Id]Node
+	Edges               map[string]Edge // map[Edge.Key]Edge
 }
 
-func NewGraph(Direction, Name string, Nodes []Node, Edges []Edge) *Graph {
+func NewGraph(Direction, Name string, AnalysisProjectName string, Nodes []Node, Edges []Edge) *Graph {
 	if strings.ToLower(Direction) == "undirected" || strings.ToLower(Direction) == "directed" {
-		g := &Graph{Direction: strings.ToLower(Direction), Name: Name, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
+		g := &Graph{Direction: strings.ToLower(Direction), Name: Name, AnalysisProjectName: AnalysisProjectName, Nodes: make(map[string]Node), Edges: make(map[string]Edge)} // need to init Edges map
 		g.SetNodes(Nodes)
 		g.SetEdges(Edges)
 		return g
@@ -186,13 +188,13 @@ func (g *Graph) GetCypher() []string {
 	// node creation in cypher
 	for _, node := range g.Nodes {
 		//cypherArr = append(cypherArr, fmt.Sprintf("CREATE (n: Node %s);", node.ToCypher()))
-		cypherArr = append(cypherArr, fmt.Sprintf("CREATE (n: %s %s);", g.Name, node.ToCypher()))
+		cypherArr = append(cypherArr, fmt.Sprintf("CREATE (n: `%s` %s);", g.AnalysisProjectName, node.ToCypher(g.Name)))
 	}
 	//edge creation in cypher
 	for _, edge := range g.Edges {
 		cypherArr = append(cypherArr,
-			fmt.Sprintf("MATCH (from: %s {Id: '%s'}),  (to: %s {Id: '%s'}) MERGE (from)-[r: CONNECTED_WITH]->(to);",
-				g.Name, edge.From.Id, g.Name, edge.To.Id))
+			fmt.Sprintf("MATCH (from: `%s` {graph: '%v', Id: '%s'}),  (to: `%s` {graph: '%v', Id: '%s'}) MERGE (from)-[r: CONNECTED_WITH]->(to);",
+				g.AnalysisProjectName, g.Name, edge.From.Id, g.AnalysisProjectName, g.Name, edge.To.Id))
 	}
 	return cypherArr
 }
