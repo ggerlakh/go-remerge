@@ -15,7 +15,6 @@ services:
             - "7687:7687"
         environment:
             NEO4J_AUTH: "neo4j/neo4jdevops"
-            COMPOSE_CONVERT_WINDOWS_PATHS: "1"
         volumes:
             - "C:/Users/Gleb/Desktop/Учеба/Диплом/go-remerge/neo4jdb/data:/data"
             - "C:/Users/Gleb/Desktop/Учеба/Диплом/go-remerge/neo4jdb/import:/var/lib/neo4j/import"
