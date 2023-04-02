@@ -3,6 +3,7 @@ package graphs
 import (
 	"go-remerge/internal/parsers"
 	"go-remerge/tools/hashtool"
+	"path/filepath"
 	"strings"
 )
 
@@ -35,7 +36,7 @@ func (inhG *InheritanceGraph) CreateInheritanceGraph(entityDependencyGraph Depen
 			fromNode := entityNode
 			inhG.AddNode(fromNode)
 			for _, parentEntityMap := range inhG.Parser.ExtractInheritance(fromNode.Labels["path"].(string), fromNode.Labels["name"].(string)) {
-				toId := hashtool.Sha256(parentEntityMap["name"] + parentEntityMap["path"])
+				toId := hashtool.Sha256(filepath.Join(parentEntityMap["path"], parentEntityMap["name"]))
 				toNode := Node{Id: toId, Labels: map[string]any{
 					"name":        parentEntityMap["name"],
 					"path":        parentEntityMap["path"],

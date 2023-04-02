@@ -272,7 +272,7 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 					if genDecl.Tok == token.TYPE || genDecl.Tok == token.CONST {
 						for _, spec := range genDecl.Specs {
 							typeSpec := spec.(*ast.TypeSpec)
-							lines := ostool.FilterComments(filePath)
+							lines := Parser.FilterComments(filePath)
 							regex := `^.*` + filepath.Base(path) + `\.` + typeSpec.Name.Name + `.*$`
 							imported := regexp.MustCompile(regex)
 							for _, line := range lines {
@@ -284,7 +284,7 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 					}
 				case *ast.FuncDecl:
 					funcDecl := decl.(*ast.FuncDecl)
-					lines := ostool.FilterComments(filePath)
+					lines := Parser.FilterComments(filePath)
 					regex := `^.*` + filepath.Base(path) + `\.` + funcDecl.Name.Name + `.*$`
 					imported := regexp.MustCompile(regex)
 					for _, line := range lines {
@@ -329,7 +329,6 @@ func (Parser *GoParser) ExtractEntities(filePath string) []string {
 }
 
 func (Parser *GoParser) ExtractExternalEntities(externalDependencyName, fromNodePath, fromNodeEntityName string) []string {
-	/// !!!! Need third param
 	var externalEntityDependencies []string
 	file, err := os.Open(fromNodePath)
 	if err != nil {
@@ -436,8 +435,57 @@ func (Parser *GoParser) ExtractPackage(filePath string) string {
 		if !ostool.Exists(filePath) {
 			return strings.ReplaceAll(filePath, "external_dependency"+string(filepath.Separator), "")
 		} else {
-			panic(err)
+			log.Fatal(err)
 		}
 	}
 	return node.Name.Name
+}
+
+func (Parser *GoParser) FilterComments(filename string) []string {
+	var linesWithoutComments []string
+	// Open file for reading
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	// Read file line by line and filter out comments
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if !Parser.isComment(line) {
+			linesWithoutComments = append(linesWithoutComments, line)
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+	return linesWithoutComments
+}
+
+func (Parser *GoParser) isComment(line string) bool {
+	line = Parser.stripWhitespace(line)
+	if len(line) == 0 {
+		return false
+	}
+
+	if line[0] == '/' && len(line) > 1 {
+		if line[1] == '/' || line[1] == '*' {
+			return true
+		}
+	}
+	return false
+}
+
+func (Parser *GoParser) stripWhitespace(line string) string {
+	var result []rune
+	for _, ch := range line {
+		if ch != ' ' && ch != '\t' {
+			result = append(result, ch)
+		}
+	}
+	return string(result)
 }

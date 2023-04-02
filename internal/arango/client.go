@@ -104,7 +104,7 @@ func LoadGraph(ctx context.Context, endpoints []string, username, password, dbNa
 	for _, edge := range edges {
 		_, err = edgeCollection.CreateDocument(ctx, edge)
 		if err != nil {
-			log.Fatalf("Failed to create edge document: %v", err)
+			log.Fatalf("Failed to create edge document: %v %v", edge, err)
 		}
 	}
 }
