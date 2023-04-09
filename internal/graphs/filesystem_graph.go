@@ -16,7 +16,7 @@ type FileSystemGraph struct {
 	SkipFiles map[string]struct{}
 }
 
-func NewFileSystemGraph(direction string, Nodes []Node, Edges []Edge, Root string, SkipDirs []string, SkipFiles []string, AnalysisProjectName string) *FileSystemGraph {
+func NewFileSystemGraph(direction string, Nodes []Node, Edges []Edge, Root string, SkipDirs []string, SkipFiles []string, AnalysisProjectName string, Verbose bool) *FileSystemGraph {
 	if strings.ToLower(direction) == "undirected" || strings.ToLower(direction) == "directed" {
 		fsG := &FileSystemGraph{Graph: Graph{
 			Direction:           direction,
@@ -32,7 +32,7 @@ func NewFileSystemGraph(direction string, Nodes []Node, Edges []Edge, Root strin
 		fsG.SetEdges(Edges)
 		fsG.SetSkipDirs(SkipDirs)
 		fsG.SetSkipFiles(SkipFiles)
-		fsG.WalkTree()
+		fsG.WalkTree(Verbose)
 		return fsG
 	} else {
 		panic(fmt.Sprintf("\"%v\" wrong graphs type value, graphs can be only directed or undirected", direction))
@@ -59,7 +59,7 @@ func (fsG *FileSystemGraph) GetRootDir(Root string) string {
 	return filepath.Base(abs)
 }
 
-func (fsG *FileSystemGraph) WalkTree() {
+func (fsG *FileSystemGraph) WalkTree(Verbose bool) {
 	//log.SetFlags(log.LstdFlags | log.Lshortfile)
 	err := filepath.Walk(".", func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
@@ -67,10 +67,14 @@ func (fsG *FileSystemGraph) WalkTree() {
 			return err
 		}
 		if _, skip := fsG.SkipDirs[info.Name()]; skip && info.IsDir() {
-			fmt.Printf("skipping a dir without errors: %+v \n", info.Name())
+			if Verbose {
+				fmt.Printf("skipping a dir without errors: %+v \n", info.Name())
+			}
 			return filepath.SkipDir
 		} else if _, skip := fsG.SkipFiles[info.Name()]; skip && !info.IsDir() {
-			fmt.Printf("skipping a file without errors: %+v \n", info.Name())
+			if Verbose {
+				fmt.Printf("skipping a file without errors: %+v \n", info.Name())
+			}
 		} else {
 			var fromPath, toPath string
 			if path == "." {
