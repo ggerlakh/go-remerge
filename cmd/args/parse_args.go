@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sync"
 )
 
 func ParseArgs() {
@@ -20,6 +21,7 @@ func ParseArgs() {
 	flag.BoolVar(&verbose, "v", false, "produce verbose output")
 	flag.BoolVar(&async, "async", false, "asynchronous task execution")
 	flag.Parse()
+	wg := new(sync.WaitGroup)
 	// get info about config path
 	fi, err := os.Stat(configPath)
 	if err != nil {
@@ -30,21 +32,39 @@ func ParseArgs() {
 		if err != nil {
 			log.Fatalf("Error while opening directory %v: %v", configPath, err)
 		}
+		fmt.Printf("Searching for configs in %v...\n", configPath)
 		for _, item := range dirItems {
 			confPath := filepath.Join(configPath, item.Name())
 			if !item.IsDir() && (filepath.Ext(item.Name()) == ".yml" || filepath.Ext(item.Name()) == ".yaml") {
-				runTask(confPath, verbose)
-				fmt.Printf("Task with config %v was completed successfully\n", configPath)
+				if async {
+					wg.Add(1)
+					fmt.Printf("Starting async task from config %v...\n", configPath)
+					go runTask(confPath, async, verbose, wg)
+				} else {
+					runTask(confPath, async, verbose, wg)
+				}
 			}
 		}
 	} else {
-		runTask(configPath, verbose)
-		fmt.Printf("Task with config %v was completed successfully\n", configPath)
+		if async {
+			wg.Add(1)
+			go runTask(configPath, async, verbose, wg)
+		} else {
+			runTask(configPath, async, verbose, wg)
+		}
+	}
+	if async {
+		wg.Wait()
 	}
 }
 
-func runTask(configPath string, verbose bool) {
+func runTask(configPath string, async, verbose bool, wg *sync.WaitGroup) {
+	fmt.Printf("Starting task from config %v...\n", configPath)
+	if async {
+		defer wg.Done()
+	}
 	conf, exportTypesMap := config.ParseConfig(configPath)
 	a := analyzer.Analyzer{Conf: conf, GraphMap: make(map[string]graphs.Exporter), ExportTypesMap: exportTypesMap, Verbose: verbose}
 	a.Start()
+	fmt.Printf("Task from config %v was completed successfully\n", configPath)
 }

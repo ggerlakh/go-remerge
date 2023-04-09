@@ -37,10 +37,6 @@ func (a *Analyzer) Start() {
 					parser = &parsers.PythonParser{}
 				case "golang", "go":
 					parser = &parsers.GoParser{ProjectDir: a.Conf.SourceDirectory}
-				case "kotlin":
-					parser = &parsers.KotlinParser{}
-				case "swift":
-					parser = &parsers.SwiftParser{}
 				}
 				switch gConf.Graph {
 				case "file_dependency":
