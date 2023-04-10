@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"bufio"
+	"fmt"
 	"go-remerge/tools/ostool"
 	"log"
 	"os"
@@ -10,15 +11,79 @@ import (
 	"strings"
 )
 
-type PythonParser struct{}
+type PythonParser struct {
+	ProjectDir string
+}
 
 func (Parser *PythonParser) ExtractInheritance(entityFilePath, entityName string) []map[string]string {
-	//TODO implement me
-	panic("implement me")
+	var parentInheritanceEntities []map[string]string
+	var validImport = regexp.MustCompile(`(?m)^(?:from[ ]+(\S+)[ ]+)?import[ ]+(\S+)(?:[ ]+as[ ]+\S+)?[ ]*$`)
+	var importPathsArray []string
+	file, err := os.Open(entityFilePath)
+	if err != nil {
+		log.Fatalf("Error opening file: %v\n", err)
+	}
+	defer file.Close()
+	// Create a regular expression to match class definitions
+	classRegex := regexp.MustCompile(fmt.Sprintf(`class\s+%s\s*\(`, entityName))
+	// Read the file line by line
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		// Match the regular expression against the line
+		//match := classRegex.FindStringSubmatch(line)
+		if validImport.MatchString(line) {
+			importPathsArray = append(importPathsArray, strings.Fields(line)[1])
+		}
+		if classRegex.MatchString(line) {
+			inhEntityNames := strings.Split(strings.Split(line, `)`)[0], `(`)[1]
+			if inhEntityNames != "" {
+				for _, inhEntityName := range strings.Split(inhEntityNames, ",") {
+					for _, impPath := range importPathsArray {
+						inhEntityPath := ""
+						if strings.Contains(impPath, inhEntityName) {
+							parentEntityImportPath := strings.Fields(line)[1]
+							if strings.HasPrefix(parentEntityImportPath, "..") {
+								inhEntityPath = filepath.Join(filepath.Dir(entityName), filepath.Clean(filepath.Join("..", strings.ReplaceAll(strings.TrimPrefix(parentEntityImportPath, ".."), ".", string(filepath.Separator)))))
+								if ostool.Exists(inhEntityPath + ".py") {
+									inhEntityPath = inhEntityPath + ".py"
+								} else {
+									inhEntityPath = inhEntityPath + "__init__.py"
+								}
+							} else if strings.HasPrefix(parentEntityImportPath, ".") {
+								inhEntityPath = filepath.Join(filepath.Dir(entityName), filepath.Clean(filepath.Join(".", strings.ReplaceAll(strings.TrimPrefix(parentEntityImportPath, "."), ".", string(filepath.Separator)))))
+								if ostool.Exists(inhEntityPath + ".py") {
+									inhEntityPath = inhEntityPath + ".py"
+								} else {
+									inhEntityPath = inhEntityPath + "__init__.py"
+								}
+							} else {
+								inhEntityPath = filepath.Clean(filepath.Join(Parser.ProjectDir, strings.ReplaceAll(parentEntityImportPath, ".", string(filepath.Separator))))
+								if ostool.Exists(inhEntityPath + ".py") {
+									inhEntityPath = inhEntityPath + ".py"
+								} else if ostool.Exists(inhEntityPath + "__init__.py") {
+									inhEntityPath = inhEntityPath + "__init__.py"
+								} else {
+									inhEntityPath = filepath.Join("external_dependency", string(filepath.Separator))
+								}
+							}
+						}
+						parentInheritanceEntities = append(parentInheritanceEntities, map[string]string{
+							"name": strings.TrimSpace(inhEntityName),
+							"path": inhEntityPath,
+						})
+					}
+				}
+			}
+		}
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatalf("Error reading file: %v\n", err)
+	}
+	return parentInheritanceEntities
 }
 
 func (Parser *PythonParser) ExtractDependencies(filePath string) []string {
-	// TODO use *Node instead of string and implement extracting packages there
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	var dependencies []string
 	var validImport = regexp.MustCompile(`(?m)^(?:from[ ]+(\S+)[ ]+)?import[ ]+(\S+)(?:[ ]+as[ ]+\S+)?[ ]*$`)
@@ -91,7 +156,6 @@ func (Parser *PythonParser) ExtractDependencies(filePath string) []string {
 }
 
 func (Parser *PythonParser) ExtractEntities(filePath string) []string {
-	//TODO
 	var entities []string
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -119,7 +183,6 @@ func (Parser *PythonParser) ExtractEntities(filePath string) []string {
 }
 
 func (Parser *PythonParser) ExtractExternalEntities(externalDependencyName, fromNodePath, fromNodeEntityName string) []string {
-	//TODO
 	var externalEntityDependencies []string
 	// iterating over fromEntityName source code in .py file
 	// Define regular expression to match class definition lines

@@ -34,7 +34,7 @@ func (a *Analyzer) Start() {
 				var parser parsers.CompleteGraphExtractor
 				switch strings.ToLower(lang) {
 				case "python":
-					parser = &parsers.PythonParser{}
+					parser = &parsers.PythonParser{ProjectDir: a.Conf.SourceDirectory}
 				case "golang", "go":
 					parser = &parsers.GoParser{ProjectDir: a.Conf.SourceDirectory}
 				}
