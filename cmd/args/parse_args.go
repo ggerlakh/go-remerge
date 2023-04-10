@@ -20,6 +20,25 @@ func ParseArgs() {
 	flag.StringVar(&configPath, "c", "", "path to yaml config")
 	flag.BoolVar(&verbose, "v", false, "produce verbose output")
 	flag.BoolVar(&async, "async", false, "asynchronous task execution")
+	flag.Usage = func() {
+		_, err := fmt.Fprintf(os.Stderr, "Usage: %s -c <path> [-h] [-v] [--async]:\n-h, --help\tprint help information\n", os.Args[0])
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		flag.VisitAll(func(f *flag.Flag) {
+			var prefix string
+			if f.Name == "v" || f.Name == "c" {
+				prefix = "-"
+			} else if f.Name == "async" {
+				prefix = "--"
+			}
+			_, err := fmt.Fprintf(os.Stderr, "%v%v\t\t%v\n", prefix, f.Name, f.Usage)
+			if err != nil {
+				log.Fatal(err)
+			} // f.Name, f.Value
+		})
+	}
 	flag.Parse()
 	wg := new(sync.WaitGroup)
 	// get info about config path
