@@ -21,10 +21,6 @@ type Analyzer struct {
 }
 
 func (a *Analyzer) Start() {
-	err := os.Chdir(a.Conf.SourceDirectory)
-	if err != nil {
-		log.Fatalf("Error to change directory: %v\n", err)
-	}
 	for _, gConf := range a.Conf.Graphs {
 		if gConf.Graph == "filesystem" {
 			a.CreateFilesystemGraphIfNotCreated(gConf.Direction, a.Conf.ProjectName)

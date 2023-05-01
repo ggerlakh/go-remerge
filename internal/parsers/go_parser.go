@@ -241,7 +241,6 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 		// Parse the imports in Golang file
 		if !ostool.Exists(path) {
 			path = strings.TrimPrefix(strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), Parser.ProjectDir, ""), string(filepath.Separator))
-			//fmt.Println("file: ", filePath, "import: ", path)
 			if !ostool.Exists(path) {
 				path = strings.TrimLeft(strings.ReplaceAll(filepath.Join(filepath.Join(Parser.ProjectDir, ".."), filepath.Clean(path)), filepath.Dir(Parser.ProjectDir), ""), string(filepath.Separator))
 				fileDependenciesMap[filepath.Join("external_dependency", path)] = struct{}{}
@@ -297,7 +296,12 @@ func (Parser *GoParser) ExtractDependencies(filePath string) []string {
 		}
 	}
 	for file, _ := range fileDependenciesMap {
-		fileResults = append(fileResults, file)
+		if !strings.HasPrefix(file, "external_dependency") {
+			path := filepath.Join(Parser.ProjectDir, file)
+			fileResults = append(fileResults, path)
+		} else {
+			fileResults = append(fileResults, file)
+		}
 	}
 	return fileResults
 }

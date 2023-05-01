@@ -103,15 +103,11 @@ func (Parser *PythonParser) ExtractDependencies(filePath string) []string {
 				// case "import ..abcd.efg"
 				if strings.HasPrefix(importPath, "..") {
 					var dependency string
-					cleanImportPath := filepath.Clean(filepath.Join("..", strings.Replace(strings.Split(importPath, "..")[1], ".", string(filepath.Separator), -1)))
+					cleanImportPath := filepath.Join(Parser.ProjectDir, filepath.Clean(filepath.Join("..", strings.Replace(strings.Split(importPath, "..")[1], ".", string(filepath.Separator), -1))))
 					if ostool.Exists(cleanImportPath + ".py") {
 						dependency = cleanImportPath + ".py"
 					} else if ostool.Exists(cleanImportPath) {
 						dependency = filepath.Join(cleanImportPath, "__init__.py")
-					} else if ostool.Exists(filepath.Clean(filepath.Join(currDir, cleanImportPath))) {
-						dependency = filepath.Join(filepath.Clean(filepath.Join(currDir, cleanImportPath)), "__init__.py")
-					} else if ostool.Exists(filepath.Clean(filepath.Join(currDir, cleanImportPath)) + ".py") {
-						dependency = filepath.Clean(filepath.Join(currDir, cleanImportPath)) + ".py"
 					} else {
 						log.Println("Dependency not exist: ", cleanImportPath, "path: ", filePath)
 						dependency = filepath.Join("external_dependency", filepath.Base(cleanImportPath))
@@ -119,31 +115,29 @@ func (Parser *PythonParser) ExtractDependencies(filePath string) []string {
 					dependencies = append(dependencies, dependency)
 				} else {
 					var dependency string
-					cleanImportPath := strings.Replace(importPath, ".", string(filepath.Separator), -1)
+					cleanImportPath := filepath.Join(Parser.ProjectDir, strings.Replace(importPath, ".", string(filepath.Separator), -1))
 					if ostool.Exists(cleanImportPath + ".py") {
 						dependency = cleanImportPath + ".py"
 					} else if ostool.Exists(cleanImportPath) {
 						dependency = filepath.Join(cleanImportPath, "__init__.py")
-					} else if ostool.Exists(filepath.Clean(filepath.Join(currDir, cleanImportPath))) {
-						dependency = filepath.Join(filepath.Clean(filepath.Join(currDir, cleanImportPath)), "__init__.py")
-					} else if ostool.Exists(filepath.Clean(filepath.Join(currDir, cleanImportPath)) + ".py") {
-						dependency = filepath.Clean(filepath.Join(currDir, cleanImportPath)) + ".py"
 					} else {
 						dependency = filepath.Join("external_dependency", filepath.Base(cleanImportPath))
 					}
 					dependencies = append(dependencies, dependency)
 				}
 			} else if importPath == "." || importPath == ".." { // case .. and .
-				dependency := filepath.Clean(filepath.Join(currDir, importPath, "__init__.py"))
+				//dependency := filepath.Clean(filepath.Join(currDir, importPath, "__init__.py"))
+				dependency := filepath.Join(Parser.ProjectDir, filepath.Clean(filepath.Join(currDir, importPath, "__init__.py")))
 				dependencies = append(dependencies, dependency)
 			} else { // case "import module"
 				var dependency string
+				importPath = filepath.Join(Parser.ProjectDir, importPath)
 				if ostool.Exists(importPath + ".py") {
 					dependency = importPath + ".py"
 				} else if ostool.Exists(importPath) {
 					dependency = filepath.Join(importPath, "__init__.py")
 				} else {
-					dependency = filepath.Join("external_dependency", importPath)
+					dependency = filepath.Join("external_dependency", filepath.Base(importPath))
 				}
 				dependencies = append(dependencies, dependency)
 			}

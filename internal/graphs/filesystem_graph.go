@@ -59,9 +59,18 @@ func (fsG *FileSystemGraph) GetRootDir(Root string) string {
 	return filepath.Base(abs)
 }
 
+func (fsG *FileSystemGraph) GetRootRelPath(path string) string {
+	var hashInput string
+	if path == fsG.Root {
+		hashInput = filepath.Base(path)
+	} else {
+		hashInput, _ = strings.CutPrefix(path, fsG.Root+string(filepath.Separator))
+	}
+	return hashInput
+}
+
 func (fsG *FileSystemGraph) WalkTree(Verbose bool) {
-	//log.SetFlags(log.LstdFlags | log.Lshortfile)
-	err := filepath.Walk(".", func(path string, info fs.FileInfo, err error) error {
+	err := filepath.Walk(fsG.Root, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			log.Printf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
 			return err
@@ -91,21 +100,21 @@ func (fsG *FileSystemGraph) WalkTree(Verbose bool) {
 				}
 				toPath = path
 				// adding "from" Node if not exists
-				if _, nodeExists := fsG.Nodes[hashtool.Sha256(fromPath)]; !nodeExists {
-					fsG.AddNode(Node{Id: hashtool.Sha256(fromPath), Labels: map[string]any{
+				if _, nodeExists := fsG.Nodes[hashtool.Sha256(fsG.GetRootRelPath(fromPath))]; !nodeExists {
+					fsG.AddNode(Node{Id: hashtool.Sha256(fsG.GetRootRelPath(fromPath)), Labels: map[string]any{
 						"name":        filepath.Base(fromPath),
 						"path":        fromPath,
 						"isDirectory": info.IsDir()}})
 				}
 				// adding "to" Node if not exists
-				if _, nodeExists := fsG.Nodes[hashtool.Sha256(toPath)]; !nodeExists {
-					fsG.AddNode(Node{Id: hashtool.Sha256(toPath), Labels: map[string]any{
+				if _, nodeExists := fsG.Nodes[hashtool.Sha256(fsG.GetRootRelPath(toPath))]; !nodeExists {
+					fsG.AddNode(Node{Id: hashtool.Sha256(fsG.GetRootRelPath(toPath)), Labels: map[string]any{
 						"name":        filepath.Base(toPath),
 						"path":        toPath,
 						"isDirectory": info.IsDir()}})
 				}
 				if fromPath != toPath {
-					fsG.AddEdge(Edge{From: fsG.Nodes[hashtool.Sha256(fromPath)], To: fsG.Nodes[hashtool.Sha256(toPath)]})
+					fsG.AddEdge(Edge{From: fsG.Nodes[hashtool.Sha256(fsG.GetRootRelPath(fromPath))], To: fsG.Nodes[hashtool.Sha256(fsG.GetRootRelPath(toPath))]})
 				}
 			}
 		}
