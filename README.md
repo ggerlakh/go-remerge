@@ -110,3 +110,43 @@
    Если запускается сразу несколько задач, их выполнение можно ускорить путем их асинхронного выполнение, задав флаг `--async`  
    Для более подробного вывода логов о выполнении задач на анализ кода утилитой нужно задать опцию `-v`
 ## Пример запуска утилиты
+Ниже представлен пример запуска утилиты для создания графов зависимостей
+```bash
+go-remerge % go-remerge-app -c configs/go-template.yml -v
+Starting task from config configs/go-template.yml...
+skipping a dir without errors: .git 
+skipping a file without errors: .gitignore 
+skipping a dir without errors: export 
+skipping a dir without errors: scripts 
+filesystem graph exported as JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_filesystem.json
+filesystem graph exported as ArangoDB formatted JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_filesystemArangoFormat.json
+starting export filesystem graph in ArangoDB...
+graph filesystem exported in ArangoDB
+starting export filesystem graph in Neo4j...
+filesystem graph exported in Neo4j
+file_dependency graph exported as JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_file_dependency.json
+file_dependency graph exported as ArangoDB formatted JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_file_dependencyArangoFormat.json
+starting export file_dependency graph in ArangoDB...
+graph file_dependency exported in ArangoDB
+starting export file_dependency graph in Neo4j...
+file_dependency graph exported in Neo4j
+entity_dependency graph exported as JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_entity_dependency.json
+entity_dependency graph exported as ArangoDB formatted JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_entity_dependencyArangoFormat.json
+starting export entity_dependency graph in ArangoDB...
+graph entity_dependency exported in ArangoDB
+starting export entity_dependency graph in Neo4j...
+entity_dependency graph exported in Neo4j
+entity_inheritance graph exported as JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_entity_inheritance.json
+entity_inheritance graph exported as ArangoDB formatted JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_entity_inheritanceArangoFormat.json
+starting export entity_inheritance graph in ArangoDB...
+graph entity_inheritance exported in ArangoDB
+starting export entity_inheritance graph in Neo4j...
+entity_inheritance graph exported in Neo4j
+entity_complete graph exported as JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_entity_complete.json
+entity_complete graph exported as ArangoDB formatted JSON file in /Users/ggerlakh/go-remerge/export/go-remerge_entity_completeArangoFormat.json
+starting export entity_complete graph in ArangoDB...
+graph entity_complete exported in ArangoDB
+starting export entity_complete graph in Neo4j...
+entity_complete graph exported in Neo4j
+Task from config configs/go-template.yml was completed successfully
+```
