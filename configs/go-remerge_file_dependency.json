@@ -1,0 +1,3881 @@
+{
+	"edges": [
+		{
+			"From": {
+				"Id": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+				"Labels": {
+					"_id": "filesystem_nodes/2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"_key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"dependencies": [
+						"external_dependency/strings",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "inheritance_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go"
+				}
+			},
+			"To": {
+				"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "filepath",
+					"package": "path/filepath",
+					"path": "external_dependency/path/filepath"
+				}
+			},
+			"Key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668->0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7"
+		},
+		{
+			"From": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"_id": "filesystem_nodes/219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"_key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "filepath",
+					"package": "path/filepath",
+					"path": "external_dependency/path/filepath"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/reflect"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "ff990d7dfa78e9fc93f7e5390546ddc62ae2017a2e08b14303b03c38247e5bea",
+				"Labels": {
+					"dependencies": null,
+					"isDirectory": false,
+					"name": "complete_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->ff990d7dfa78e9fc93f7e5390546ddc62ae2017a2e08b14303b03c38247e5bea"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd",
+				"Labels": {
+					"dependencies": null,
+					"isDirectory": false,
+					"name": "abstract_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/regexp",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/ast",
+						"external_dependency/go/parser",
+						"external_dependency/go/token",
+						"external_dependency/path/filepath",
+						"external_dependency/strings",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/errors",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "file.go",
+					"package": "ostool",
+					"path": "/Users/ggerlakh/go-remerge/tools/ostool/file.go"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "os",
+					"package": "os",
+					"path": "external_dependency/os"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "e2e1adcda7fdb3d7825e345e65958ef7c91b833b3673701d0aeff0669e6ba060",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "bufio",
+					"package": "bufio",
+					"path": "external_dependency/bufio"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->e2e1adcda7fdb3d7825e345e65958ef7c91b833b3673701d0aeff0669e6ba060"
+		},
+		{
+			"From": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"_id": "filesystem_nodes/54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"_key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/reflect"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"To": {
+				"Id": "630e6b089881ec65c07b9374c26dd1b35ac0f7bbcde1b6602cc5c4350edefb79",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "reflect",
+					"package": "reflect",
+					"path": "external_dependency/reflect"
+				}
+			},
+			"Key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd->630e6b089881ec65c07b9374c26dd1b35ac0f7bbcde1b6602cc5c4350edefb79"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "context",
+					"package": "context",
+					"path": "external_dependency/context"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36"
+		},
+		{
+			"From": {
+				"Id": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+				"Labels": {
+					"_id": "filesystem_nodes/2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"_key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"dependencies": [
+						"external_dependency/strings",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "inheritance_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go"
+				}
+			},
+			"To": {
+				"Id": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/crypto/sha256",
+						"external_dependency/fmt"
+					],
+					"isDirectory": false,
+					"name": "hash.go",
+					"package": "hashtool",
+					"path": "/Users/ggerlakh/go-remerge/tools/hashtool/hash.go"
+				}
+			},
+			"Key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668->e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "f1019b9c9c949c5d4871bc1c2909b5f2a7f3322fe6f81540a0784c25b067f19e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "regexp",
+					"package": "regexp",
+					"path": "external_dependency/regexp"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->f1019b9c9c949c5d4871bc1c2909b5f2a7f3322fe6f81540a0784c25b067f19e"
+		},
+		{
+			"From": {
+				"Id": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+				"Labels": {
+					"_id": "filesystem_nodes/8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"_key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/context",
+						"external_dependency/github.com/arangodb/go-driver",
+						"external_dependency/github.com/arangodb/go-driver/http"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "arango",
+					"path": "/Users/ggerlakh/go-remerge/internal/arango/client.go"
+				}
+			},
+			"To": {
+				"Id": "4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "context",
+					"package": "context",
+					"path": "external_dependency/context"
+				}
+			},
+			"Key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38->4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36"
+		},
+		{
+			"From": {
+				"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"Labels": {
+					"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/strconv",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go"
+					],
+					"isDirectory": false,
+					"name": "graphtest.go",
+					"package": "graphtest",
+					"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+				}
+			},
+			"To": {
+				"Id": "20f559d184a78a21848279bcbdac154bedf1907ee3068f0aa6aed6eb536b72fb",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strconv",
+					"package": "strconv",
+					"path": "external_dependency/strconv"
+				}
+			},
+			"Key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b->20f559d184a78a21848279bcbdac154bedf1907ee3068f0aa6aed6eb536b72fb"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "f1019b9c9c949c5d4871bc1c2909b5f2a7f3322fe6f81540a0784c25b067f19e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "regexp",
+					"package": "regexp",
+					"path": "external_dependency/regexp"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->f1019b9c9c949c5d4871bc1c2909b5f2a7f3322fe6f81540a0784c25b067f19e"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "os",
+					"package": "os",
+					"path": "external_dependency/os"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e"
+		},
+		{
+			"From": {
+				"Id": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+				"Labels": {
+					"_id": "filesystem_nodes/8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"_key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/context",
+						"external_dependency/github.com/arangodb/go-driver",
+						"external_dependency/github.com/arangodb/go-driver/http"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "arango",
+					"path": "/Users/ggerlakh/go-remerge/internal/arango/client.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"_id": "filesystem_nodes/db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"_key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"dependencies": [
+						"external_dependency/strings",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/strings",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "dependency_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23"
+		},
+		{
+			"From": {
+				"Id": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+				"Labels": {
+					"_id": "filesystem_nodes/8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+					"_key": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+					"dependencies": [
+						"external_dependency/errors",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "file.go",
+					"package": "ostool",
+					"path": "/Users/ggerlakh/go-remerge/tools/ostool/file.go"
+				}
+			},
+			"To": {
+				"Id": "a2b28f409e13cb4501c9b881a2b3f230733c7a9566b444177e4b68e2fb655f29",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "errors",
+					"package": "errors",
+					"path": "external_dependency/errors"
+				}
+			},
+			"Key": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20->a2b28f409e13cb4501c9b881a2b3f230733c7a9566b444177e4b68e2fb655f29"
+		},
+		{
+			"From": {
+				"Id": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+				"Labels": {
+					"_id": "filesystem_nodes/8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+					"_key": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+					"dependencies": [
+						"external_dependency/errors",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "file.go",
+					"package": "ostool",
+					"path": "/Users/ggerlakh/go-remerge/tools/ostool/file.go"
+				}
+			},
+			"To": {
+				"Id": "4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "os",
+					"package": "os",
+					"path": "external_dependency/os"
+				}
+			},
+			"Key": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20->4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e"
+		},
+		{
+			"From": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"_id": "filesystem_nodes/219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"_key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"To": {
+				"Id": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/bytes",
+						"external_dependency/encoding/json"
+					],
+					"isDirectory": false,
+					"name": "json.go",
+					"package": "jsontool",
+					"path": "/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+				}
+			},
+			"Key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c->b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "e2e1adcda7fdb3d7825e345e65958ef7c91b833b3673701d0aeff0669e6ba060",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "bufio",
+					"package": "bufio",
+					"path": "external_dependency/bufio"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->e2e1adcda7fdb3d7825e345e65958ef7c91b833b3673701d0aeff0669e6ba060"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/errors",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "file.go",
+					"package": "ostool",
+					"path": "/Users/ggerlakh/go-remerge/tools/ostool/file.go"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20"
+		},
+		{
+			"From": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"_id": "filesystem_nodes/54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"_key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/reflect"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+				"Labels": {
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "inheritance_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "os",
+					"package": "os",
+					"path": "external_dependency/os"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e"
+		},
+		{
+			"From": {
+				"Id": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+				"Labels": {
+					"_id": "filesystem_nodes/2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"_key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"dependencies": [
+						"external_dependency/strings",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "inheritance_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		},
+		{
+			"From": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"_id": "filesystem_nodes/219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"_key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/os",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/path/filepath",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/errors",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e"
+		},
+		{
+			"From": {
+				"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"Labels": {
+					"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/strconv",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go"
+					],
+					"isDirectory": false,
+					"name": "graphtest.go",
+					"package": "graphtest",
+					"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"Labels": {
+					"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/strconv",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go"
+					],
+					"isDirectory": false,
+					"name": "graphtest.go",
+					"package": "graphtest",
+					"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+				}
+			},
+			"To": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/reflect"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"Key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b->54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd"
+		},
+		{
+			"From": {
+				"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"Labels": {
+					"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/strconv",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go"
+					],
+					"isDirectory": false,
+					"name": "graphtest.go",
+					"package": "graphtest",
+					"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+				}
+			},
+			"To": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go",
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"Key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b->219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "737b67e24ad1e128bb71437445b27979eb31a64b9feb87921c30aa36779de65b",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "parser",
+					"package": "go/parser",
+					"path": "external_dependency/go/parser"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->737b67e24ad1e128bb71437445b27979eb31a64b9feb87921c30aa36779de65b"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "filepath",
+					"package": "path/filepath",
+					"path": "external_dependency/path/filepath"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7"
+		},
+		{
+			"From": {
+				"Id": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+				"Labels": {
+					"_id": "filesystem_nodes/ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"_key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"dependencies": [
+						"external_dependency/context",
+						"external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j",
+						"external_dependency/log",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "neo4j",
+					"path": "/Users/ggerlakh/go-remerge/internal/neo4j/client.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		},
+		{
+			"From": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"_id": "filesystem_nodes/219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"_key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"To": {
+				"Id": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/context",
+						"external_dependency/github.com/arangodb/go-driver",
+						"external_dependency/github.com/arangodb/go-driver/http",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "arango",
+					"path": "/Users/ggerlakh/go-remerge/internal/arango/client.go"
+				}
+			},
+			"Key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c->8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38"
+		},
+		{
+			"From": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"_id": "filesystem_nodes/54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"_key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/reflect"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"To": {
+				"Id": "62fb074cc0a32b14002eb7fe3a58cf9c55de667eb3d2d2cef45a03efdf238e86",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "yaml.v3",
+					"package": "gopkg.in/yaml.v3",
+					"path": "external_dependency/gopkg.in/yaml.v3"
+				}
+			},
+			"Key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd->62fb074cc0a32b14002eb7fe3a58cf9c55de667eb3d2d2cef45a03efdf238e86"
+		},
+		{
+			"From": {
+				"Id": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+				"Labels": {
+					"_id": "filesystem_nodes/36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"_key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "dependency_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go"
+				}
+			},
+			"To": {
+				"Id": "9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd",
+				"Labels": {
+					"dependencies": null,
+					"isDirectory": false,
+					"name": "abstract_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go"
+				}
+			},
+			"Key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23->9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd"
+		},
+		{
+			"From": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"_id": "filesystem_nodes/219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"_key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"To": {
+				"Id": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/context",
+						"external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j",
+						"external_dependency/log",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "neo4j",
+					"path": "/Users/ggerlakh/go-remerge/internal/neo4j/client.go"
+				}
+			},
+			"Key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c->ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "os",
+					"package": "os",
+					"path": "external_dependency/os"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e"
+		},
+		{
+			"From": {
+				"Id": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+				"Labels": {
+					"_id": "filesystem_nodes/ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"_key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"dependencies": [
+						"external_dependency/context",
+						"external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j",
+						"external_dependency/log",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "neo4j",
+					"path": "/Users/ggerlakh/go-remerge/internal/neo4j/client.go"
+				}
+			},
+			"To": {
+				"Id": "3413b82cda5abaaece0689ed0fdb30c200470bd2c8019624d0b3a748bc3029dc",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "neo4j",
+					"package": "github.com/neo4j/neo4j-go-driver/v5/neo4j",
+					"path": "external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j"
+				}
+			},
+			"Key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa->3413b82cda5abaaece0689ed0fdb30c200470bd2c8019624d0b3a748bc3029dc"
+		},
+		{
+			"From": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"_id": "filesystem_nodes/219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"_key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"To": {
+				"Id": "4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "context",
+					"package": "context",
+					"path": "external_dependency/context"
+				}
+			},
+			"Key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c->4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"Labels": {
+					"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/strconv",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go"
+					],
+					"isDirectory": false,
+					"name": "graphtest.go",
+					"package": "graphtest",
+					"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+				}
+			},
+			"To": {
+				"Id": "4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "context",
+					"package": "context",
+					"path": "external_dependency/context"
+				}
+			},
+			"Key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b->4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "a2b28f409e13cb4501c9b881a2b3f230733c7a9566b444177e4b68e2fb655f29",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "errors",
+					"package": "errors",
+					"path": "external_dependency/errors"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->a2b28f409e13cb4501c9b881a2b3f230733c7a9566b444177e4b68e2fb655f29"
+		},
+		{
+			"From": {
+				"Id": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+				"Labels": {
+					"_id": "filesystem_nodes/36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"_key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "dependency_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go"
+				}
+			},
+			"To": {
+				"Id": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/crypto/sha256",
+						"external_dependency/fmt"
+					],
+					"isDirectory": false,
+					"name": "hash.go",
+					"package": "hashtool",
+					"path": "/Users/ggerlakh/go-remerge/tools/hashtool/hash.go"
+				}
+			},
+			"Key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23->e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213"
+		},
+		{
+			"From": {
+				"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"Labels": {
+					"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/strconv",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go"
+					],
+					"isDirectory": false,
+					"name": "graphtest.go",
+					"package": "graphtest",
+					"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+				}
+			},
+			"To": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath",
+						"external_dependency/strings",
+						"external_dependency/fmt"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"Key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b->db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c"
+		},
+		{
+			"From": {
+				"Id": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+				"Labels": {
+					"_id": "filesystem_nodes/8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+					"_key": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+					"dependencies": [
+						"external_dependency/errors",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "file.go",
+					"package": "ostool",
+					"path": "/Users/ggerlakh/go-remerge/tools/ostool/file.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+				"Labels": {
+					"_id": "filesystem_nodes/ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"_key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"dependencies": [
+						"external_dependency/context",
+						"external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j",
+						"external_dependency/log",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "neo4j",
+					"path": "/Users/ggerlakh/go-remerge/internal/neo4j/client.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+				"Labels": {
+					"_id": "filesystem_nodes/b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+					"_key": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+					"dependencies": [
+						"external_dependency/encoding/json",
+						"external_dependency/bytes"
+					],
+					"isDirectory": false,
+					"name": "json.go",
+					"package": "jsontool",
+					"path": "/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+				}
+			},
+			"To": {
+				"Id": "6c4c79a4cad6173c652b0fe88ac974c0fa9b64da153e07ff372dac673c2edc67",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "bytes",
+					"package": "bytes",
+					"path": "external_dependency/bytes"
+				}
+			},
+			"Key": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a->6c4c79a4cad6173c652b0fe88ac974c0fa9b64da153e07ff372dac673c2edc67"
+		},
+		{
+			"From": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"_id": "filesystem_nodes/54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"_key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/reflect"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"To": {
+				"Id": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/errors",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "file.go",
+					"package": "ostool",
+					"path": "/Users/ggerlakh/go-remerge/tools/ostool/file.go"
+				}
+			},
+			"Key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd->8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20"
+		},
+		{
+			"From": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"_id": "filesystem_nodes/54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"_key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/reflect"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"To": {
+				"Id": "4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "os",
+					"package": "os",
+					"path": "external_dependency/os"
+				}
+			},
+			"Key": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd->4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e"
+		},
+		{
+			"From": {
+				"Id": "dfbf14718ebfb5b796100d0570bdb9ea361bfc5d27df75ff5fdf211068823fad",
+				"Labels": {
+					"_id": "filesystem_nodes/dfbf14718ebfb5b796100d0570bdb9ea361bfc5d27df75ff5fdf211068823fad",
+					"_key": "dfbf14718ebfb5b796100d0570bdb9ea361bfc5d27df75ff5fdf211068823fad",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+					],
+					"isDirectory": false,
+					"name": "app.go",
+					"package": "main",
+					"path": "/Users/ggerlakh/go-remerge/cmd/app/app.go"
+				}
+			},
+			"To": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go",
+						"external_dependency/log",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/sync"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"Key": "dfbf14718ebfb5b796100d0570bdb9ea361bfc5d27df75ff5fdf211068823fad->a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157"
+		},
+		{
+			"From": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"_id": "filesystem_nodes/db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"_key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"dependencies": [
+						"external_dependency/strings",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "2add55c96bf93c0951e8d140e90990262ce8d37829091904caf5a126f6fcd176",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "sync",
+					"package": "sync",
+					"path": "external_dependency/sync"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->2add55c96bf93c0951e8d140e90990262ce8d37829091904caf5a126f6fcd176"
+		},
+		{
+			"From": {
+				"Id": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+				"Labels": {
+					"_id": "filesystem_nodes/8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"_key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/context",
+						"external_dependency/github.com/arangodb/go-driver",
+						"external_dependency/github.com/arangodb/go-driver/http"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "arango",
+					"path": "/Users/ggerlakh/go-remerge/internal/arango/client.go"
+				}
+			},
+			"To": {
+				"Id": "623f2f1b411c35065bac35b8035bf047501e083ce77af595fc035851c46929b1",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "go-driver",
+					"package": "github.com/arangodb/go-driver",
+					"path": "external_dependency/github.com/arangodb/go-driver"
+				}
+			},
+			"Key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38->623f2f1b411c35065bac35b8035bf047501e083ce77af595fc035851c46929b1"
+		},
+		{
+			"From": {
+				"Id": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+				"Labels": {
+					"_id": "filesystem_nodes/36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"_key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "dependency_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go"
+				}
+			},
+			"To": {
+				"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "filepath",
+					"package": "path/filepath",
+					"path": "external_dependency/path/filepath"
+				}
+			},
+			"Key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23->0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7"
+		},
+		{
+			"From": {
+				"Id": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+				"Labels": {
+					"_id": "filesystem_nodes/36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"_key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "dependency_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go",
+						"external_dependency/log",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c"
+		},
+		{
+			"From": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"_id": "filesystem_nodes/db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"_key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"dependencies": [
+						"external_dependency/strings",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"To": {
+				"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "filepath",
+					"package": "path/filepath",
+					"path": "external_dependency/path/filepath"
+				}
+			},
+			"Key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c->0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/reflect",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/gopkg.in/yaml.v3",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "config.go",
+					"package": "config",
+					"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "filepath",
+					"package": "path/filepath",
+					"path": "external_dependency/path/filepath"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7"
+		},
+		{
+			"From": {
+				"Id": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+				"Labels": {
+					"_id": "filesystem_nodes/2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"_key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+					"dependencies": [
+						"external_dependency/strings",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "inheritance_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go"
+				}
+			},
+			"To": {
+				"Id": "9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd",
+				"Labels": {
+					"dependencies": null,
+					"isDirectory": false,
+					"name": "abstract_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go"
+				}
+			},
+			"Key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668->9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "e5c61641f81dd44fedb18c7582ca2292026d91369f485b9930a2c015640a3850",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "flag",
+					"package": "flag",
+					"path": "external_dependency/flag"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->e5c61641f81dd44fedb18c7582ca2292026d91369f485b9930a2c015640a3850"
+		},
+		{
+			"From": {
+				"Id": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+				"Labels": {
+					"_id": "filesystem_nodes/8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"_key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/context",
+						"external_dependency/github.com/arangodb/go-driver",
+						"external_dependency/github.com/arangodb/go-driver/http"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "arango",
+					"path": "/Users/ggerlakh/go-remerge/internal/arango/client.go"
+				}
+			},
+			"To": {
+				"Id": "ad8b420cfc0d368a647d72a85f9f77ff34c4162c451b2986d80de933aee1c3fc",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "http",
+					"package": "github.com/arangodb/go-driver/http",
+					"path": "external_dependency/github.com/arangodb/go-driver/http"
+				}
+			},
+			"Key": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38->ad8b420cfc0d368a647d72a85f9f77ff34c4162c451b2986d80de933aee1c3fc"
+		},
+		{
+			"From": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"_id": "filesystem_nodes/db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"_key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"dependencies": [
+						"external_dependency/strings",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+				"Labels": {
+					"_id": "filesystem_nodes/ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"_key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+					"dependencies": [
+						"external_dependency/context",
+						"external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j",
+						"external_dependency/log",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "client.go",
+					"package": "neo4j",
+					"path": "/Users/ggerlakh/go-remerge/internal/neo4j/client.go"
+				}
+			},
+			"To": {
+				"Id": "4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "context",
+					"package": "context",
+					"path": "external_dependency/context"
+				}
+			},
+			"Key": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa->4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36"
+		},
+		{
+			"From": {
+				"Id": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+				"Labels": {
+					"_id": "filesystem_nodes/b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+					"_key": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+					"dependencies": [
+						"external_dependency/encoding/json",
+						"external_dependency/bytes"
+					],
+					"isDirectory": false,
+					"name": "json.go",
+					"package": "jsontool",
+					"path": "/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+				}
+			},
+			"To": {
+				"Id": "3332064e5b512c6612211de456184f75e2732b88f11cfb4cda8c0f362730959f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "json",
+					"package": "encoding/json",
+					"path": "external_dependency/encoding/json"
+				}
+			},
+			"Key": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a->3332064e5b512c6612211de456184f75e2732b88f11cfb4cda8c0f362730959f"
+		},
+		{
+			"From": {
+				"Id": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+				"Labels": {
+					"_id": "filesystem_nodes/e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+					"_key": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+					"dependencies": [
+						"external_dependency/crypto/sha256",
+						"external_dependency/fmt"
+					],
+					"isDirectory": false,
+					"name": "hash.go",
+					"package": "hashtool",
+					"path": "/Users/ggerlakh/go-remerge/tools/hashtool/hash.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "b5785a6d8d6d5cda55cd723370c6172e8a91bcf8cd7b0456c17d682117232e11",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "ast",
+					"package": "go/ast",
+					"path": "external_dependency/go/ast"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->b5785a6d8d6d5cda55cd723370c6172e8a91bcf8cd7b0456c17d682117232e11"
+		},
+		{
+			"From": {
+				"Id": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+				"Labels": {
+					"_id": "filesystem_nodes/e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+					"_key": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+					"dependencies": [
+						"external_dependency/crypto/sha256",
+						"external_dependency/fmt"
+					],
+					"isDirectory": false,
+					"name": "hash.go",
+					"package": "hashtool",
+					"path": "/Users/ggerlakh/go-remerge/tools/hashtool/hash.go"
+				}
+			},
+			"To": {
+				"Id": "cba60cd208783516fdd1bab719e8345437a04e648a0b18d7bb51c5ba9e3b500f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "sha256",
+					"package": "crypto/sha256",
+					"path": "external_dependency/crypto/sha256"
+				}
+			},
+			"Key": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213->cba60cd208783516fdd1bab719e8345437a04e648a0b18d7bb51c5ba9e3b500f"
+		},
+		{
+			"From": {
+				"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+				"Labels": {
+					"_id": "filesystem_nodes/b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"_key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+					"dependencies": [
+						"external_dependency/context",
+						"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"external_dependency/log",
+						"external_dependency/errors",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+						"external_dependency/os",
+						"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+						"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go",
+						"external_dependency/path/filepath",
+						"external_dependency/strings"
+					],
+					"isDirectory": false,
+					"name": "analyzer.go",
+					"package": "analyzer",
+					"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				}
+			},
+			"To": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"Key": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e->df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "d529ea0905d167efdf281ccf8da274c423905ed2894f7fbcc9eed6f4755d4d89",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "token",
+					"package": "go/token",
+					"path": "external_dependency/go/token"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->d529ea0905d167efdf281ccf8da274c423905ed2894f7fbcc9eed6f4755d4d89"
+		},
+		{
+			"From": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"_id": "filesystem_nodes/219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"_key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+					"dependencies": [
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go",
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"_id": "filesystem_nodes/db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"_key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"dependencies": [
+						"external_dependency/strings",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"To": {
+				"Id": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+				"Labels": {
+					"dependencies": [
+						"external_dependency/crypto/sha256",
+						"external_dependency/fmt"
+					],
+					"isDirectory": false,
+					"name": "hash.go",
+					"package": "hashtool",
+					"path": "/Users/ggerlakh/go-remerge/tools/hashtool/hash.go"
+				}
+			},
+			"Key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c->e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213"
+		},
+		{
+			"From": {
+				"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"Labels": {
+					"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/strconv",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go"
+					],
+					"isDirectory": false,
+					"name": "graphtest.go",
+					"package": "graphtest",
+					"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+				}
+			},
+			"To": {
+				"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "log",
+					"package": "log",
+					"path": "external_dependency/log"
+				}
+			},
+			"Key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b->75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "filepath",
+					"package": "path/filepath",
+					"path": "external_dependency/path/filepath"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7"
+		},
+		{
+			"From": {
+				"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"Labels": {
+					"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+					"dependencies": [
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/log",
+						"external_dependency/os"
+					],
+					"isDirectory": false,
+					"name": "python_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+				}
+			},
+			"To": {
+				"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fmt",
+					"package": "fmt",
+					"path": "external_dependency/fmt"
+				}
+			},
+			"Key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce->a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff"
+		},
+		{
+			"From": {
+				"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"Labels": {
+					"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+					"dependencies": [
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/sync",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/config/config.go",
+						"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+						"external_dependency/log",
+						"external_dependency/flag",
+						"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+					],
+					"isDirectory": false,
+					"name": "parse_args.go",
+					"package": "args",
+					"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				}
+			},
+			"To": {
+				"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+				"Labels": {
+					"dependencies": [
+						"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+						"/Users/ggerlakh/go-remerge/tools/jsontool/json.go",
+						"external_dependency/log",
+						"external_dependency/strings",
+						"external_dependency/context",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/internal/arango/client.go"
+					],
+					"isDirectory": false,
+					"name": "graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+				}
+			},
+			"Key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157->219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c"
+		},
+		{
+			"From": {
+				"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+				"Labels": {
+					"_id": "filesystem_nodes/db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"_key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+					"dependencies": [
+						"external_dependency/strings",
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+						"external_dependency/io/fs",
+						"external_dependency/log",
+						"external_dependency/path/filepath"
+					],
+					"isDirectory": false,
+					"name": "filesystem_graph.go",
+					"package": "graphs",
+					"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+				}
+			},
+			"To": {
+				"Id": "8e9dcf952541c64c2080d7e513697fbcae7bd2ab8557fa5fbf2deefa911cd80f",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "fs",
+					"package": "io/fs",
+					"path": "external_dependency/io/fs"
+				}
+			},
+			"Key": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c->8e9dcf952541c64c2080d7e513697fbcae7bd2ab8557fa5fbf2deefa911cd80f"
+		},
+		{
+			"From": {
+				"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"Labels": {
+					"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+					"dependencies": [
+						"external_dependency/fmt",
+						"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+						"external_dependency/go/parser",
+						"external_dependency/os",
+						"external_dependency/path/filepath",
+						"external_dependency/regexp",
+						"external_dependency/strings",
+						"external_dependency/bufio",
+						"external_dependency/go/ast",
+						"external_dependency/go/token",
+						"external_dependency/log"
+					],
+					"isDirectory": false,
+					"name": "go_parser.go",
+					"package": "parsers",
+					"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				}
+			},
+			"To": {
+				"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+				"Labels": {
+					"dependencies": [],
+					"isDirectory": false,
+					"name": "strings",
+					"package": "strings",
+					"path": "external_dependency/strings"
+				}
+			},
+			"Key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305->5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57"
+		}
+	],
+	"nodes": [
+		{
+			"Id": "4dc65b4da13dac0f981fc6e9ad47bcd8856ddde55bac975f05aa1c43d530db36",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "context",
+				"package": "context",
+				"path": "external_dependency/context"
+			}
+		},
+		{
+			"Id": "62fb074cc0a32b14002eb7fe3a58cf9c55de667eb3d2d2cef45a03efdf238e86",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "yaml.v3",
+				"package": "gopkg.in/yaml.v3",
+				"path": "external_dependency/gopkg.in/yaml.v3"
+			}
+		},
+		{
+			"Id": "9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd",
+			"Labels": {
+				"_id": "filesystem_nodes/9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd",
+				"_key": "9f10a640bd97c9647b9ce75f29f32fa7b8c5b499b5ede17ac4c51ba6af7fc3bd",
+				"dependencies": null,
+				"isDirectory": false,
+				"name": "abstract_parser.go",
+				"package": "parsers",
+				"path": "/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go"
+			}
+		},
+		{
+			"Id": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+			"Labels": {
+				"_id": "filesystem_nodes/7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"_key": "7795c6efee429f9a522297794668f54056f4e5a79a422ccb1e3211372e97b305",
+				"dependencies": [
+					"external_dependency/fmt",
+					"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+					"external_dependency/go/parser",
+					"external_dependency/os",
+					"external_dependency/path/filepath",
+					"external_dependency/regexp",
+					"external_dependency/strings",
+					"external_dependency/bufio",
+					"external_dependency/go/ast",
+					"external_dependency/go/token",
+					"external_dependency/log"
+				],
+				"isDirectory": false,
+				"name": "go_parser.go",
+				"package": "parsers",
+				"path": "/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+			}
+		},
+		{
+			"Id": "db3811e33869d048c96dadc0d7525de6ec799c66100ac9517eb352a2b92cb24c",
+			"Labels": {
+				"dependencies": [
+					"external_dependency/fmt",
+					"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+					"external_dependency/io/fs",
+					"external_dependency/log",
+					"external_dependency/path/filepath",
+					"external_dependency/strings"
+				],
+				"isDirectory": false,
+				"name": "filesystem_graph.go",
+				"package": "graphs",
+				"path": "/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go"
+			}
+		},
+		{
+			"Id": "a2ee1bb29c89ea11db5dd2a976d8f3850ab296e170573b8c0237ddedd18a9bff",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "fmt",
+				"package": "fmt",
+				"path": "external_dependency/fmt"
+			}
+		},
+		{
+			"Id": "b126d19c61b7249f14710696139d71e966aa643a9a363ad19e639e14cef6e41e",
+			"Labels": {
+				"dependencies": [
+					"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+					"external_dependency/os",
+					"external_dependency/fmt",
+					"/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go",
+					"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+					"/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go",
+					"external_dependency/path/filepath",
+					"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+					"/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go",
+					"/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go",
+					"external_dependency/log",
+					"external_dependency/strings",
+					"external_dependency/errors",
+					"/Users/ggerlakh/go-remerge/internal/config/config.go",
+					"external_dependency/context",
+					"/Users/ggerlakh/go-remerge/internal/parsers/go_parser.go"
+				],
+				"isDirectory": false,
+				"name": "analyzer.go",
+				"package": "analyzer",
+				"path": "/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+			}
+		},
+		{
+			"Id": "e2e1adcda7fdb3d7825e345e65958ef7c91b833b3673701d0aeff0669e6ba060",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "bufio",
+				"package": "bufio",
+				"path": "external_dependency/bufio"
+			}
+		},
+		{
+			"Id": "ff9641f8c17a7e4150d42e78ad419514c0c987683cf4f16c875d141a06d69ffa",
+			"Labels": {
+				"dependencies": [
+					"external_dependency/context",
+					"external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j",
+					"external_dependency/log",
+					"external_dependency/strings"
+				],
+				"isDirectory": false,
+				"name": "client.go",
+				"package": "neo4j",
+				"path": "/Users/ggerlakh/go-remerge/internal/neo4j/client.go"
+			}
+		},
+		{
+			"Id": "dfbf14718ebfb5b796100d0570bdb9ea361bfc5d27df75ff5fdf211068823fad",
+			"Labels": {
+				"_id": "filesystem_nodes/dfbf14718ebfb5b796100d0570bdb9ea361bfc5d27df75ff5fdf211068823fad",
+				"_key": "dfbf14718ebfb5b796100d0570bdb9ea361bfc5d27df75ff5fdf211068823fad",
+				"dependencies": [
+					"/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+				],
+				"isDirectory": false,
+				"name": "app.go",
+				"package": "main",
+				"path": "/Users/ggerlakh/go-remerge/cmd/app/app.go"
+			}
+		},
+		{
+			"Id": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+			"Labels": {
+				"_id": "filesystem_nodes/a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"_key": "a0ea4a0902d48eebee6a9c093cd2196a7fd0b9ac33e8a9e3027a6499d1578157",
+				"dependencies": [
+					"external_dependency/os",
+					"external_dependency/path/filepath",
+					"external_dependency/sync",
+					"external_dependency/fmt",
+					"/Users/ggerlakh/go-remerge/internal/config/config.go",
+					"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+					"external_dependency/log",
+					"external_dependency/flag",
+					"/Users/ggerlakh/go-remerge/internal/analyzer/analyzer.go"
+				],
+				"isDirectory": false,
+				"name": "parse_args.go",
+				"package": "args",
+				"path": "/Users/ggerlakh/go-remerge/cmd/args/parse_args.go"
+			}
+		},
+		{
+			"Id": "8902e20424b5a103226d21be85157de2f5d35c57c92ba8c5cbd942bdc076dd20",
+			"Labels": {
+				"dependencies": [
+					"external_dependency/os",
+					"external_dependency/errors",
+					"external_dependency/log"
+				],
+				"isDirectory": false,
+				"name": "file.go",
+				"package": "ostool",
+				"path": "/Users/ggerlakh/go-remerge/tools/ostool/file.go"
+			}
+		},
+		{
+			"Id": "ff990d7dfa78e9fc93f7e5390546ddc62ae2017a2e08b14303b03c38247e5bea",
+			"Labels": {
+				"dependencies": null,
+				"isDirectory": false,
+				"name": "complete_graph.go",
+				"package": "graphs",
+				"path": "/Users/ggerlakh/go-remerge/internal/graphs/complete_graph.go"
+			}
+		},
+		{
+			"Id": "e9b2f6f8b95e8778612e32783af3ea6450186c5cae6aef8c7a45d1b2ea74e213",
+			"Labels": {
+				"dependencies": [
+					"external_dependency/crypto/sha256",
+					"external_dependency/fmt"
+				],
+				"isDirectory": false,
+				"name": "hash.go",
+				"package": "hashtool",
+				"path": "/Users/ggerlakh/go-remerge/tools/hashtool/hash.go"
+			}
+		},
+		{
+			"Id": "36c6f2e04873834043f57b99b6f6855f49a0e05859e42ad791bff17f26bb0d23",
+			"Labels": {
+				"dependencies": [
+					"external_dependency/strings",
+					"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+					"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+					"external_dependency/path/filepath"
+				],
+				"isDirectory": false,
+				"name": "dependency_graph.go",
+				"package": "graphs",
+				"path": "/Users/ggerlakh/go-remerge/internal/graphs/dependency_graph.go"
+			}
+		},
+		{
+			"Id": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+			"Labels": {
+				"_id": "filesystem_nodes/49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"_key": "49eb1d05331db699d388d00ac453cc5fc2e6553afb532d32cd0268a7bddfa32b",
+				"dependencies": [
+					"/Users/ggerlakh/go-remerge/internal/graphs/filesystem_graph.go",
+					"/Users/ggerlakh/go-remerge/internal/graphs/graph.go",
+					"external_dependency/log",
+					"external_dependency/strconv",
+					"external_dependency/context",
+					"external_dependency/fmt",
+					"/Users/ggerlakh/go-remerge/internal/config/config.go"
+				],
+				"isDirectory": false,
+				"name": "graphtest.go",
+				"package": "graphtest",
+				"path": "/Users/ggerlakh/go-remerge/test/graphtest/graphtest.go"
+			}
+		},
+		{
+			"Id": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+			"Labels": {
+				"_id": "filesystem_nodes/2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+				"_key": "2c64a8ab740e00ba75cad66595ffc5f4e9bc8a2c21487c6d4d85162bd5138668",
+				"dependencies": [
+					"external_dependency/strings",
+					"/Users/ggerlakh/go-remerge/internal/parsers/abstract_parser.go",
+					"/Users/ggerlakh/go-remerge/tools/hashtool/hash.go",
+					"external_dependency/path/filepath"
+				],
+				"isDirectory": false,
+				"name": "inheritance_graph.go",
+				"package": "graphs",
+				"path": "/Users/ggerlakh/go-remerge/internal/graphs/inheritance_graph.go"
+			}
+		},
+		{
+			"Id": "e5c61641f81dd44fedb18c7582ca2292026d91369f485b9930a2c015640a3850",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "flag",
+				"package": "flag",
+				"path": "external_dependency/flag"
+			}
+		},
+		{
+			"Id": "623f2f1b411c35065bac35b8035bf047501e083ce77af595fc035851c46929b1",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "go-driver",
+				"package": "github.com/arangodb/go-driver",
+				"path": "external_dependency/github.com/arangodb/go-driver"
+			}
+		},
+		{
+			"Id": "f1019b9c9c949c5d4871bc1c2909b5f2a7f3322fe6f81540a0784c25b067f19e",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "regexp",
+				"package": "regexp",
+				"path": "external_dependency/regexp"
+			}
+		},
+		{
+			"Id": "3413b82cda5abaaece0689ed0fdb30c200470bd2c8019624d0b3a748bc3029dc",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "neo4j",
+				"package": "github.com/neo4j/neo4j-go-driver/v5/neo4j",
+				"path": "external_dependency/github.com/neo4j/neo4j-go-driver/v5/neo4j"
+			}
+		},
+		{
+			"Id": "2add55c96bf93c0951e8d140e90990262ce8d37829091904caf5a126f6fcd176",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "sync",
+				"package": "sync",
+				"path": "external_dependency/sync"
+			}
+		},
+		{
+			"Id": "ad8b420cfc0d368a647d72a85f9f77ff34c4162c451b2986d80de933aee1c3fc",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "http",
+				"package": "github.com/arangodb/go-driver/http",
+				"path": "external_dependency/github.com/arangodb/go-driver/http"
+			}
+		},
+		{
+			"Id": "54c7c1af5fa8d5db4dc49f0e8e80e93ba2b1183ba4d5c9e2e5729e6deae6a3cd",
+			"Labels": {
+				"dependencies": [
+					"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+					"external_dependency/gopkg.in/yaml.v3",
+					"external_dependency/log",
+					"external_dependency/os",
+					"external_dependency/reflect"
+				],
+				"isDirectory": false,
+				"name": "config.go",
+				"package": "config",
+				"path": "/Users/ggerlakh/go-remerge/internal/config/config.go"
+			}
+		},
+		{
+			"Id": "20f559d184a78a21848279bcbdac154bedf1907ee3068f0aa6aed6eb536b72fb",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "strconv",
+				"package": "strconv",
+				"path": "external_dependency/strconv"
+			}
+		},
+		{
+			"Id": "a2b28f409e13cb4501c9b881a2b3f230733c7a9566b444177e4b68e2fb655f29",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "errors",
+				"package": "errors",
+				"path": "external_dependency/errors"
+			}
+		},
+		{
+			"Id": "b5785a6d8d6d5cda55cd723370c6172e8a91bcf8cd7b0456c17d682117232e11",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "ast",
+				"package": "go/ast",
+				"path": "external_dependency/go/ast"
+			}
+		},
+		{
+			"Id": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+			"Labels": {
+				"_id": "filesystem_nodes/b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+				"_key": "b96ae2c8eff09dd46ae51b7fbd8de544f4bfd92b273a094bd2c2c351579bd68a",
+				"dependencies": [
+					"external_dependency/encoding/json",
+					"external_dependency/bytes"
+				],
+				"isDirectory": false,
+				"name": "json.go",
+				"package": "jsontool",
+				"path": "/Users/ggerlakh/go-remerge/tools/jsontool/json.go"
+			}
+		},
+		{
+			"Id": "75c0c4e30c5c72cdf4df17e7d2b0d6b37699cf80ac91ebc86dcff4c3b7ce4f0f",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "log",
+				"package": "log",
+				"path": "external_dependency/log"
+			}
+		},
+		{
+			"Id": "4298493efce4918739980db50a1cc34b029037bdae7acc891c1ef2d06e38b95e",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "os",
+				"package": "os",
+				"path": "external_dependency/os"
+			}
+		},
+		{
+			"Id": "5d1cd237b81f5a107e87fce7f5a845e4bf42af5d300b24615da600ccfaddbf57",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "strings",
+				"package": "strings",
+				"path": "external_dependency/strings"
+			}
+		},
+		{
+			"Id": "cba60cd208783516fdd1bab719e8345437a04e648a0b18d7bb51c5ba9e3b500f",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "sha256",
+				"package": "crypto/sha256",
+				"path": "external_dependency/crypto/sha256"
+			}
+		},
+		{
+			"Id": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+			"Labels": {
+				"_id": "filesystem_nodes/df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"_key": "df6b4f6d06fb9781684ad49ca8b28b45877bdc7fc9aed6d94031f49abf2a06ce",
+				"dependencies": [
+					"external_dependency/path/filepath",
+					"external_dependency/regexp",
+					"external_dependency/strings",
+					"external_dependency/bufio",
+					"external_dependency/fmt",
+					"/Users/ggerlakh/go-remerge/tools/ostool/file.go",
+					"external_dependency/log",
+					"external_dependency/os"
+				],
+				"isDirectory": false,
+				"name": "python_parser.go",
+				"package": "parsers",
+				"path": "/Users/ggerlakh/go-remerge/internal/parsers/python_parser.go"
+			}
+		},
+		{
+			"Id": "737b67e24ad1e128bb71437445b27979eb31a64b9feb87921c30aa36779de65b",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "parser",
+				"package": "go/parser",
+				"path": "external_dependency/go/parser"
+			}
+		},
+		{
+			"Id": "3332064e5b512c6612211de456184f75e2732b88f11cfb4cda8c0f362730959f",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "json",
+				"package": "encoding/json",
+				"path": "external_dependency/encoding/json"
+			}
+		},
+		{
+			"Id": "6c4c79a4cad6173c652b0fe88ac974c0fa9b64da153e07ff372dac673c2edc67",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "bytes",
+				"package": "bytes",
+				"path": "external_dependency/bytes"
+			}
+		},
+		{
+			"Id": "8077aa310d6c6f8bd77d5acad39c3a8f4d7cdeb406e1af58f8051b2b9ad65a38",
+			"Labels": {
+				"dependencies": [
+					"external_dependency/context",
+					"external_dependency/github.com/arangodb/go-driver",
+					"external_dependency/github.com/arangodb/go-driver/http",
+					"external_dependency/log"
+				],
+				"isDirectory": false,
+				"name": "client.go",
+				"package": "arango",
+				"path": "/Users/ggerlakh/go-remerge/internal/arango/client.go"
+			}
+		},
+		{
+			"Id": "630e6b089881ec65c07b9374c26dd1b35ac0f7bbcde1b6602cc5c4350edefb79",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "reflect",
+				"package": "reflect",
+				"path": "external_dependency/reflect"
+			}
+		},
+		{
+			"Id": "8e9dcf952541c64c2080d7e513697fbcae7bd2ab8557fa5fbf2deefa911cd80f",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "fs",
+				"package": "io/fs",
+				"path": "external_dependency/io/fs"
+			}
+		},
+		{
+			"Id": "0f183a5b3586183b63c9febffabf21f72fe78c683f3a9461c14ae0e02ecc94f7",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "filepath",
+				"package": "path/filepath",
+				"path": "external_dependency/path/filepath"
+			}
+		},
+		{
+			"Id": "219a6a1f5b73789c2ad762f9b4a60efaeb386e17acb4a2befaba155a54cdb39c",
+			"Labels": {
+				"dependencies": [
+					"/Users/ggerlakh/go-remerge/internal/neo4j/client.go",
+					"/Users/ggerlakh/go-remerge/tools/jsontool/json.go",
+					"external_dependency/log",
+					"external_dependency/strings",
+					"external_dependency/context",
+					"external_dependency/fmt",
+					"/Users/ggerlakh/go-remerge/internal/arango/client.go"
+				],
+				"isDirectory": false,
+				"name": "graph.go",
+				"package": "graphs",
+				"path": "/Users/ggerlakh/go-remerge/internal/graphs/graph.go"
+			}
+		},
+		{
+			"Id": "d529ea0905d167efdf281ccf8da274c423905ed2894f7fbcc9eed6f4755d4d89",
+			"Labels": {
+				"dependencies": [],
+				"isDirectory": false,
+				"name": "token",
+				"package": "go/token",
+				"path": "external_dependency/go/token"
+			}
+		}
+	],
+	"type": "directed"
+}
