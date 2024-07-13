@@ -1,7 +1,6 @@
 /.idea/
 neo4jdb/
 export/
-*.cypher
 log*
 go_build_go_remerge_linux*
 token*

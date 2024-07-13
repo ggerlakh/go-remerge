@@ -83,18 +83,23 @@
    ```
 2. Склонировать репозиторий с исходным кодом и собрать утилиту:  
    ```bash
-   git clone https://github.com/ggerlakh/go-remerge.git && cd go-remerge && go build -o go-remerge cmd/app/app.go && chmod +x go-remerge
+   git clone https://github.com/ggerlakh/go-remerge.git && cd go-remerge && go build -o go-remerge-app cmd/app/app.go && chmod +x go-remerge-app
    ```
-3. Создать конфигурационный файл в заданном формате ([пример](https://github.com/ggerlakh/go-remerge/tree/master/configs))
-4. Добавить путь до склонированного репозитория в переменную `PATH`  
+3. Добавить путь до склонированного репозитория в переменную `PATH`  
    ```bash
    export PATH="${PATH}:<path_to_cloned_repo>"
    ```
-5. Запусить собранную утилиту для анализа исходного кода  
+4. Создать конфигурационный файл в заданном формате ([пример](https://github.com/ggerlakh/go-remerge/tree/master/configs))
+5. Если требуется выгрузка графов в графовые базы данных [Neo4j](https://neo4j.com/) и [ArangoDB](https://arangodb.com/), их можно развернуть локально через docker-compose ([ссылка](https://docs.docker.com/compose/install/) на инструкции по установке), пример конфигурационного файла docker-composе есть в [репозитории](https://github.com/ggerlakh/go-remerge/blob/master/docker-compose.yml)  
+   Поднять контейнеры с базами данных можно через следующую команду:
+   ```bash
+   docker-compose up -d
+   ```
+6. Запусить собранную утилиту для анализа исходного кода  
    Для вывода короткой справки о запуске утилиты можно выполнить следущую команду  
    ```bash
-   go-remerge % go-remerge -h
-   Usage: go-remerge -c <path> [-h] [-v] [--async]:
+   go-remerge % go-remerge-app -h
+   Usage: go-remerge-app -c <path> [-h] [-v] [--async]:
    -h, --help      print help information
    --async         asynchronous task execution
    -c              path to yaml config

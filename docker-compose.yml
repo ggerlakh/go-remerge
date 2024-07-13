@@ -16,9 +16,12 @@ services:
         environment:
             NEO4J_AUTH: "neo4j/neo4jdevops"
         volumes:
-            - "C:/Users/Gleb/Desktop/Учеба/Диплом/go-remerge/neo4jdb/data:/data"
-            - "C:/Users/Gleb/Desktop/Учеба/Диплом/go-remerge/neo4jdb/import:/var/lib/neo4j/import"
-            - "C:/Users/Gleb/Desktop/Учеба/Диплом/go-remerge/neo4jdb/logs:/logs"
-            - "C:/Users/Gleb/Desktop/Учеба/Диплом/go-remerge/neo4jdb/plugins:/plugins"
+            - "~/neo4jdb/data:/data"
+            - "~/neo4jdb/import:/var/lib/neo4j/import"
+            - "~/neo4jdb/logs:/logs"
+            - "~/neo4jdb/plugins:/plugins"
+        user: '1000'
+        group_add:
+        - '1000'
 
 
