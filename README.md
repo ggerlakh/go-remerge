@@ -1,3 +1,4 @@
+![graph demo](https://github.com/ggerlakh/go-remerge/blob/master/images/first_neo4j_graph.png)
 # go-remerge
 В данном репозиторий находится исходный код консольной утилиты `go-remerge`, которое было написано на языке [Golang](https://go.dev/), для создания графов зависимостей исходного кода с поддержкой выгрузки созданных графов в нереляционные графовые СУБД [Neo4j](https://neo4j.com/) и [ArangoDB](https://arangodb.com/).<br>
 Утилита в ходе ананлиза исходного кода создает 5 графов:
