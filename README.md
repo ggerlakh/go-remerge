@@ -107,7 +107,7 @@
    ```bash
    git clone https://github.com/ggerlakh/go-remerge.git && cd go-remerge && go build -o go-remerge-app cmd/app/app.go && chmod +x go-remerge-app
    ```
-3. Добавить путь до склонированного репозитория в переменную `PATH`  
+3. Добавить путь до склонированного репозитория в переменную `PATH`:  
    ```bash
    export PATH="${PATH}:<path_to_cloned_repo>"
    ```
