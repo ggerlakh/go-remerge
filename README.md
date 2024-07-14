@@ -23,7 +23,11 @@
 * [Golang](https://go.dev/)
 
 <details>
-<summary>Справка по расширению множества поддерживаемых языков для построеня графов зависимостей утилитой</summary>
+<summary>
+
+***Справка по расширению множества поддерживаемых языков для построения графов зависимостей утилитой***
+
+</summary>
 
 Чтобы добавить поддержку дополнительного языка программирования утилитой для создания графов зависимостей, нужно реализовать интерфейсы `DependencyExtractor` (для построения графов `file_dependencу` и `entity_dependency`) и `InheritanceExtractor` (для построения графа `entity_inheritance`) которые описаны в файле [internal/parsers/abstract_parser.go](https://github.com/ggerlakh/go-remerge/blob/master/internal/parsers/abstract_parser.go).<br>
 Интерфейс `DependencyExtractor` состоит из 5 методов:
@@ -43,7 +47,7 @@
   ```go
   map[string]string{
     "name": inhEntityName, // parent entity name
-		"path": inhEntityPath // parent entity filepath,
+    "path": inhEntityPath // parent entity filepath
 	}
   ```
 * `ExtractPackage(filepath string) string` - метод, принимающий на вход путь до файла `filepath` из которого извлекаются сущности (классы или структуры), который предназначен для извлечения названия модуля или пакета, к которому принадлежит анализируемый файл с исходным кодом.
