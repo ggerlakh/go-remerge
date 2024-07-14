@@ -56,7 +56,7 @@ func (Parser *GoParser) ExtractInheritance(entityFilePath, entityName string) []
 					switch decl.(type) {
 					case *ast.GenDecl:
 						genDecl := decl.(*ast.GenDecl)
-						if genDecl.Tok == token.TYPE || genDecl.Tok == token.FUNC || genDecl.Tok == token.CONST {
+						if genDecl.Tok == token.TYPE {
 							for _, spec := range genDecl.Specs {
 								typeSpec := spec.(*ast.TypeSpec)
 								pkgEntities = append(pkgEntities, map[string]string{
@@ -119,7 +119,7 @@ func (Parser *GoParser) ExtractInheritance(entityFilePath, entityName string) []
 												fieldType = fieldList[len(fieldList)-1]
 											}
 											// process slice, map or selector type
-											if strings.Contains(fieldType, "map[") {
+											if strings.Contains(fieldType, "map[") && len(strings.Split(fieldType, "]")) > 1 && len(strings.Split(strings.Split(fieldType, "]")[1], "[")) > 1 {
 												for _, mapType := range []string{strings.Split(fieldType, "]")[1], strings.Split(strings.Split(fieldType, "]")[1], "[")[1]} {
 													if !strings.Contains(structLine, "{") && !strings.Contains(structLine, "}") && mapType == pkgEntity["name"] {
 														parentInheritanceEntities = append(parentInheritanceEntities, pkgEntity)
@@ -190,9 +190,13 @@ func (Parser *GoParser) ExtractInheritance(entityFilePath, entityName string) []
 												fieldList := strings.Fields(cleanStructLine)
 												// process struct tags case
 												if strings.Contains(cleanStructLine, "`") {
-													fieldType = fieldList[len(fieldList)-2]
+													if len(fieldList) >= 2 {
+														fieldType = fieldList[len(fieldList)-2]
+													}
 												} else {
-													fieldType = fieldList[len(fieldList)-1]
+													if len(fieldList) >= 1 {
+														fieldType = fieldList[len(fieldList)-1]
+													}
 												}
 												// process slice, map or selector type
 												if strings.Contains(fieldType, "map[") {

@@ -16,10 +16,10 @@ services:
         environment:
             NEO4J_AUTH: "neo4j/neo4jdevops"
         volumes:
-            - "~/neo4jdb/data:/data"
-            - "~/neo4jdb/import:/var/lib/neo4j/import"
-            - "~/neo4jdb/logs:/logs"
-            - "~/neo4jdb/plugins:/plugins"
+            - "~/go-remerge/neo4jdb/data:/data"
+            - "~/go-remerge/neo4jdb/import:/var/lib/neo4j/import"
+            - "~/go-remerge/neo4jdb/logs:/logs"
+            - "~/go-remerge/neo4jdb/plugins:/plugins"
         user: '1000'
         group_add:
         - '1000'

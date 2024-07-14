@@ -1,4 +1,5 @@
 #!bin/bash
+mkdir neo4jdb && mkdir neo4jdb/logs && mkdir neo4jdb/plugins && mkdir neo4jdb/import && mkdir neo4jdb/data
 docker pull neo4j:latest
 docker run \
 	--name neo4j \
